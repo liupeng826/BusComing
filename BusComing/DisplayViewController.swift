@@ -1,6 +1,6 @@
 //
 //  DisplayViewController.swift
-//  MyRoute
+//  BusComing
 //
 //  Created by Peng Liu on 16-10-29.
 //  Copyright (c) 2016 LiuPeng. All rights reserved.
@@ -16,7 +16,7 @@ class DisplayViewController: UIViewController, MAMapViewDelegate {
     
     var isPlaying: Bool = false
     var currentLocationIndex: Int = 0
-    var averageSpeed: Double = 0.001
+    var averageSpeed: Double = 2
     
     override func viewDidLoad() {
         
@@ -27,6 +27,8 @@ class DisplayViewController: UIViewController, MAMapViewDelegate {
         initToolBar()
         
         showRoute()
+        
+        initVariates()
     }
     
     func initMapView() {
@@ -76,10 +78,16 @@ class DisplayViewController: UIViewController, MAMapViewDelegate {
         averageSpeed = route!.totalDistance() / route!.totalDuration()
     }
     
+    func initVariates() {
+        isPlaying = false;
+        currentLocationIndex = 0;
+        averageSpeed = 2;
+    }
+    
     //MARK:- Helpers
     
     func actionPlayAndStop() {
-        print("actionPlayAndStop")
+        
         
         if route == nil {
             return
@@ -88,6 +96,7 @@ class DisplayViewController: UIViewController, MAMapViewDelegate {
         isPlaying = !isPlaying
         
         if isPlaying {
+            print("actionPlay")
             navigationItem.rightBarButtonItem!.image = UIImage(named: "icon_stop.png")
             
             if myLocation == nil {
@@ -101,6 +110,7 @@ class DisplayViewController: UIViewController, MAMapViewDelegate {
             animateToNextCoordinate()
         }
         else {
+            print("actionStop")
             navigationItem.rightBarButtonItem!.image = UIImage(named: "icon_play.png")
             
             let view: MAAnnotationView? = mapView!.view(for: myLocation)
@@ -137,6 +147,8 @@ class DisplayViewController: UIViewController, MAMapViewDelegate {
         if myLocation == nil {
             return
         }
+        
+        print("currentLocationIndex: \(currentLocationIndex)")
         
         let coordiantes: [CLLocationCoordinate2D] = route!.coordinates()
         

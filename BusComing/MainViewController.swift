@@ -1,6 +1,6 @@
 //
 //  MainViewController.swift
-//  MyRoute
+//  BusComing
 //
 //  Created by Peng Liu on 16-10-29.
 //  Copyright (c) 2016 LiuPeng. All rights reserved.
@@ -16,7 +16,6 @@ class MainViewController: UIViewController, MAMapViewDelegate {
     var searchButton: UIButton!
     var imageLocated: UIImage!
     var imageNotLocate: UIImage!
-    var tipView: TipView!
     var statusView: StatusView!
     var currentRoute: Route?
     
@@ -27,7 +26,7 @@ class MainViewController: UIViewController, MAMapViewDelegate {
         
         initToolBar()
         initMapView()
-        initTipView()
+        initStatusView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -36,8 +35,6 @@ class MainViewController: UIViewController, MAMapViewDelegate {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        //tipView!.frame = CGRect(x: 0, y: view.bounds.height - 30, width: view.bounds.width, height: 30)
     }
 
     //MARK:- Initialization
@@ -71,19 +68,6 @@ class MainViewController: UIViewController, MAMapViewDelegate {
         locationButton!.setImage(imageLocated, for: UIControlState.normal)
         
         view.addSubview(locationButton!)
-        
-        // search button
-        searchButton = UIButton(frame: CGRect(x: view.bounds.width - 100, y: view.bounds.height - 80, width: 80, height: 40))
-        searchButton!.autoresizingMask = [UIViewAutoresizing.flexibleLeftMargin, UIViewAutoresizing.flexibleTopMargin]
-        searchButton!.backgroundColor = UIColor.white
-        searchButton!.layer.cornerRadius = 5
-        searchButton!.setTitleColor(UIColor.black, for: UIControlState.normal)
-        searchButton!.setTitle("Search", for: UIControlState.normal)
-        
-        searchButton!.addTarget(self, action: #selector(MainViewController.actionSearch(sender:)), for: UIControlEvents.touchUpInside)
-        
-        // display search button
-        //view.addSubview(searchButton!)
     }
     
     func initMapView() {
@@ -101,9 +85,7 @@ class MainViewController: UIViewController, MAMapViewDelegate {
         mapView.desiredAccuracy = kCLLocationAccuracyBestForNavigation
     }
     
-    func initTipView() {
-        //tipView = TipView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 30))
-        //view.addSubview(tipView!)
+    func initStatusView() {
         statusView = StatusView(frame: CGRect(x: 5, y: 35, width: 150, height: 150))
         
         statusView!.showStatusInfo(info: nil)
@@ -138,7 +120,6 @@ class MainViewController: UIViewController, MAMapViewDelegate {
         
         if isRecording {
             
-            showTip(tip: "Start recording...")
             navigationItem.leftBarButtonItem!.image = UIImage(named: "icon_stop.png")
             
             if currentRoute == nil {
@@ -151,7 +132,7 @@ class MainViewController: UIViewController, MAMapViewDelegate {
             navigationItem.leftBarButtonItem!.image = UIImage(named: "icon_play.png")
 
             addLocation(location: mapView!.userLocation.location)
-            hideTip()
+            // save posation information
             saveRoute()
         }
 
@@ -159,15 +140,7 @@ class MainViewController: UIViewController, MAMapViewDelegate {
     
     func actionLocation(sender: UIButton) {
         print("click Location button")
-        
-//        if mapView!.userTrackingMode == MAUserTrackingMode.follow {
-//            
-//            mapView!.setUserTrackingMode(MAUserTrackingMode.none, animated: false)
-//            mapView!.showsUserLocation = false
-//        }
-//        else {
-            mapView!.setUserTrackingMode(MAUserTrackingMode.follow, animated: true)
-//        }
+        mapView!.setUserTrackingMode(MAUserTrackingMode.follow, animated: true)
     }
     
     func actionSearch(sender: UIButton) {
@@ -181,7 +154,7 @@ class MainViewController: UIViewController, MAMapViewDelegate {
     func addLocation(location: CLLocation?) {
         let success = currentRoute!.addLocation(location: location)
         if success {
-            showTip(tip: "locations: \(currentRoute!.locations.count)")
+            print("locations: \(currentRoute!.locations.count)")
         }
     }
     
@@ -195,24 +168,16 @@ class MainViewController: UIViewController, MAMapViewDelegate {
         
         let path = FileHelper.recordPathWithName(name: name)
         
-//        println("path: \(path)")
+        print("currentRoute: \(currentRoute!)")
         
         NSKeyedArchiver.archiveRootObject(currentRoute!, toFile: path!)
         
         currentRoute = nil
     }
     
-    func showTip(tip: String?) {
-        tipView!.showTip(tip: tip)
-    }
-    
-    func hideTip() {
-        tipView!.isHidden = true
-    }
-    
     //MARK:- MAMapViewDelegate
     
-    func mapView(_ mapView: MAMapView , didUpdate userLocation: MAUserLocation ) {
+    func mapView(_ mapView: MAMapView , didUpdate userLocation: MAUserLocation, updatingLocation: Bool) {
         
         if isRecording {
             // filter the result
@@ -240,18 +205,6 @@ class MainViewController: UIViewController, MAMapViewDelegate {
             ("altitude", NSString(format: "%.2fm", location!.altitude) as String)]
         
         statusView!.showStatusInfo(info: infoArray)
-    }
-    
-    /** 
-    - (void)mapView:(MAMapView *)mapView didChangeUserTrackingMode:(MAUserTrackingMode)mode animated:(BOOL)animated;
-    */
-    func mapView(_ mapView: MAMapView, didChange mode: MAUserTrackingMode, animated: Bool) {
-//        if mode == MAUserTrackingMode.none {
-//            locationButton?.setImage(imageNotLocate, for: UIControlState.normal)
-//        }
-//        else {
-//            locationButton?.setImage(imageLocated, for: UIControlState.normal)
-//        }
     }
 
 }

@@ -1,6 +1,6 @@
 //
 //  Route.swift
-//  MyRoute
+//  BusComing
 //
 //  Created by Peng Liu on 16-10-29.
 //  Copyright (c) 2016 LiuPeng. All rights reserved.
@@ -77,7 +77,7 @@ class Route: NSObject, NSCoding {
     }
     
     func detail() -> String! {
-        return NSString(format: "p: %d, d: %.2fm, t: %@", locations.count, totalDistance(), formattedDuration(duration: totalDuration())) as String
+        return NSString(format: "point: %d, distance: %.2fm, duration: %@", locations.count, totalDistance(), formattedDuration(duration: totalDuration())) as String
     }
     
     func startLocation() -> CLLocation? {
