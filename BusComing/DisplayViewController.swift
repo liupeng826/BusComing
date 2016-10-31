@@ -28,7 +28,7 @@ class DisplayViewController: UIViewController, MAMapViewDelegate {
         
         showRoute()
         
-        initVariates()
+        //initVariates()
     }
     
     func initMapView() {
@@ -68,13 +68,13 @@ class DisplayViewController: UIViewController, MAMapViewDelegate {
         
         var coordiantes: [CLLocationCoordinate2D] = route!.coordinates()
         
-        let polyline = MAPolyline(coordinates: &coordiantes, count: UInt(coordiantes.count))
+        let polyline = MAPolyline.init(coordinates: &coordiantes, count: UInt(coordiantes.count))
 
         mapView!.add(polyline)
         
         mapView!.showAnnotations(mapView!.annotations, animated: true)
         
-        ///
+        // average Speed
         averageSpeed = route!.totalDistance() / route!.totalDuration()
     }
     
@@ -148,7 +148,7 @@ class DisplayViewController: UIViewController, MAMapViewDelegate {
             return
         }
         
-        print("currentLocationIndex: \(currentLocationIndex)")
+        //print("currentLocationIndex: \(currentLocationIndex)")
         
         let coordiantes: [CLLocationCoordinate2D] = route!.coordinates()
         
@@ -168,10 +168,14 @@ class DisplayViewController: UIViewController, MAMapViewDelegate {
        
         let duration: TimeInterval = distance / (averageSpeed * 100)
 
-        UIView.animate(withDuration: duration, animations: { () -> Void in
-            self.myLocation!.coordinate = nextCoord
-            return
-            }, completion: { (stop: Bool) -> Void in
+        UIView.animate(
+            withDuration: duration,
+            animations: {
+                () -> Void in
+                self.myLocation!.coordinate = nextCoord
+                return
+            },
+            completion: { (stop: Bool) -> Void in
                 self.currentLocationIndex += 1
                 if stop {
                     self.animateToNextCoordinate()
@@ -181,7 +185,7 @@ class DisplayViewController: UIViewController, MAMapViewDelegate {
         
         let view: MAAnnotationView? = mapView!.view(for: myLocation)
         if view != nil {
-            view!.transform = CGAffineTransform(rotationAngle: CGFloat(heading / 180.0 * M_PI));
+            view!.transform = CGAffineTransform.init(rotationAngle: CGFloat(heading / 180.0 * M_PI));
         }
     }
     
@@ -195,10 +199,10 @@ class DisplayViewController: UIViewController, MAMapViewDelegate {
             
             var poiAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier)
             if poiAnnotationView == nil {
-                poiAnnotationView = MAAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+                poiAnnotationView = MAAnnotationView.init(annotation: annotation, reuseIdentifier: annotationIdentifier)
             }
             
-            poiAnnotationView?.image = UIImage(named: "aeroplane.png")
+            poiAnnotationView?.image = UIImage.init(named: "aeroplane.png")
             poiAnnotationView!.canShowCallout = false
             
             return poiAnnotationView;
@@ -210,7 +214,7 @@ class DisplayViewController: UIViewController, MAMapViewDelegate {
             var poiAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) as? MAPinAnnotationView
             
             if poiAnnotationView == nil {
-                poiAnnotationView = MAPinAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+                poiAnnotationView = MAPinAnnotationView.init(annotation: annotation, reuseIdentifier: annotationIdentifier)
             }
             
             poiAnnotationView!.animatesDrop   = true
@@ -225,7 +229,7 @@ class DisplayViewController: UIViewController, MAMapViewDelegate {
     func mapView(_ mapView: MAMapView, rendererFor overlay: MAOverlay) -> MAOverlayRenderer? {
         
         if overlay.isKind(of: MAPolyline.self) {
-            let renderer: MAPolylineRenderer = MAPolylineRenderer(overlay: overlay)
+            let renderer: MAPolylineRenderer = MAPolylineRenderer.init(overlay: overlay)
             renderer.strokeColor = UIColor.red
             renderer.lineWidth = 6.0
             

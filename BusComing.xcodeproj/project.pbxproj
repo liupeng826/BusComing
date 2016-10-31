@@ -23,7 +23,6 @@
 		06EDF4C81DC47C0600343C4E /* location_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06EDF4C21DC47C0600343C4E /* location_yes@2x.png */; };
 		06EDF4CA1DC47C1C00343C4E /* icon_list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06EDF4C91DC47C1C00343C4E /* icon_list@2x.png */; };
 		06EDF4CC1DC47C5B00343C4E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06EDF4CB1DC47C5B00343C4E /* Images.xcassets */; };
-		06EDF4CE1DC47C6F00343C4E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06EDF4CD1DC47C6F00343C4E /* Info.plist */; };
 		06EDF4D11DC47D9C00343C4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06EDF4CF1DC47D9C00343C4E /* Main.storyboard */; };
 		06EDF4D51DC47E9400343C4E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06EDF4D41DC47E9400343C4E /* Info.plist */; };
 		9B3EE9285A8101D1AD8A4591 /* libPods-BusComing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2AD37CCDB725C24F714D5E /* libPods-BusComing.a */; };
@@ -255,7 +254,6 @@
 				06EDF4C31DC47C0600343C4E /* aeroplane@2x.png in Resources */,
 				06EDF4D11DC47D9C00343C4E /* Main.storyboard in Resources */,
 				06EDF4CA1DC47C1C00343C4E /* icon_list@2x.png in Resources */,
-				06EDF4CE1DC47C6F00343C4E /* Info.plist in Resources */,
 				06EDF4C41DC47C0600343C4E /* icon_play@2x.png in Resources */,
 				06EDF4C61DC47C0600343C4E /* Launch Screen.xib in Resources */,
 				06EDF4CC1DC47C5B00343C4E /* Images.xcassets in Resources */,

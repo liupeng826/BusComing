@@ -206,5 +206,17 @@ class MainViewController: UIViewController, MAMapViewDelegate {
         
         statusView!.showStatusInfo(info: infoArray)
     }
+    
+    /**
+     - (void)mapView:(MAMapView *)mapView didChangeUserTrackingMode:(MAUserTrackingMode)mode animated:(BOOL)animated;
+     */
+    func mapView(_ mapView: MAMapView, didChange mode: MAUserTrackingMode, animated: Bool) {
+        if mode == MAUserTrackingMode.none {
+            locationButton?.setImage(imageNotLocate, for: UIControlState.normal)
+        }
+        else {
+            locationButton?.setImage(imageLocated, for: UIControlState.normal)
+        }
+    }
 
 }
