@@ -30,7 +30,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		066598061DC6D7F500049409 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		06EDF4AB1DC47B8A00343C4E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = BusComing/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		06EDF4AD1DC47BA400343C4E /* DisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisplayViewController.swift; path = BusComing/DisplayViewController.swift; sourceTree = SOURCE_ROOT; };
 		06EDF4AE1DC47BA400343C4E /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = BusComing/MainViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -82,7 +81,6 @@
 		69AA41B652963D537C0B393C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				066598061DC6D7F500049409 /* CoreGraphics.framework */,
 				AA2AD37CCDB725C24F714D5E /* libPods-BusComing.a */,
 			);
 			name = Frameworks;
