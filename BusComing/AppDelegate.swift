@@ -8,17 +8,33 @@
 
 import UIKit
 
-let APIKey = "c237ef700e83a247398184dd591b12b7"
+let APIKey = "e3ce847a0401148b546b389cb31e447c"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    //后台任务
+//    var backgroundTask:UIBackgroundTaskIdentifier! = nil
+//    let locationManager = CLLocationManager()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         AMapServices.shared().apiKey = APIKey
+        
+        // 后台持续定位（被杀掉的情况下可以唤醒）
+//        if launchOptions?[UIApplicationLaunchOptionsKey.location] != nil {
+//            
+//            if #available(iOS 8.0, *) {
+//                locationManager.requestAlwaysAuthorization()
+//            }
+//            //这是iOS9中针对后台定位推出的新属性 不设置的话 可是会出现顶部蓝条的哦(类似热点连接)
+//            if #available(iOS 9.0, *) {
+//                locationManager.allowsBackgroundLocationUpdates = true
+//            }
+//            locationManager.startMonitoringSignificantLocationChanges()
+//        }
         
         return true
     }
@@ -35,6 +51,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let vc = application.keyWindow?.rootViewController
         print("main vc :\(vc)")
         // viewController!.stopLocationIfNeeded()
+        
+//        //如果已存在后台任务，先将其设为完成
+//        if self.backgroundTask != nil {
+//            application.endBackgroundTask(self.backgroundTask)
+//            self.backgroundTask = UIBackgroundTaskInvalid
+//        }
+//        
+//        //注册后台任务
+//        self.backgroundTask = application.beginBackgroundTask(expirationHandler: {
+//            () -> Void in
+//            //如果没有调用endBackgroundTask，时间耗尽时应用程序将被终止
+//            application.endBackgroundTask(self.backgroundTask)
+//            self.backgroundTask = UIBackgroundTaskInvalid
+//        })
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {

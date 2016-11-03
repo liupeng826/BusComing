@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		066598091DC7649700049409 /* DeviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066598081DC7649700049409 /* DeviceHelper.swift */; };
+		0665981B1DC86C5800049409 /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0665981A1DC86C5800049409 /* CustomAnnotationView.m */; };
+		066598201DC87E7300049409 /* CustomCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0665981F1DC87E7300049409 /* CustomCalloutView.m */; };
+		066598221DC88A1400049409 /* bus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 066598211DC88A1400049409 /* bus@2x.png */; };
 		06EDF4AC1DC47B8A00343C4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EDF4AB1DC47B8A00343C4E /* AppDelegate.swift */; };
 		06EDF4B11DC47BA400343C4E /* DisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EDF4AD1DC47BA400343C4E /* DisplayViewController.swift */; };
 		06EDF4B21DC47BA400343C4E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EDF4AE1DC47BA400343C4E /* MainViewController.swift */; };
@@ -25,10 +29,16 @@
 		06EDF4CC1DC47C5B00343C4E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06EDF4CB1DC47C5B00343C4E /* Images.xcassets */; };
 		06EDF4D11DC47D9C00343C4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06EDF4CF1DC47D9C00343C4E /* Main.storyboard */; };
 		06EDF4D51DC47E9400343C4E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06EDF4D41DC47E9400343C4E /* Info.plist */; };
-		9B3EE9285A8101D1AD8A4591 /* libPods-BusComing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2AD37CCDB725C24F714D5E /* libPods-BusComing.a */; };
+		B13605C5166AC886CA52E8DA /* Pods_BusComing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 724D97C4D13BB9041F6C5700 /* Pods_BusComing.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		066598081DC7649700049409 /* DeviceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceHelper.swift; path = BusComing/DeviceHelper.swift; sourceTree = SOURCE_ROOT; };
+		066598191DC86C5800049409 /* CustomAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomAnnotationView.h; path = BusComing/CustomAnnotationView.h; sourceTree = SOURCE_ROOT; };
+		0665981A1DC86C5800049409 /* CustomAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomAnnotationView.m; path = BusComing/CustomAnnotationView.m; sourceTree = SOURCE_ROOT; };
+		0665981E1DC87E7300049409 /* CustomCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCalloutView.h; path = BusComing/CustomCalloutView.h; sourceTree = SOURCE_ROOT; };
+		0665981F1DC87E7300049409 /* CustomCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCalloutView.m; path = BusComing/CustomCalloutView.m; sourceTree = SOURCE_ROOT; };
+		066598211DC88A1400049409 /* bus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bus@2x.png"; path = "BusComing/bus@2x.png"; sourceTree = SOURCE_ROOT; };
 		06EDF4AB1DC47B8A00343C4E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = BusComing/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		06EDF4AD1DC47BA400343C4E /* DisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisplayViewController.swift; path = BusComing/DisplayViewController.swift; sourceTree = SOURCE_ROOT; };
 		06EDF4AE1DC47BA400343C4E /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = BusComing/MainViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -50,10 +60,10 @@
 		06EDF4D21DC47E8900343C4E /* BusComingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = BusComingTests.swift; path = BusComingTests/BusComingTests.swift; sourceTree = SOURCE_ROOT; };
 		06EDF4D41DC47E9400343C4E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = BusComingTests/Info.plist; sourceTree = SOURCE_ROOT; };
 		32B7694FD952C8725248028A /* Pods-BusComing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BusComing.release.xcconfig"; path = "Pods/Target Support Files/Pods-BusComing/Pods-BusComing.release.xcconfig"; sourceTree = "<group>"; };
+		724D97C4D13BB9041F6C5700 /* Pods_BusComing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BusComing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8101BE23197CBBFC0042E4EA /* BusComing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusComing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8124C2F21C27E47C00EBD708 /* BusComing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BusComing-Bridging-Header.h"; sourceTree = "<group>"; };
 		9D8E782046498770640B8F5E /* Pods-BusComing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BusComing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BusComing/Pods-BusComing.debug.xcconfig"; sourceTree = "<group>"; };
-		AA2AD37CCDB725C24F714D5E /* libPods-BusComing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BusComing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B3EE9285A8101D1AD8A4591 /* libPods-BusComing.a in Frameworks */,
+				B13605C5166AC886CA52E8DA /* Pods_BusComing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,7 +90,7 @@
 		69AA41B652963D537C0B393C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AA2AD37CCDB725C24F714D5E /* libPods-BusComing.a */,
+				724D97C4D13BB9041F6C5700 /* Pods_BusComing.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -153,6 +163,10 @@
 		8101BE5F197CF1040042E4EA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0665981E1DC87E7300049409 /* CustomCalloutView.h */,
+				0665981F1DC87E7300049409 /* CustomCalloutView.m */,
+				066598191DC86C5800049409 /* CustomAnnotationView.h */,
+				0665981A1DC86C5800049409 /* CustomAnnotationView.m */,
 				06EDF4B91DC47BDD00343C4E /* StatusView.swift */,
 			);
 			name = Views;
@@ -161,6 +175,7 @@
 		8101BE66197CF36F0042E4EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				066598211DC88A1400049409 /* bus@2x.png */,
 				06EDF4C91DC47C1C00343C4E /* icon_list@2x.png */,
 				06EDF4BD1DC47C0600343C4E /* aeroplane@2x.png */,
 				06EDF4BE1DC47C0600343C4E /* icon_play@2x.png */,
@@ -177,6 +192,7 @@
 			children = (
 				06EDF4B51DC47BBD00343C4E /* FileHelper.swift */,
 				06EDF4B61DC47BBD00343C4E /* Route.swift */,
+				066598081DC7649700049409 /* DeviceHelper.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -212,7 +228,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = AutoNavi;
 				TargetAttributes = {
 					8101BE22197CBBFC0042E4EA = {
@@ -254,6 +270,7 @@
 				06EDF4C31DC47C0600343C4E /* aeroplane@2x.png in Resources */,
 				06EDF4D11DC47D9C00343C4E /* Main.storyboard in Resources */,
 				06EDF4CA1DC47C1C00343C4E /* icon_list@2x.png in Resources */,
+				066598221DC88A1400049409 /* bus@2x.png in Resources */,
 				06EDF4C41DC47C0600343C4E /* icon_play@2x.png in Resources */,
 				06EDF4C61DC47C0600343C4E /* Launch Screen.xib in Resources */,
 				06EDF4CC1DC47C5B00343C4E /* Images.xcassets in Resources */,
@@ -319,12 +336,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				066598201DC87E7300049409 /* CustomCalloutView.m in Sources */,
 				06EDF4B21DC47BA400343C4E /* MainViewController.swift in Sources */,
+				066598091DC7649700049409 /* DeviceHelper.swift in Sources */,
 				06EDF4B11DC47BA400343C4E /* DisplayViewController.swift in Sources */,
 				06EDF4B81DC47BBD00343C4E /* Route.swift in Sources */,
 				06EDF4B41DC47BA400343C4E /* SearchViewController.swift in Sources */,
 				06EDF4BB1DC47BDD00343C4E /* StatusView.swift in Sources */,
 				06EDF4B31DC47BA400343C4E /* RecordViewController.swift in Sources */,
+				0665981B1DC86C5800049409 /* CustomAnnotationView.m in Sources */,
 				06EDF4AC1DC47B8A00343C4E /* AppDelegate.swift in Sources */,
 				06EDF4B71DC47BBD00343C4E /* FileHelper.swift in Sources */,
 			);
@@ -435,20 +455,22 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9D8E782046498770640B8F5E /* Pods-BusComing.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = LYM6AZJ44U;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = BusComing/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.liupeng.reactnative.RNShuttleBusComing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.liupeng.ShuttleBusComing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BusComing-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}";
 			};
 			name = Debug;
 		};
@@ -456,20 +478,22 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 32B7694FD952C8725248028A /* Pods-BusComing.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = LYM6AZJ44U;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = BusComing/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.liupeng.reactnative.RNShuttleBusComing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.liupeng.ShuttleBusComing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BusComing-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}";
 			};
 			name = Release;
 		};

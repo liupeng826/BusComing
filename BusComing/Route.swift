@@ -7,6 +7,17 @@
 //
 
 import Foundation
+import Alamofire
+import SwiftyJSON
+
+// model
+//class itemsModel: NSObject {
+//    var user = ""
+//    var lat  = ""
+//    var lng = ""
+//    var createdTime = ""
+//    var updateTime = ""
+//}
 
 class Route: NSObject, NSCoding {
     
@@ -15,19 +26,26 @@ class Route: NSObject, NSCoding {
         aCoder.encode(endTime, forKey: "endTime")
         aCoder.encode(locations, forKey: "locations")
     }
-
     
-    let distanceFilter: CLLocationDistance = 10
+    let REQUEST_URL: String = "http://180.76.169.196:8000/api/coordinate"
+    var deviceImei: String = ""
+
+    let minSpeed = 5.0 //最小速度 m/s
+    var minDistanceFilter = 20.0 //设定定位的最小更新距离 m
+    let minInteval = 5.0 //最小时间间隔 s
     
     var startTime: NSDate
     var endTime: NSDate
     var locations: Array<CLLocation>
+    var postLocation: CLLocation
     
     override init() {
         
         startTime = NSDate()
         endTime = startTime
         locations = Array()
+        deviceImei = DeviceHelper.deviceIdfa()!
+        postLocation = CLLocation()
     }
     
     deinit {
@@ -40,6 +58,7 @@ class Route: NSObject, NSCoding {
         startTime = aDecoder.decodeObject(forKey: "startTime") as! NSDate
         endTime = aDecoder.decodeObject(forKey: "endTime") as! NSDate
         locations = aDecoder.decodeObject(forKey: "locations") as! Array
+        postLocation = aDecoder.decodeObject(forKey: "postLocation") as! CLLocation
     }
     
     /// Interface
@@ -56,13 +75,39 @@ class Route: NSObject, NSCoding {
             
             let distance: CLLocationDistance = lastLocation!.distance(from: location!)
             
-            if distance < distanceFilter {
+            if distance < minDistanceFilter {
                 return false
             }
         }
 
         locations.append(location!)
+        
         endTime = NSDate()
+        
+        return true
+    }
+    
+    func postLocation(location: CLLocation?) -> Bool {
+        
+        if location == nil {
+            return false
+        }
+        
+        let lastLocation: CLLocation? = postLocation
+        
+        if lastLocation != nil {
+            
+            let distance: CLLocationDistance = lastLocation!.distance(from: location!)
+            let duration = location!.timestamp.timeIntervalSince((lastLocation!.timestamp) as Date)
+            
+            if !(duration >= minInteval || (location?.speed)! >= minSpeed || distance >= minDistanceFilter) {
+                return false
+            }
+        }
+        
+        postLocation = location!
+        // post location into database
+        putData(coordinate: location!.coordinate)
         
         return true
     }
@@ -140,4 +185,69 @@ class Route: NSObject, NSCoding {
         }
         return coordinates
     }
+
+    
+    func putData(coordinate: CLLocationCoordinate2D?) -> Void {
+        
+//            if ( [UIApplication sharedApplication].applicationState == UIApplicationStateActive )
+//            {
+//                //TODO HTTP upload
+//        
+//                endBackgroundUpdateTask()
+//            }
+//            else//后台定位
+//            {
+//                //假如上一次的上传操作尚未结束 则直接return
+//                if ( self.taskIdentifier != UIBackgroundTaskInvalid )
+//                {
+//                    return
+//                }
+//        
+//                beingBackgroundUpdateTask()
+//                
+//                //TODO HTTP upload
+//                //上传完成记得调用 endBackgroundUpdateTask
+//            }
+        
+        let parameters:[String : Any] = [
+            "user": deviceImei,
+            "lat": String(describing: coordinate!.latitude),
+            "lng": String(describing: coordinate!.longitude)
+        ]
+        
+        Alamofire.request(REQUEST_URL, method: .post, parameters: parameters,
+                          encoding: JSONEncoding.default).responseJSON {
+                            (response)   in
+                            
+                            if let Error = response.result.error
+                            {
+                                print(Error)  //请求失败
+                                
+                            }
+                                //                            else if let jsonresult = response.result.value {
+                                //
+                                //                                //let JSOnDictory = JSON(jsonresult) //请求成功
+                                //                                debugPrint("post success", NSDate().timeIntervalSince1970)
+                                //                            }
+                                
+                            else {
+                                //endBackgroundUpdateTask()
+                                debugPrint("post success",  self.timeStampToString())
+                            }
+        }
+    }
+    
+    func timeStampToString()->String {
+        
+        //获取当前时间
+        let now = NSDate()
+        
+        // 创建一个日期格式器
+        let dformatter = DateFormatter()
+        dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+        return ("当前日期时间：\(dformatter.string(from: now as Date))")
+    }
+    
+    
+    
 }

@@ -35,8 +35,12 @@ class DisplayViewController: UIViewController, MAMapViewDelegate {
         
         mapView = MAMapView(frame: self.view.bounds)
         mapView!.delegate = self
+        
         self.view.addSubview(mapView!)
         self.view.sendSubview(toBack: mapView!)
+        
+        // 是否允许降帧，默认为YES
+        mapView!.isAllowDecreaseFrame = false
     }
     
     func initToolBar() {
