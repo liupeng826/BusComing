@@ -49,7 +49,7 @@ class MainViewController: UIViewController, MAMapViewDelegate {
         
         currentRoute = Route()
         
-        //initLocation()
+        initLocation()
         //initToolBar()
         initMapView()
         initStatusView()
@@ -85,6 +85,19 @@ class MainViewController: UIViewController, MAMapViewDelegate {
         
         navigationItem.rightBarButtonItem = rightButtonItem
         
+        
+    }
+    
+    func initLocation() {
+//        if #available(iOS 8.0, *) {
+//            locationManager.requestAlwaysAuthorization()
+//        }
+//        //这是iOS9中针对后台定位推出的新属性 不设置的话 可是会出现顶部蓝条的哦(类似热点连接)
+//        if #available(iOS 9.0, *) {
+//            locationManager.allowsBackgroundLocationUpdates = true
+//        }
+//        locationManager.startMonitoringSignificantLocationChanges()
+//        
         imageLocated = UIImage(named: "location_yes.png")
         imageNotLocate = UIImage(named: "location_no.png")
         
@@ -102,17 +115,6 @@ class MainViewController: UIViewController, MAMapViewDelegate {
         locationButton!.setImage(imageLocated, for: UIControlState.normal)
         
         view.addSubview(locationButton!)
-    }
-    
-    func initLocation() {
-        if #available(iOS 8.0, *) {
-            locationManager.requestAlwaysAuthorization()
-        }
-        //这是iOS9中针对后台定位推出的新属性 不设置的话 可是会出现顶部蓝条的哦(类似热点连接)
-        if #available(iOS 9.0, *) {
-            locationManager.allowsBackgroundLocationUpdates = true
-        }
-        locationManager.startMonitoringSignificantLocationChanges()
     }
     
     func initMapView() {
