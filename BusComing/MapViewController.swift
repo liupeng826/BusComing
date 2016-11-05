@@ -19,15 +19,19 @@ class itemsModel: NSObject {
     var updateTime = ""
 }
 
-class MainViewController: UIViewController, MAMapViewDelegate {
+class MapViewController: UIViewController, MAMapViewDelegate {
     
     var timer:Timer!
     var mapView: MAMapView!
     var isRecording: Bool = false
+    var isTrafficOn: Bool = false
     var locationButton: UIButton!
+    var trafficButton: UIButton!
     var searchButton: UIButton!
     var imageLocated: UIImage!
     var imageNotLocate: UIImage!
+    var imageTrafficOn: UIImage!
+    var imageTrafficOff: UIImage!
     var statusView: StatusView!
     var currentRoute: Route?
 //    var deviceImei : String = ""
@@ -53,10 +57,10 @@ class MainViewController: UIViewController, MAMapViewDelegate {
         //initToolBar()
         initMapView()
         initStatusView()
+        initTraffic()
         
         // 启用计时器，控制每5秒执行一次tickDown方法
-        timer = Timer.scheduledTimer(timeInterval: 5, target:self, selector:#selector(MainViewController.getData),
-                                     userInfo:nil,repeats:true)
+        timer = Timer.scheduledTimer(timeInterval: 5, target:self, selector:#selector(MapViewController.getData), userInfo:nil,repeats:true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -76,12 +80,12 @@ class MainViewController: UIViewController, MAMapViewDelegate {
     func initToolBar() {
         
         // start button
-        let leftButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_play.png"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(MainViewController.actionRecordAndStop))
+        let leftButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_play.png"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(MapViewController.actionRecordAndStop))
         
         navigationItem.leftBarButtonItem = leftButtonItem
         
         // history button
-        let rightButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_list.png"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(MainViewController.actionHistory))
+        let rightButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_list.png"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(MapViewController.actionHistory))
         
         navigationItem.rightBarButtonItem = rightButtonItem
         
@@ -101,7 +105,7 @@ class MainViewController: UIViewController, MAMapViewDelegate {
         imageLocated = UIImage(named: "location_yes.png")
         imageNotLocate = UIImage(named: "location_no.png")
         
-        locationButton = UIButton(frame: CGRect(x: 20, y: view.bounds.height - 80, width: 40, height: 40))
+        locationButton = UIButton(frame: CGRect(x: 20, y: view.bounds.height - 100, width: 40, height: 40))
         
         locationButton!.autoresizingMask = [UIViewAutoresizing.flexibleRightMargin, UIViewAutoresizing.flexibleTopMargin]
         locationButton!.backgroundColor = UIColor.white
@@ -110,11 +114,32 @@ class MainViewController: UIViewController, MAMapViewDelegate {
         locationButton!.layer.shadowOffset = CGSize(width: 5, height: 5)
         locationButton!.layer.shadowRadius = 5
         
-        locationButton!.addTarget(self, action: #selector(MainViewController.actionLocation(sender:)), for: UIControlEvents.touchUpInside)
+        locationButton!.addTarget(self, action: #selector(MapViewController.actionLocation(sender:)), for: UIControlEvents.touchUpInside)
         
         locationButton!.setImage(imageLocated, for: UIControlState.normal)
         
         view.addSubview(locationButton!)
+    }
+    
+    func initTraffic() {
+
+        imageTrafficOn = UIImage(named: "traffic_on.png")
+        imageTrafficOff = UIImage(named: "traffic_off.png")
+        
+        trafficButton = UIButton(frame: CGRect(x: view.bounds.width - 45, y: 100, width: 40, height: 40))
+        
+        trafficButton!.autoresizingMask = [UIViewAutoresizing.flexibleRightMargin, UIViewAutoresizing.flexibleTopMargin]
+        trafficButton!.backgroundColor = UIColor.white
+        trafficButton!.layer.cornerRadius = 5
+        trafficButton!.layer.shadowColor = UIColor.black.cgColor
+        trafficButton!.layer.shadowOffset = CGSize(width: 5, height: 5)
+        trafficButton!.layer.shadowRadius = 10
+        
+        trafficButton!.addTarget(self, action: #selector(MapViewController.actionTraffic(sender:)), for: UIControlEvents.touchUpInside)
+        
+        trafficButton!.setImage(imageTrafficOff, for: UIControlState.normal)
+        
+        view.addSubview(trafficButton!)
     }
     
     func initMapView() {
@@ -124,6 +149,13 @@ class MainViewController: UIViewController, MAMapViewDelegate {
         self.view.addSubview(mapView)
         self.view.sendSubview(toBack: mapView)
         
+        mapView.showsCompass = true // 设置成NO表示关闭指南针；YES表示显示指南针
+        mapView.compassOrigin = CGPoint(x: mapView.compassOrigin.x, y: 25); //设置指南针位置
+        
+        mapView.showsScale = false  //设置成NO表示不显示比例尺；YES表示显示比例尺
+        //mapView.scaleOrigin = CGPoint(x: mapView.scaleOrigin.x, y: 25);  //设置比例尺位置
+        
+        mapView.setZoomLevel(5, animated: true)
         // 是否允许降帧，默认为YES
         mapView.isAllowDecreaseFrame = true
         mapView.showsUserLocation = true
@@ -133,6 +165,13 @@ class MainViewController: UIViewController, MAMapViewDelegate {
         // 设定定位的最小更新距离
         mapView.distanceFilter = (currentRoute?.minDistanceFilter)!
         mapView.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        
+        let zoomPannelView = self.makeZoomPannelView()
+        zoomPannelView.center = CGPoint.init(x: self.view.bounds.size.width -  zoomPannelView.bounds.width/2 - 10, y: self.view.bounds.size.height -  zoomPannelView.bounds.width/2 - 80)
+        
+        zoomPannelView.autoresizingMask = [UIViewAutoresizing.flexibleTopMargin , UIViewAutoresizing.flexibleLeftMargin]
+        self.view.addSubview(zoomPannelView)
+        
     }
     
     func initStatusView() {
@@ -184,6 +223,23 @@ class MainViewController: UIViewController, MAMapViewDelegate {
             addLocation(location: mapView!.userLocation.location)
             // save posation information
             saveRoute()
+        }
+        
+    }
+    func actionTraffic(sender: UIButton) {
+        
+        isTrafficOn = !isTrafficOn
+        
+        if isTrafficOn {
+            
+            trafficButton!.setImage(imageTrafficOn, for: UIControlState.normal)
+            
+            mapView.isShowTraffic = true
+        }
+        else {
+            trafficButton!.setImage(imageTrafficOff, for: UIControlState.normal)
+            
+            mapView.isShowTraffic = false
         }
         
     }
@@ -307,17 +363,21 @@ class MainViewController: UIViewController, MAMapViewDelegate {
             if annotationView == nil {
                 annotationView = MAPinAnnotationView(annotation: annotation, reuseIdentifier: pointReuseIndetifier)
             }
-            
-            annotationView!.canShowCallout = false
-            annotationView!.animatesDrop = true
-            annotationView!.isDraggable = true
+            annotationView!.canShowCallout = true       //设置气泡可以弹出，默认为NO
+            annotationView!.animatesDrop = true        //设置标注动画显示，默认为NO
+            annotationView!.isDraggable = true        //设置标注可以拖动，默认为NO
+            annotationView!.image = UIImage(named: "marker.png")
             annotationView!.rightCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure)
+            //设置中心点偏移，使得标注底部中间点成为经纬度对应点
+            annotationView?.centerOffset = CGPoint(x: 0, y: -18);
             
-            var idx = annotations.index(of: annotation as! MAPointAnnotation)
-            if idx == nil {
-                idx = 1
-            }
-            annotationView!.pinColor = MAPinAnnotationColor(rawValue: idx!)!
+//            var idx = annotations.index(of: annotation as! MAPointAnnotation)
+//            if idx == nil {
+//                idx = 1
+//            }
+//            annotationView!.pinColor = MAPinAnnotationColor(rawValue: idx!)!
+            
+            //annotationView!.pinColor = MAPinAnnotationColor(rawValue: 0)!
             
             return annotationView!
         }
@@ -422,8 +482,43 @@ class MainViewController: UIViewController, MAMapViewDelegate {
         return dataArray
     }
     
-
+    /**
+     *放大缩小视图
+     **/
+    func makeZoomPannelView() -> UIView {
+        let ret = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 53, height: 98))
+        
+        let incBtn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 53, height: 49))
+        incBtn.setImage(UIImage.init(named: "increase.png"), for: UIControlState.normal)
+        incBtn.sizeToFit()
+        incBtn.addTarget(self, action: #selector(self.zoomPlusAction), for: UIControlEvents.touchUpInside)
+        
+        let decBtn = UIButton.init(frame: CGRect.init(x: 0, y: 49, width: 53, height: 49))
+        decBtn.setImage(UIImage.init(named: "decrease.png"), for: UIControlState.normal)
+        decBtn.sizeToFit()
+        decBtn.addTarget(self, action: #selector(self.zoomMinusAction), for: UIControlEvents.touchUpInside)
+        
+        ret.addSubview(incBtn)
+        ret.addSubview(decBtn)
+        
+        return ret
+    }
     
+    func zoomPlusAction() {
+        let oldZoom = self.mapView.zoomLevel
+        self.mapView.setZoomLevel(oldZoom+1, animated: true)
+    }
     
+    func zoomMinusAction() {
+        let oldZoom = self.mapView.zoomLevel
+        self.mapView.setZoomLevel(oldZoom-1, animated: true)
+    }
     
+    /**
+     *路况显示
+     **/
+    func trafficAction(sender: UISwitch)
+    {
+        mapView.isShowTraffic = sender.isOn
+    }
 }

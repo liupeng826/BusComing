@@ -7,25 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		064C31241DCC543E00582F06 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064C31231DCC543E00582F06 /* MeViewController.swift */; };
+		064C312C1DCC5C7100582F06 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064C312B1DCC5C7100582F06 /* MainTabViewController.swift */; };
+		064C31301DCC77C700582F06 /* LinePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064C312F1DCC77C700582F06 /* LinePickerView.swift */; };
+		064C31441DCDCFCD00582F06 /* aeroplane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31381DCDCFCD00582F06 /* aeroplane@2x.png */; };
+		064C31451DCDCFCD00582F06 /* bus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31391DCDCFCD00582F06 /* bus@2x.png */; };
+		064C31461DCDCFCD00582F06 /* decrease@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C313A1DCDCFCD00582F06 /* decrease@2x.png */; };
+		064C31471DCDCFCD00582F06 /* icon_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C313B1DCDCFCD00582F06 /* icon_home@2x.png */; };
+		064C31481DCDCFCD00582F06 /* icon_list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C313C1DCDCFCD00582F06 /* icon_list@2x.png */; };
+		064C31491DCDCFCD00582F06 /* icon_mine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C313D1DCDCFCD00582F06 /* icon_mine@2x.png */; };
+		064C314A1DCDCFCD00582F06 /* icon_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C313E1DCDCFCD00582F06 /* icon_play@2x.png */; };
+		064C314B1DCDCFCD00582F06 /* icon_stop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C313F1DCDCFCD00582F06 /* icon_stop@2x.png */; };
+		064C314C1DCDCFCD00582F06 /* icon_tabbar_mine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31401DCDCFCD00582F06 /* icon_tabbar_mine@2x.png */; };
+		064C314D1DCDCFCD00582F06 /* location_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31411DCDCFCD00582F06 /* location_no@2x.png */; };
+		064C314E1DCDCFCD00582F06 /* location_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31421DCDCFCD00582F06 /* location_yes@2x.png */; };
+		064C314F1DCDCFCD00582F06 /* man@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31431DCDCFCD00582F06 /* man@2x.png */; };
+		064C31511DCDD13E00582F06 /* increase@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31501DCDD13E00582F06 /* increase@2x.png */; };
+		064C31541DCDF84200582F06 /* traffic_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31521DCDF84200582F06 /* traffic_off@2x.png */; };
+		064C31551DCDF84200582F06 /* traffic_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31531DCDF84200582F06 /* traffic_on@2x.png */; };
+		064C315A1DCE04A100582F06 /* bus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31561DCE04A100582F06 /* bus@2x.png */; };
+		064C315B1DCE04A100582F06 /* GPS.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31571DCE04A100582F06 /* GPS.png */; };
+		064C315C1DCE04A100582F06 /* marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31581DCE04A100582F06 /* marker@2x.png */; };
+		064C315D1DCE04A100582F06 /* shuttleBus.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31591DCE04A100582F06 /* shuttleBus.png */; };
 		066598091DC7649700049409 /* DeviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066598081DC7649700049409 /* DeviceHelper.swift */; };
 		0665981B1DC86C5800049409 /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0665981A1DC86C5800049409 /* CustomAnnotationView.m */; };
 		066598201DC87E7300049409 /* CustomCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0665981F1DC87E7300049409 /* CustomCalloutView.m */; };
-		066598221DC88A1400049409 /* bus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 066598211DC88A1400049409 /* bus@2x.png */; };
 		06EDF4AC1DC47B8A00343C4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EDF4AB1DC47B8A00343C4E /* AppDelegate.swift */; };
 		06EDF4B11DC47BA400343C4E /* DisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EDF4AD1DC47BA400343C4E /* DisplayViewController.swift */; };
-		06EDF4B21DC47BA400343C4E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EDF4AE1DC47BA400343C4E /* MainViewController.swift */; };
+		06EDF4B21DC47BA400343C4E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EDF4AE1DC47BA400343C4E /* MapViewController.swift */; };
 		06EDF4B31DC47BA400343C4E /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EDF4AF1DC47BA400343C4E /* RecordViewController.swift */; };
 		06EDF4B41DC47BA400343C4E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EDF4B01DC47BA400343C4E /* SearchViewController.swift */; };
 		06EDF4B71DC47BBD00343C4E /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EDF4B51DC47BBD00343C4E /* FileHelper.swift */; };
 		06EDF4B81DC47BBD00343C4E /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EDF4B61DC47BBD00343C4E /* Route.swift */; };
 		06EDF4BB1DC47BDD00343C4E /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EDF4B91DC47BDD00343C4E /* StatusView.swift */; };
-		06EDF4C31DC47C0600343C4E /* aeroplane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06EDF4BD1DC47C0600343C4E /* aeroplane@2x.png */; };
-		06EDF4C41DC47C0600343C4E /* icon_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06EDF4BE1DC47C0600343C4E /* icon_play@2x.png */; };
-		06EDF4C51DC47C0600343C4E /* icon_stop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06EDF4BF1DC47C0600343C4E /* icon_stop@2x.png */; };
 		06EDF4C61DC47C0600343C4E /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06EDF4C01DC47C0600343C4E /* Launch Screen.xib */; };
-		06EDF4C71DC47C0600343C4E /* location_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06EDF4C11DC47C0600343C4E /* location_no@2x.png */; };
-		06EDF4C81DC47C0600343C4E /* location_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06EDF4C21DC47C0600343C4E /* location_yes@2x.png */; };
-		06EDF4CA1DC47C1C00343C4E /* icon_list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06EDF4C91DC47C1C00343C4E /* icon_list@2x.png */; };
 		06EDF4CC1DC47C5B00343C4E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06EDF4CB1DC47C5B00343C4E /* Images.xcassets */; };
 		06EDF4D11DC47D9C00343C4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06EDF4CF1DC47D9C00343C4E /* Main.storyboard */; };
 		06EDF4D51DC47E9400343C4E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06EDF4D41DC47E9400343C4E /* Info.plist */; };
@@ -33,27 +48,42 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		064C31231DCC543E00582F06 /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeViewController.swift; path = BusComing/MeViewController.swift; sourceTree = SOURCE_ROOT; };
+		064C312B1DCC5C7100582F06 /* MainTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabViewController.swift; path = BusComing/MainTabViewController.swift; sourceTree = SOURCE_ROOT; };
+		064C312F1DCC77C700582F06 /* LinePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinePickerView.swift; path = BusComing/views/LinePickerView.swift; sourceTree = SOURCE_ROOT; };
+		064C31381DCDCFCD00582F06 /* aeroplane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "aeroplane@2x.png"; path = "BusComing/Images/aeroplane@2x.png"; sourceTree = SOURCE_ROOT; };
+		064C31391DCDCFCD00582F06 /* bus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bus@2x.png"; path = "BusComing/Images/bus@2x.png"; sourceTree = SOURCE_ROOT; };
+		064C313A1DCDCFCD00582F06 /* decrease@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "decrease@2x.png"; path = "BusComing/Images/decrease@2x.png"; sourceTree = SOURCE_ROOT; };
+		064C313B1DCDCFCD00582F06 /* icon_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_home@2x.png"; path = "BusComing/Images/icon_home@2x.png"; sourceTree = SOURCE_ROOT; };
+		064C313C1DCDCFCD00582F06 /* icon_list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_list@2x.png"; path = "BusComing/Images/icon_list@2x.png"; sourceTree = SOURCE_ROOT; };
+		064C313D1DCDCFCD00582F06 /* icon_mine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_mine@2x.png"; path = "BusComing/Images/icon_mine@2x.png"; sourceTree = SOURCE_ROOT; };
+		064C313E1DCDCFCD00582F06 /* icon_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_play@2x.png"; path = "BusComing/Images/icon_play@2x.png"; sourceTree = SOURCE_ROOT; };
+		064C313F1DCDCFCD00582F06 /* icon_stop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_stop@2x.png"; path = "BusComing/Images/icon_stop@2x.png"; sourceTree = SOURCE_ROOT; };
+		064C31401DCDCFCD00582F06 /* icon_tabbar_mine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_tabbar_mine@2x.png"; path = "BusComing/Images/icon_tabbar_mine@2x.png"; sourceTree = SOURCE_ROOT; };
+		064C31411DCDCFCD00582F06 /* location_no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "location_no@2x.png"; path = "BusComing/Images/location_no@2x.png"; sourceTree = SOURCE_ROOT; };
+		064C31421DCDCFCD00582F06 /* location_yes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "location_yes@2x.png"; path = "BusComing/Images/location_yes@2x.png"; sourceTree = SOURCE_ROOT; };
+		064C31431DCDCFCD00582F06 /* man@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "man@2x.png"; path = "BusComing/Images/man@2x.png"; sourceTree = SOURCE_ROOT; };
+		064C31501DCDD13E00582F06 /* increase@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "increase@2x.png"; path = "BusComing/Images/increase@2x.png"; sourceTree = SOURCE_ROOT; };
+		064C31521DCDF84200582F06 /* traffic_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "traffic_off@2x.png"; path = "BusComing/Images/traffic_off@2x.png"; sourceTree = SOURCE_ROOT; };
+		064C31531DCDF84200582F06 /* traffic_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "traffic_on@2x.png"; path = "BusComing/Images/traffic_on@2x.png"; sourceTree = SOURCE_ROOT; };
+		064C31561DCE04A100582F06 /* bus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bus@2x.png"; path = "BusComing/Images/bus@2x.png"; sourceTree = SOURCE_ROOT; };
+		064C31571DCE04A100582F06 /* GPS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GPS.png; path = BusComing/Images/GPS.png; sourceTree = SOURCE_ROOT; };
+		064C31581DCE04A100582F06 /* marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "marker@2x.png"; path = "BusComing/Images/marker@2x.png"; sourceTree = SOURCE_ROOT; };
+		064C31591DCE04A100582F06 /* shuttleBus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shuttleBus.png; path = BusComing/Images/shuttleBus.png; sourceTree = SOURCE_ROOT; };
 		066598081DC7649700049409 /* DeviceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceHelper.swift; path = BusComing/DeviceHelper.swift; sourceTree = SOURCE_ROOT; };
 		066598191DC86C5800049409 /* CustomAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomAnnotationView.h; path = BusComing/CustomAnnotationView.h; sourceTree = SOURCE_ROOT; };
 		0665981A1DC86C5800049409 /* CustomAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomAnnotationView.m; path = BusComing/CustomAnnotationView.m; sourceTree = SOURCE_ROOT; };
 		0665981E1DC87E7300049409 /* CustomCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCalloutView.h; path = BusComing/CustomCalloutView.h; sourceTree = SOURCE_ROOT; };
 		0665981F1DC87E7300049409 /* CustomCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCalloutView.m; path = BusComing/CustomCalloutView.m; sourceTree = SOURCE_ROOT; };
-		066598211DC88A1400049409 /* bus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bus@2x.png"; path = "BusComing/bus@2x.png"; sourceTree = SOURCE_ROOT; };
 		06EDF4AB1DC47B8A00343C4E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = BusComing/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		06EDF4AD1DC47BA400343C4E /* DisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisplayViewController.swift; path = BusComing/DisplayViewController.swift; sourceTree = SOURCE_ROOT; };
-		06EDF4AE1DC47BA400343C4E /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = BusComing/MainViewController.swift; sourceTree = SOURCE_ROOT; };
+		06EDF4AE1DC47BA400343C4E /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = BusComing/MapViewController.swift; sourceTree = SOURCE_ROOT; };
 		06EDF4AF1DC47BA400343C4E /* RecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordViewController.swift; path = BusComing/RecordViewController.swift; sourceTree = SOURCE_ROOT; };
 		06EDF4B01DC47BA400343C4E /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = BusComing/SearchViewController.swift; sourceTree = SOURCE_ROOT; };
 		06EDF4B51DC47BBD00343C4E /* FileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileHelper.swift; path = BusComing/FileHelper.swift; sourceTree = SOURCE_ROOT; };
 		06EDF4B61DC47BBD00343C4E /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Route.swift; path = BusComing/Route.swift; sourceTree = SOURCE_ROOT; };
 		06EDF4B91DC47BDD00343C4E /* StatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusView.swift; path = BusComing/StatusView.swift; sourceTree = SOURCE_ROOT; };
-		06EDF4BD1DC47C0600343C4E /* aeroplane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "aeroplane@2x.png"; path = "BusComing/aeroplane@2x.png"; sourceTree = SOURCE_ROOT; };
-		06EDF4BE1DC47C0600343C4E /* icon_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_play@2x.png"; path = "BusComing/icon_play@2x.png"; sourceTree = SOURCE_ROOT; };
-		06EDF4BF1DC47C0600343C4E /* icon_stop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_stop@2x.png"; path = "BusComing/icon_stop@2x.png"; sourceTree = SOURCE_ROOT; };
 		06EDF4C01DC47C0600343C4E /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "Launch Screen.xib"; path = "BusComing/Launch Screen.xib"; sourceTree = SOURCE_ROOT; };
-		06EDF4C11DC47C0600343C4E /* location_no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "location_no@2x.png"; path = "BusComing/location_no@2x.png"; sourceTree = SOURCE_ROOT; };
-		06EDF4C21DC47C0600343C4E /* location_yes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "location_yes@2x.png"; path = "BusComing/location_yes@2x.png"; sourceTree = SOURCE_ROOT; };
-		06EDF4C91DC47C1C00343C4E /* icon_list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_list@2x.png"; path = "BusComing/icon_list@2x.png"; sourceTree = SOURCE_ROOT; };
 		06EDF4CB1DC47C5B00343C4E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = BusComing/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		06EDF4CD1DC47C6F00343C4E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = BusComing/Info.plist; sourceTree = SOURCE_ROOT; };
 		06EDF4D01DC47D9C00343C4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = BusComing/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
@@ -119,7 +149,9 @@
 			isa = PBXGroup;
 			children = (
 				06EDF4AB1DC47B8A00343C4E /* AppDelegate.swift */,
-				06EDF4AE1DC47BA400343C4E /* MainViewController.swift */,
+				064C312B1DCC5C7100582F06 /* MainTabViewController.swift */,
+				06EDF4AE1DC47BA400343C4E /* MapViewController.swift */,
+				064C31231DCC543E00582F06 /* MeViewController.swift */,
 				06EDF4AF1DC47BA400343C4E /* RecordViewController.swift */,
 				06EDF4AD1DC47BA400343C4E /* DisplayViewController.swift */,
 				06EDF4B01DC47BA400343C4E /* SearchViewController.swift */,
@@ -168,6 +200,7 @@
 				066598191DC86C5800049409 /* CustomAnnotationView.h */,
 				0665981A1DC86C5800049409 /* CustomAnnotationView.m */,
 				06EDF4B91DC47BDD00343C4E /* StatusView.swift */,
+				064C312F1DCC77C700582F06 /* LinePickerView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -175,13 +208,25 @@
 		8101BE66197CF36F0042E4EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				066598211DC88A1400049409 /* bus@2x.png */,
-				06EDF4C91DC47C1C00343C4E /* icon_list@2x.png */,
-				06EDF4BD1DC47C0600343C4E /* aeroplane@2x.png */,
-				06EDF4BE1DC47C0600343C4E /* icon_play@2x.png */,
-				06EDF4BF1DC47C0600343C4E /* icon_stop@2x.png */,
-				06EDF4C11DC47C0600343C4E /* location_no@2x.png */,
-				06EDF4C21DC47C0600343C4E /* location_yes@2x.png */,
+				064C31561DCE04A100582F06 /* bus@2x.png */,
+				064C31571DCE04A100582F06 /* GPS.png */,
+				064C31581DCE04A100582F06 /* marker@2x.png */,
+				064C31591DCE04A100582F06 /* shuttleBus.png */,
+				064C31521DCDF84200582F06 /* traffic_off@2x.png */,
+				064C31531DCDF84200582F06 /* traffic_on@2x.png */,
+				064C31501DCDD13E00582F06 /* increase@2x.png */,
+				064C31381DCDCFCD00582F06 /* aeroplane@2x.png */,
+				064C31391DCDCFCD00582F06 /* bus@2x.png */,
+				064C313A1DCDCFCD00582F06 /* decrease@2x.png */,
+				064C313B1DCDCFCD00582F06 /* icon_home@2x.png */,
+				064C313C1DCDCFCD00582F06 /* icon_list@2x.png */,
+				064C313D1DCDCFCD00582F06 /* icon_mine@2x.png */,
+				064C313E1DCDCFCD00582F06 /* icon_play@2x.png */,
+				064C313F1DCDCFCD00582F06 /* icon_stop@2x.png */,
+				064C31401DCDCFCD00582F06 /* icon_tabbar_mine@2x.png */,
+				064C31411DCDCFCD00582F06 /* location_no@2x.png */,
+				064C31421DCDCFCD00582F06 /* location_yes@2x.png */,
+				064C31431DCDCFCD00582F06 /* man@2x.png */,
 				06EDF4C01DC47C0600343C4E /* Launch Screen.xib */,
 			);
 			name = Resources;
@@ -267,17 +312,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06EDF4C31DC47C0600343C4E /* aeroplane@2x.png in Resources */,
+				064C31451DCDCFCD00582F06 /* bus@2x.png in Resources */,
+				064C315A1DCE04A100582F06 /* bus@2x.png in Resources */,
 				06EDF4D11DC47D9C00343C4E /* Main.storyboard in Resources */,
-				06EDF4CA1DC47C1C00343C4E /* icon_list@2x.png in Resources */,
-				066598221DC88A1400049409 /* bus@2x.png in Resources */,
-				06EDF4C41DC47C0600343C4E /* icon_play@2x.png in Resources */,
+				064C31541DCDF84200582F06 /* traffic_off@2x.png in Resources */,
+				064C314E1DCDCFCD00582F06 /* location_yes@2x.png in Resources */,
+				064C31491DCDCFCD00582F06 /* icon_mine@2x.png in Resources */,
+				064C31481DCDCFCD00582F06 /* icon_list@2x.png in Resources */,
+				064C314C1DCDCFCD00582F06 /* icon_tabbar_mine@2x.png in Resources */,
 				06EDF4C61DC47C0600343C4E /* Launch Screen.xib in Resources */,
 				06EDF4CC1DC47C5B00343C4E /* Images.xcassets in Resources */,
-				06EDF4C81DC47C0600343C4E /* location_yes@2x.png in Resources */,
+				064C31441DCDCFCD00582F06 /* aeroplane@2x.png in Resources */,
 				06EDF4D51DC47E9400343C4E /* Info.plist in Resources */,
-				06EDF4C71DC47C0600343C4E /* location_no@2x.png in Resources */,
-				06EDF4C51DC47C0600343C4E /* icon_stop@2x.png in Resources */,
+				064C314F1DCDCFCD00582F06 /* man@2x.png in Resources */,
+				064C31511DCDD13E00582F06 /* increase@2x.png in Resources */,
+				064C31471DCDCFCD00582F06 /* icon_home@2x.png in Resources */,
+				064C314D1DCDCFCD00582F06 /* location_no@2x.png in Resources */,
+				064C314B1DCDCFCD00582F06 /* icon_stop@2x.png in Resources */,
+				064C315C1DCE04A100582F06 /* marker@2x.png in Resources */,
+				064C31551DCDF84200582F06 /* traffic_on@2x.png in Resources */,
+				064C315B1DCE04A100582F06 /* GPS.png in Resources */,
+				064C315D1DCE04A100582F06 /* shuttleBus.png in Resources */,
+				064C31461DCDCFCD00582F06 /* decrease@2x.png in Resources */,
+				064C314A1DCDCFCD00582F06 /* icon_play@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,11 +394,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				066598201DC87E7300049409 /* CustomCalloutView.m in Sources */,
-				06EDF4B21DC47BA400343C4E /* MainViewController.swift in Sources */,
+				06EDF4B21DC47BA400343C4E /* MapViewController.swift in Sources */,
 				066598091DC7649700049409 /* DeviceHelper.swift in Sources */,
 				06EDF4B11DC47BA400343C4E /* DisplayViewController.swift in Sources */,
 				06EDF4B81DC47BBD00343C4E /* Route.swift in Sources */,
 				06EDF4B41DC47BA400343C4E /* SearchViewController.swift in Sources */,
+				064C31301DCC77C700582F06 /* LinePickerView.swift in Sources */,
+				064C312C1DCC5C7100582F06 /* MainTabViewController.swift in Sources */,
+				064C31241DCC543E00582F06 /* MeViewController.swift in Sources */,
 				06EDF4BB1DC47BDD00343C4E /* StatusView.swift in Sources */,
 				06EDF4B31DC47BA400343C4E /* RecordViewController.swift in Sources */,
 				0665981B1DC86C5800049409 /* CustomAnnotationView.m in Sources */,
