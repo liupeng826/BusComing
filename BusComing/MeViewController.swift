@@ -9,23 +9,35 @@
 import UIKit
 import Foundation
 
-class MeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
-
-    var pickerView:UIPickerView!
+class MeViewController: UIViewController {
+    
+    var picker:LinePickerView?
     var areaArray:Array<AnyObject>?
-    var label:UILabel?
-    var lines = ["","1号线","2号线","3号线","4号线","5号线","6号线","7号线","8号线","9号线"]
+    var busLineLabel:UILabel?
+    var mvc: MapViewController?
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        initLinePicker()
         
-//        self.label! = UILabel(frame: CGRect.init(x: 0, y: 0, width:view.bounds.width, height:30))
-//        self.view.addSubview(self.label!)
-//        self.label!.backgroundColor = UIColor.yellow
-//        self.label!.textColor = UIColor.red
-//        self.label!.autoresizingMask = UIViewAutoresizing.flexibleTopMargin
+        let btn:UIButton = UIButton(type: UIButtonType.custom)
+        btn.frame = CGRect(x: 20, y: 100, width: self.view.bounds.size.width - 20, height: 150);
+        btn.setTitle("选择班车线路", for: UIControlState())
+        btn.addTarget(self, action: #selector(MeViewController.click(_:)), for: UIControlEvents.touchUpInside)
+        btn.setTitleColor(UIColor.black, for: UIControlState())
+        btn.contentHorizontalAlignment = .left
+        self.view.addSubview(btn)
+        
+        let gobtn:UIButton = UIButton(type: UIButtonType.custom)
+        gobtn.frame = CGRect(x: self.view.bounds.size.width - 20, y: 100, width: 10, height: 150);
+        gobtn.setTitle(">", for: UIControlState())
+        gobtn.contentHorizontalAlignment = .right
+        gobtn.setTitleColor(UIColor.gray, for: UIControlState())
+        self.view.addSubview(gobtn)
+        
+        busLineLabel = UILabel(frame: CGRect(x: 270, y: 100, width: 200, height: 150))
+        busLineLabel?.textColor = UIColor.black
+        self.view.addSubview(busLineLabel!)
         
     }
     
@@ -34,60 +46,16 @@ class MeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewData
         // Dispose of any resources that can be recreated.
     }
     
-    func initLinePicker() {
-        
-        pickerView = UIPickerView()
-        //将dataSource设置成自己
-        pickerView.dataSource = self
-        //将delegate设置成自己
-        pickerView.delegate = self
-        //设置选择框的默认值
-        //pickerView.selectRow(1,inComponent:0,animated:true)
-        self.view.addSubview(pickerView)
-        
-        //建立一个按钮，触摸按钮时获得选择框被选择的索引
-        let button = UIButton(frame:CGRect(x:0, y:0, width:view.bounds.width, height:30))
-        button.center = self.view.center
-        button.backgroundColor = UIColor.blue
-        button.setTitle("获取信息",for:.normal)
-        button.addTarget(self, action:#selector(MeViewController.getPickerViewValue),
-                         for: .touchUpInside)
-        self.view.addSubview(button)
-
-    }
-    
-    //设置选择框的列数,继承于UIPickerViewDataSource协议
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    //设置选择框的行数，继承于UIPickerViewDataSource协议
-    func pickerView(_ pickerView: UIPickerView,
-                    numberOfRowsInComponent component: Int) -> Int {
-        return lines.count
-    }
-    
-    //设置选择框各选项的内容，继承于UIPickerViewDelegate协议
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
-                    forComponent component: Int) -> String? {
-        return lines[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    func click(_ sender: UIButton)
     {
-        let text = String("你选择了：\(lines[row])")
-        self.label!.text = text
+        picker = LinePickerView.getShareInstance()
+        picker!.textColor = UIColor.red
+        picker!.showWithDate()
+        picker?.block = {
+            (busLine:String)->() in
+            self.busLineLabel?.text = busLine
+            self.mvc?.selectedBusLine = busLine
+        }
     }
-    
-    //触摸按钮时，获得被选中的索引
-    func getPickerViewValue(){
-        let message = String(pickerView.selectedRow(inComponent: 0))
-        let alertController = UIAlertController(title: "被选中的索引为",
-                                                message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
     
 }

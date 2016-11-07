@@ -29,6 +29,7 @@
 		064C315B1DCE04A100582F06 /* GPS.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31571DCE04A100582F06 /* GPS.png */; };
 		064C315C1DCE04A100582F06 /* marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31581DCE04A100582F06 /* marker@2x.png */; };
 		064C315D1DCE04A100582F06 /* shuttleBus.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31591DCE04A100582F06 /* shuttleBus.png */; };
+		064C315F1DCF657E00582F06 /* icon_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C315E1DCF657E00582F06 /* icon_location@2x.png */; };
 		066598091DC7649700049409 /* DeviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066598081DC7649700049409 /* DeviceHelper.swift */; };
 		0665981B1DC86C5800049409 /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0665981A1DC86C5800049409 /* CustomAnnotationView.m */; };
 		066598201DC87E7300049409 /* CustomCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0665981F1DC87E7300049409 /* CustomCalloutView.m */; };
@@ -70,6 +71,7 @@
 		064C31571DCE04A100582F06 /* GPS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GPS.png; path = BusComing/Images/GPS.png; sourceTree = SOURCE_ROOT; };
 		064C31581DCE04A100582F06 /* marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "marker@2x.png"; path = "BusComing/Images/marker@2x.png"; sourceTree = SOURCE_ROOT; };
 		064C31591DCE04A100582F06 /* shuttleBus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shuttleBus.png; path = BusComing/Images/shuttleBus.png; sourceTree = SOURCE_ROOT; };
+		064C315E1DCF657E00582F06 /* icon_location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_location@2x.png"; path = "BusComing/Images/icon_location@2x.png"; sourceTree = SOURCE_ROOT; };
 		066598081DC7649700049409 /* DeviceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceHelper.swift; path = BusComing/DeviceHelper.swift; sourceTree = SOURCE_ROOT; };
 		066598191DC86C5800049409 /* CustomAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomAnnotationView.h; path = BusComing/CustomAnnotationView.h; sourceTree = SOURCE_ROOT; };
 		0665981A1DC86C5800049409 /* CustomAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomAnnotationView.m; path = BusComing/CustomAnnotationView.m; sourceTree = SOURCE_ROOT; };
@@ -208,6 +210,7 @@
 		8101BE66197CF36F0042E4EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				064C315E1DCF657E00582F06 /* icon_location@2x.png */,
 				064C31561DCE04A100582F06 /* bus@2x.png */,
 				064C31571DCE04A100582F06 /* GPS.png */,
 				064C31581DCE04A100582F06 /* marker@2x.png */,
@@ -330,6 +333,7 @@
 				064C314D1DCDCFCD00582F06 /* location_no@2x.png in Resources */,
 				064C314B1DCDCFCD00582F06 /* icon_stop@2x.png in Resources */,
 				064C315C1DCE04A100582F06 /* marker@2x.png in Resources */,
+				064C315F1DCF657E00582F06 /* icon_location@2x.png in Resources */,
 				064C31551DCDF84200582F06 /* traffic_on@2x.png in Resources */,
 				064C315B1DCE04A100582F06 /* GPS.png in Resources */,
 				064C315D1DCE04A100582F06 /* shuttleBus.png in Resources */,

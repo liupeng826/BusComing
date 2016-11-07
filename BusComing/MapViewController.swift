@@ -23,10 +23,12 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     
     var timer:Timer!
     var mapView: MAMapView!
+    var picker:LinePickerView?
     var isRecording: Bool = false
     var isTrafficOn: Bool = false
     var locationButton: UIButton!
     var trafficButton: UIButton!
+    var busLineButton: UIButton!
     var searchButton: UIButton!
     var imageLocated: UIImage!
     var imageNotLocate: UIImage!
@@ -39,6 +41,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     var dataArray = [itemsModel]()
     var lastAnnotations: Array<MAPointAnnotation>!
     var annotations: Array<MAPointAnnotation>!
+    var selectedBusLine: String? = "Bus"
     
 //    let minSpeed = 5.0 //最小速度 m/s
 //    var minDistanceFilter = 20.0 //设定定位的最小更新距离 m
@@ -58,6 +61,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         initMapView()
         initStatusView()
         initTraffic()
+        initBusLine()
         
         // 启用计时器，控制每5秒执行一次tickDown方法
         timer = Timer.scheduledTimer(timeInterval: 5, target:self, selector:#selector(MapViewController.getData), userInfo:nil,repeats:true)
@@ -88,8 +92,6 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         let rightButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_list.png"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(MapViewController.actionHistory))
         
         navigationItem.rightBarButtonItem = rightButtonItem
-        
-        
     }
     
     func initLocation() {
@@ -140,6 +142,23 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         trafficButton!.setImage(imageTrafficOff, for: UIControlState.normal)
         
         view.addSubview(trafficButton!)
+    }
+    
+    func initBusLine() {
+
+        busLineButton = UIButton(frame: CGRect(x: view.bounds.width - 45, y: 150, width: 40, height: 40))
+        busLineButton!.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        busLineButton.setTitle("Bus", for: UIControlState())
+        busLineButton!.autoresizingMask = [UIViewAutoresizing.flexibleRightMargin, UIViewAutoresizing.flexibleTopMargin]
+        busLineButton!.backgroundColor = UIColor.white
+        busLineButton!.layer.cornerRadius = 5
+        busLineButton!.layer.shadowColor = UIColor.black.cgColor
+        busLineButton!.layer.shadowOffset = CGSize(width: 5, height: 5)
+        busLineButton!.layer.shadowRadius = 10
+        busLineButton.setTitleColor(UIColor.orange, for: UIControlState())
+        
+        busLineButton!.addTarget(self, action: #selector(MapViewController.busLineButtonclick(_:)), for: UIControlEvents.touchUpInside)
+        view.addSubview(busLineButton!)
     }
     
     func initMapView() {
@@ -265,7 +284,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     }
     
     func postLocation(location: CLLocation?) {
-        _ = currentRoute!.postLocation(location: location)
+        //_ = currentRoute!.postLocation(location: location)
     }
     
     func saveRoute() {
@@ -340,7 +359,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         
         // post data
         if userLocation.location.horizontalAccuracy < 80.0 {
-            _ = currentRoute!.postLocation(location: location!)
+            //_ = currentRoute!.postLocation(location: location!)
         }
         
     }
@@ -363,8 +382,8 @@ class MapViewController: UIViewController, MAMapViewDelegate {
             if annotationView == nil {
                 annotationView = MAPinAnnotationView(annotation: annotation, reuseIdentifier: pointReuseIndetifier)
             }
-            annotationView!.canShowCallout = true       //设置气泡可以弹出，默认为NO
-            annotationView!.animatesDrop = true        //设置标注动画显示，默认为NO
+            annotationView!.canShowCallout = false       //设置气泡可以弹出，默认为NO
+            annotationView!.animatesDrop = false        //设置标注动画显示，默认为NO
             annotationView!.isDraggable = true        //设置标注可以拖动，默认为NO
             annotationView!.image = UIImage(named: "marker.png")
             annotationView!.rightCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure)
@@ -443,9 +462,16 @@ class MapViewController: UIViewController, MAMapViewDelegate {
      *计时器每秒触发事件
      **/
     func getData() -> [itemsModel] {
+        
         self.dataArray = [itemsModel]()
         
-        Alamofire.request(currentRoute!.REQUEST_URL + "?role=BUS").responseJSON {
+        if "Bus" == selectedBusLine! {
+            mapView.removeAnnotations(lastAnnotations)
+            return dataArray
+        }
+        //print(selectedBusLine!)
+        
+        Alamofire.request(currentRoute!.REQUEST_URL + "?role=Bus" + selectedBusLine!).responseJSON {
             (response)   in
             
             if let Error = response.result.error
@@ -520,5 +546,17 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     func trafficAction(sender: UISwitch)
     {
         mapView.isShowTraffic = sender.isOn
+    }
+    
+    func busLineButtonclick(_ sender: UIButton)
+    {
+        picker = LinePickerView.getShareInstance()
+        picker!.textColor = UIColor.red
+        picker!.showWithDate()
+        picker?.block = {
+            (busLine:String)->() in
+            self.busLineButton.setTitle(busLine, for: UIControlState())
+            self.selectedBusLine = busLine
+        }
     }
 }
