@@ -71,20 +71,20 @@ class FileHelper: NSObject {
         return path
     }
     
-    class func routesArray() -> [Route]! {
+    class func routesArray() -> [NetHelper]! {
         
         let list: [AnyObject]? = recordFileList()
         
         if (list != nil) {
             
-            var routeList: [Route] = []
+            var routeList: [NetHelper] = []
             
             for file in list as![String] {
                 
                 print("file: \(file)")
                 
                 let path = recordPathWithName(name: file)
-                let route = NSKeyedUnarchiver.unarchiveObject(withFile: path!) as? Route
+                let route = NSKeyedUnarchiver.unarchiveObject(withFile: path!) as? NetHelper
                 
                 if route != nil {
                     routeList.append(route!)

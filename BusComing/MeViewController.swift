@@ -7,38 +7,55 @@
 //
 
 import UIKit
-import Foundation
 
-class MeViewController: UIViewController {
+let kWindowHeight: CGFloat = 205.0
+let tableRowCount = 10
+class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var picker:LinePickerView?
-    var areaArray:Array<AnyObject>?
-    var busLineLabel:UILabel?
-    var mvc: MapViewController?
+    var tableView: UITableView?
+    var headerView: CoolNavi?
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = true
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
-        let btn:UIButton = UIButton(type: UIButtonType.custom)
-        btn.frame = CGRect(x: 20, y: 100, width: self.view.bounds.size.width - 20, height: 150);
-        btn.setTitle("选择班车线路", for: UIControlState())
-        btn.addTarget(self, action: #selector(MeViewController.click(_:)), for: UIControlEvents.touchUpInside)
-        btn.setTitleColor(UIColor.black, for: UIControlState())
-        btn.contentHorizontalAlignment = .left
-        self.view.addSubview(btn)
+        tableView = UITableView()
+        tableView!.backgroundColor = UIColor.clear
+        tableView!.delegate = self
+        tableView!.dataSource = self
+        tableView?.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView?.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height);
+        self.view.addSubview(tableView!)
         
-        let gobtn:UIButton = UIButton(type: UIButtonType.custom)
-        gobtn.frame = CGRect(x: self.view.bounds.size.width - 20, y: 100, width: 10, height: 150);
-        gobtn.setTitle(">", for: UIControlState())
-        gobtn.contentHorizontalAlignment = .right
-        gobtn.setTitleColor(UIColor.gray, for: UIControlState())
-        self.view.addSubview(gobtn)
+        headerView = CoolNavi()
+        headerView!.myInit(CGRect(x: 0,y: 0,width: self.view.frame.size.width,height: kWindowHeight), backImageName: "background", headerImageURL: "http://d.hiphotos.baidu.com/image/pic/item/0ff41bd5ad6eddc4f263b0fc3adbb6fd52663334.jpg", title: "姓名", subTitle: "个性签名, 啦啦啦!")
+        headerView?.scrollView = tableView
+        headerView?.initWithClosure({ () -> Void in
+            print("headerImageAction")
+        })
+        self.view.addSubview(headerView!)
         
-        busLineLabel = UILabel(frame: CGRect(x: 270, y: 100, width: 200, height: 150))
-        busLineLabel?.textColor = UIColor.black
-        self.view.addSubview(busLineLabel!)
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableRowCount
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
+        cell.textLabel!.text = String(format: "%i", indexPath.row + 1)
+        return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
     }
     
     override func didReceiveMemoryWarning() {
@@ -46,16 +63,5 @@ class MeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func click(_ sender: UIButton)
-    {
-        picker = LinePickerView.getShareInstance()
-        picker!.textColor = UIColor.red
-        picker!.showWithDate()
-        picker?.block = {
-            (busLine:String)->() in
-            self.busLineLabel?.text = busLine
-            self.mvc?.selectedBusLine = busLine
-        }
-    }
     
 }

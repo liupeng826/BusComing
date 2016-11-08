@@ -24,7 +24,6 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     var timer:Timer!
     var mapView: MAMapView!
     var picker:LinePickerView?
-    var isRecording: Bool = false
     var isTrafficOn: Bool = false
     var locationButton: UIButton!
     var trafficButton: UIButton!
@@ -35,33 +34,33 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     var imageTrafficOn: UIImage!
     var imageTrafficOff: UIImage!
     var statusView: StatusView!
-    var currentRoute: Route?
-//    var deviceImei : String = ""
-//    let REQUEST_URL : String = "http://180.76.169.196:8000/api/coordinate"
+    var netHelper: NetHelper?
     var dataArray = [itemsModel]()
+    var locations: Array<CLLocation>!
     var lastAnnotations: Array<MAPointAnnotation>!
-    var annotations: Array<MAPointAnnotation>!
+    var myLocation: MAPointAnnotation?
+    //var annotations: Array<MAPointAnnotation>!
     var selectedBusLine: String? = "Bus"
+    var isPlaying: Bool = false
+    var currentLocationIndex: Int = 0
+    var averageSpeed: Double = 2
+    let SelectedBusLineKey: String? = "SelectedBusLineKey"
+    //let locationManager = CLLocationManager()
     
-//    let minSpeed = 5.0 //最小速度 m/s
-//    var minDistanceFilter = 20.0 //设定定位的最小更新距离 m
-//    let minInteval = 5.0 //最小时间间隔 s
-    let locationManager = CLLocationManager()
-
     override func viewDidLoad() {
-
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.edgesForExtendedLayout = UIRectEdge.bottom
         
-        currentRoute = Route()
+        netHelper = NetHelper()
         
         initLocation()
-        //initToolBar()
         initMapView()
-        initStatusView()
+        //initStatusView()
         initTraffic()
         initBusLine()
+        initVariates()
         
         // 启用计时器，控制每5秒执行一次tickDown方法
         timer = Timer.scheduledTimer(timeInterval: 5, target:self, selector:#selector(MapViewController.getData), userInfo:nil,repeats:true)
@@ -72,7 +71,8 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        super.viewDidAppear(animated)
+        startLocation()
     }
     
     override func viewDidLayoutSubviews() {
@@ -81,29 +81,19 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     
     //MARK:- Initialization
     
-    func initToolBar() {
-        
-        // start button
-        let leftButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_play.png"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(MapViewController.actionRecordAndStop))
-        
-        navigationItem.leftBarButtonItem = leftButtonItem
-        
-        // history button
-        let rightButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_list.png"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(MapViewController.actionHistory))
-        
-        navigationItem.rightBarButtonItem = rightButtonItem
-    }
-    
     func initLocation() {
-//        if #available(iOS 8.0, *) {
-//            locationManager.requestAlwaysAuthorization()
-//        }
-//        //这是iOS9中针对后台定位推出的新属性 不设置的话 可是会出现顶部蓝条的哦(类似热点连接)
-//        if #available(iOS 9.0, *) {
-//            locationManager.allowsBackgroundLocationUpdates = true
-//        }
-//        locationManager.startMonitoringSignificantLocationChanges()
-//        
+        locations = Array()
+        lastAnnotations = Array()
+        
+        //        if #available(iOS 8.0, *) {
+        //            locationManager.requestAlwaysAuthorization()
+        //        }
+        //        //这是iOS9中针对后台定位推出的新属性 不设置的话 可是会出现顶部蓝条的哦(类似热点连接)
+        //        if #available(iOS 9.0, *) {
+        //            locationManager.allowsBackgroundLocationUpdates = true
+        //        }
+        //        locationManager.startMonitoringSignificantLocationChanges()
+        //
         imageLocated = UIImage(named: "location_yes.png")
         imageNotLocate = UIImage(named: "location_no.png")
         
@@ -115,16 +105,51 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         locationButton!.layer.shadowColor = UIColor.black.cgColor
         locationButton!.layer.shadowOffset = CGSize(width: 5, height: 5)
         locationButton!.layer.shadowRadius = 5
-        
         locationButton!.addTarget(self, action: #selector(MapViewController.actionLocation(sender:)), for: UIControlEvents.touchUpInside)
-        
         locationButton!.setImage(imageLocated, for: UIControlState.normal)
-        
         view.addSubview(locationButton!)
     }
     
+    func initMapView() {
+        
+        mapView = MAMapView(frame: self.view.bounds)
+        mapView.delegate = self
+        self.view.addSubview(mapView)
+        self.view.sendSubview(toBack: mapView)
+        
+        mapView.zoomLevel = 15.5
+        
+        // 设定定位的最小更新距离
+        mapView.distanceFilter = 3.0
+        mapView.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        
+        mapView.showsCompass = true // 设置成NO表示关闭指南针；YES表示显示指南针
+        mapView.compassOrigin = CGPoint(x: mapView.compassOrigin.x, y: 25); //设置指南针位置
+        
+        mapView.showsScale = false  //设置成NO表示不显示比例尺；YES表示显示比例尺
+        //mapView.scaleOrigin = CGPoint(x: mapView.scaleOrigin.x, y: 25);  //设置比例尺位置
+        
+        // 是否允许降帧，默认为YES
+        mapView.isAllowDecreaseFrame = false
+        
+        let zoomPannelView = self.makeZoomPannelView()
+        zoomPannelView.center = CGPoint(x: self.view.bounds.size.width -  zoomPannelView.bounds.width/2 - 10, y: self.view.bounds.size.height -  zoomPannelView.bounds.width/2 - 80)
+        
+        zoomPannelView.autoresizingMask = [UIViewAutoresizing.flexibleTopMargin , UIViewAutoresizing.flexibleLeftMargin]
+        self.view.addSubview(zoomPannelView)
+    }
+    
+    func startLocation()
+    {
+        // 开始定位
+        mapView.showsUserLocation = true
+        mapView.userTrackingMode = MAUserTrackingMode.follow
+        mapView.pausesLocationUpdatesAutomatically = false
+        mapView.allowsBackgroundLocationUpdates = true
+    }
+    
     func initTraffic() {
-
+        
         imageTrafficOn = UIImage(named: "traffic_on.png")
         imageTrafficOff = UIImage(named: "traffic_off.png")
         
@@ -145,10 +170,11 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     }
     
     func initBusLine() {
-
+        
         busLineButton = UIButton(frame: CGRect(x: view.bounds.width - 45, y: 150, width: 40, height: 40))
-        busLineButton!.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        busLineButton.setTitle("Bus", for: UIControlState())
+        busLineButton!.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        selectedBusLine = getNormalDefult(key: SelectedBusLineKey!) as! String? ?? selectedBusLine
+        busLineButton.setTitle(selectedBusLine, for: UIControlState())
         busLineButton!.autoresizingMask = [UIViewAutoresizing.flexibleRightMargin, UIViewAutoresizing.flexibleTopMargin]
         busLineButton!.backgroundColor = UIColor.white
         busLineButton!.layer.cornerRadius = 5
@@ -161,36 +187,10 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         view.addSubview(busLineButton!)
     }
     
-    func initMapView() {
-        
-        mapView = MAMapView(frame: self.view.bounds)
-        mapView.delegate = self
-        self.view.addSubview(mapView)
-        self.view.sendSubview(toBack: mapView)
-        
-        mapView.showsCompass = true // 设置成NO表示关闭指南针；YES表示显示指南针
-        mapView.compassOrigin = CGPoint(x: mapView.compassOrigin.x, y: 25); //设置指南针位置
-        
-        mapView.showsScale = false  //设置成NO表示不显示比例尺；YES表示显示比例尺
-        //mapView.scaleOrigin = CGPoint(x: mapView.scaleOrigin.x, y: 25);  //设置比例尺位置
-        
-        mapView.setZoomLevel(5, animated: true)
-        // 是否允许降帧，默认为YES
-        mapView.isAllowDecreaseFrame = true
-        mapView.showsUserLocation = true
-        mapView.userTrackingMode = MAUserTrackingMode.follow
-        mapView.pausesLocationUpdatesAutomatically = false
-        mapView.allowsBackgroundLocationUpdates = true
-        // 设定定位的最小更新距离
-        mapView.distanceFilter = (currentRoute?.minDistanceFilter)!
-        mapView.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-        
-        let zoomPannelView = self.makeZoomPannelView()
-        zoomPannelView.center = CGPoint.init(x: self.view.bounds.size.width -  zoomPannelView.bounds.width/2 - 10, y: self.view.bounds.size.height -  zoomPannelView.bounds.width/2 - 80)
-        
-        zoomPannelView.autoresizingMask = [UIViewAutoresizing.flexibleTopMargin , UIViewAutoresizing.flexibleLeftMargin]
-        self.view.addSubview(zoomPannelView)
-        
+    func initVariates() {
+        isPlaying = true;
+        currentLocationIndex = 0;
+        averageSpeed = 2;
     }
     
     func initStatusView() {
@@ -202,49 +202,101 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         
     }
     
-    //MARK:- Actions
+    //MARK:- MAMapViewDelegate
     
-    func stopLocationIfNeeded() {
-        if !isRecording {
-            print("stop location")
-            mapView!.setUserTrackingMode(MAUserTrackingMode.none, animated: false)
-            mapView!.showsUserLocation = false
+    func mapView(_ mapView: MAMapView , didUpdate userLocation: MAUserLocation, updatingLocation: Bool) {
+        
+        let location: CLLocation? = userLocation.location
+        
+        if location == nil {
+            return
+        }
+        
+        // change status view
+        //        var speed = location!.speed
+        //        if speed < 0.0 {
+        //            speed = 0.0
+        //        }
+        //
+        //        let infoArray: [(String, String)] = [
+        //            ("coordinate", NSString(format: "<%.4f, %.4f>", location!.coordinate.latitude, location!.coordinate.longitude) as String),
+        //            ("speed", NSString(format: "%.2fm/s(%.2fkm/h)", speed, speed * 3.6) as String),
+        //            ("accuracy", "\(location!.horizontalAccuracy)m"),
+        //            ("altitude", NSString(format: "%.2fm", location!.altitude) as String)]
+        //
+        //        statusView!.showStatusInfo(info: infoArray)
+        
+        //adjustDistanceFilter(location: location!)
+        
+        // post data
+        if userLocation.location.horizontalAccuracy < 80.0 {
+            _ = netHelper!.postLocation(location: location!)
         }
     }
     
-    func actionHistory() {
-        print("actionHistory")
-        
-        let historyController = RecordViewController(nibName: nil, bundle: nil)
-        historyController.title = "Records"
-        
-        navigationController!.pushViewController(historyController, animated: true)
-    }
-    
-    func actionRecordAndStop() {
-        print("actionRecord")
-        
-        isRecording = !isRecording
-        
-        if isRecording {
+    func mapView(_ mapView: MAMapView, didChange mode: MAUserTrackingMode, animated: Bool) {
+        if mode == MAUserTrackingMode.none {
+            locationButton?.setImage(imageNotLocate, for: UIControlState.normal)
             
-            navigationItem.leftBarButtonItem!.image = UIImage(named: "icon_stop.png")
-            
-            if currentRoute == nil {
-                currentRoute = Route()
-            }
-            
-            addLocation(location: mapView!.userLocation.location)
         }
         else {
-            navigationItem.leftBarButtonItem!.image = UIImage(named: "icon_play.png")
+            locationButton?.setImage(imageLocated, for: UIControlState.normal)
+        }
+    }
+    
+    func mapView(_ mapView: MAMapView!, viewFor annotation: MAAnnotation!) -> MAAnnotationView! {
+        
+        if annotation.isEqual(myLocation) {
             
-            addLocation(location: mapView!.userLocation.location)
-            // save posation information
-            saveRoute()
+            let annotationIdentifier = "myLcoationIdentifier"
+            
+            var poiAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier)
+            if poiAnnotationView == nil {
+                poiAnnotationView = MAAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+            }
+            
+            poiAnnotationView?.image = UIImage.init(named: "gps.png")
+            poiAnnotationView!.canShowCallout = false
+            
+            return poiAnnotationView;
         }
         
+        if annotation.isKind(of: MAPointAnnotation.self) {
+            let pointReuseIndetifier = "pointReuseIndetifier"
+            var annotationView: MAPinAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: pointReuseIndetifier) as! MAPinAnnotationView?
+            
+            if annotationView == nil {
+                annotationView = MAPinAnnotationView(annotation: annotation, reuseIdentifier: pointReuseIndetifier)
+            }
+            annotationView!.canShowCallout = false       //设置气泡可以弹出，默认为NO
+            annotationView!.animatesDrop = false         //设置标注动画显示，默认为NO
+            annotationView!.isDraggable = true           //设置标注可以拖动，默认为NO
+            annotationView!.image = UIImage(named: "marker.png")
+            annotationView!.rightCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure)
+            annotationView?.centerOffset = CGPoint(x: 0, y: -18); //设置中心点偏移，使得标注底部中间点成为经纬度对应点
+            
+            return annotationView!
+        }
+        
+        return nil
     }
+    
+    // 划线专用
+    //    func mapView(_ mapView: MAMapView, rendererFor overlay: MAOverlay) -> MAOverlayRenderer? {
+    //
+    //        if overlay.isKind(of: MAPolyline.self) {
+    //            let renderer: MAPolylineRenderer = MAPolylineRenderer(overlay: overlay)
+    //            renderer.strokeColor = UIColor.red
+    //            renderer.lineWidth = 6.0
+    //
+    //            return renderer
+    //        }
+    //
+    //        return nil
+    //    }
+    
+    //MARK:- Actions
+    
     func actionTraffic(sender: UIButton) {
         
         isTrafficOn = !isTrafficOn
@@ -260,7 +312,6 @@ class MapViewController: UIViewController, MAMapViewDelegate {
             
             mapView.isShowTraffic = false
         }
-        
     }
     
     func actionLocation(sender: UIButton) {
@@ -268,167 +319,36 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         mapView!.setUserTrackingMode(MAUserTrackingMode.follow, animated: true)
     }
     
-    func actionSearch(sender: UIButton) {
-        
-        let searchDemoController = SearchViewController(nibName: nil, bundle: nil)
-        navigationController!.pushViewController(searchDemoController, animated: true)
-    }
-    
     //MARK:- Helpers
     
-    func addLocation(location: CLLocation?) {
-        let success = currentRoute!.addLocation(location: location)
-        if success {
-            print("locations: \(currentRoute!.locations.count)")
-        }
-    }
-    
-    func postLocation(location: CLLocation?) {
-        //_ = currentRoute!.postLocation(location: location)
-    }
-    
-    func saveRoute() {
-        
-        if currentRoute == nil {
-            return
-        }
-        
-        let name = currentRoute!.title()
-        
-        let path = FileHelper.recordPathWithName(name: name)
-        
-        NSKeyedArchiver.archiveRootObject(currentRoute!, toFile: path!)
-        
-        currentRoute = nil
-    }
-    
     func addAnnotationWithCooordinate(coordinates: Array<CLLocationCoordinate2D>!) {
+        //        print("Action: addAnnotationWithCooordinate")
+        //
+        if locations.count <= 0 { return }
+        
         // 删除上次点标注
-        mapView.removeAnnotations(lastAnnotations)
-        
-        annotations = Array()
-        lastAnnotations = Array()
-        
-        for (idx, coor) in coordinates.enumerated() {
-            let anno = MAPointAnnotation()
-            anno.coordinate = coor
-            anno.title = String(idx)
-            
-            annotations.append(anno)
+        if locations.count == 1 {
+            removeLastAnnotation()
         }
-        
-        lastAnnotations = annotations
-        mapView.addAnnotations(annotations)
-        mapView.showAnnotations(annotations, edgePadding: UIEdgeInsetsMake(20, 20, 20, 20), animated: true)
-        mapView.selectAnnotation(annotations.first, animated: true)
-
-    }
-
-    //MARK:- MAMapViewDelegate
-    
-    func mapView(_ mapView: MAMapView , didUpdate userLocation: MAUserLocation, updatingLocation: Bool) {
-        
-        if isRecording {
-            // filter the result
-            if userLocation.location.horizontalAccuracy < 80.0 {
-                
-                addLocation(location: userLocation.location)
-            }
-        }
-        
-        let location: CLLocation? = userLocation.location
-        
-        if location == nil {
-            return
-        }
-        
-        var speed = location!.speed
-        if speed < 0.0 {
-            speed = 0.0
-        }
-        
-        let infoArray: [(String, String)] = [
-            ("coordinate", NSString(format: "<%.4f, %.4f>", location!.coordinate.latitude, location!.coordinate.longitude) as String),
-            ("speed", NSString(format: "%.2fm/s(%.2fkm/h)", speed, speed * 3.6) as String),
-            ("accuracy", "\(location!.horizontalAccuracy)m"),
-            ("altitude", NSString(format: "%.2fm", location!.altitude) as String)]
-        
-        statusView!.showStatusInfo(info: infoArray)
-        
-        adjustDistanceFilter(location: location!)
-        
-        // post data
-        if userLocation.location.horizontalAccuracy < 80.0 {
-            //_ = currentRoute!.postLocation(location: location!)
-        }
-        
+        //
+        //        annotations = Array()
+        //
+        //        for (idx, coor) in coordinates.enumerated() {
+        //            let anno = MAPointAnnotation()
+        //            anno.coordinate = coor
+        //            anno.title = String(idx)
+        //
+        //            annotations.append(anno)
+        //        }
+        //
+        //        lastAnnotations = annotations
+        //        mapView.addAnnotations(annotations)
+        //        mapView.showAnnotations(annotations, edgePadding: UIEdgeInsetsMake(20, 20, 20, 20), animated: true)
+        //        mapView.selectAnnotation(annotations.first, animated: true)
+        getAverageSpeed()
+        actionPlay()
     }
     
-    func mapView(_ mapView: MAMapView, didChange mode: MAUserTrackingMode, animated: Bool) {
-        if mode == MAUserTrackingMode.none {
-            locationButton?.setImage(imageNotLocate, for: UIControlState.normal)
-        }
-        else {
-            locationButton?.setImage(imageLocated, for: UIControlState.normal)
-        }
-    }
-    
-    func mapView(_ mapView: MAMapView!, viewFor annotation: MAAnnotation!) -> MAAnnotationView! {
-        
-        if annotation.isKind(of: MAPointAnnotation.self) {
-            let pointReuseIndetifier = "pointReuseIndetifier"
-            var annotationView: MAPinAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: pointReuseIndetifier) as! MAPinAnnotationView?
-            
-            if annotationView == nil {
-                annotationView = MAPinAnnotationView(annotation: annotation, reuseIdentifier: pointReuseIndetifier)
-            }
-            annotationView!.canShowCallout = false       //设置气泡可以弹出，默认为NO
-            annotationView!.animatesDrop = false        //设置标注动画显示，默认为NO
-            annotationView!.isDraggable = true        //设置标注可以拖动，默认为NO
-            annotationView!.image = UIImage(named: "marker.png")
-            annotationView!.rightCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure)
-            //设置中心点偏移，使得标注底部中间点成为经纬度对应点
-            annotationView?.centerOffset = CGPoint(x: 0, y: -18);
-            
-//            var idx = annotations.index(of: annotation as! MAPointAnnotation)
-//            if idx == nil {
-//                idx = 1
-//            }
-//            annotationView!.pinColor = MAPinAnnotationColor(rawValue: idx!)!
-            
-            //annotationView!.pinColor = MAPinAnnotationColor(rawValue: 0)!
-            
-            return annotationView!
-        }
-        
-        return nil
-    }
-    
-//    func mapView(_ mapView: MAMapView!, viewFor annotation: MAAnnotation!) -> MAAnnotationView! {
-//        
-//        if annotation is MAPointAnnotation {
-//            let customReuseIndetifier: String = "customReuseIndetifier"
-//            
-//            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: customReuseIndetifier) as? CustomAnnotationView
-//            
-//            if annotationView == nil {
-//                annotationView = CustomAnnotationView(annotation: annotation, reuseIdentifier: customReuseIndetifier)
-//                
-//                annotationView?.canShowCallout = false
-//                annotationView?.isDraggable = true
-//                annotationView?.calloutOffset = CGPoint.init(x: 0, y: -5)
-//            }
-//            
-//            annotationView?.portrait = UIImage.init(named: "bus.png")
-//            annotationView?.name = "班车"
-//            
-//            return annotationView
-//        }
-//        
-//        return nil
-//    }
-    
-
     /**
      *  规则: 如果速度小于minSpeed m/s 则把触发范围设定为50m
      *  否则将触发范围设定为minSpeed*minInteval
@@ -438,40 +358,44 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     {
         //print("adjust:",location.speed)
         
-        if location.speed < (currentRoute?.minSpeed)! {
-            if ( fabs(mapView.distanceFilter - (currentRoute?.minDistanceFilter)!) > 0.1)
+        if location.speed < (netHelper?.minSpeed)! {
+            if ( fabs(mapView.distanceFilter - (netHelper?.minDistanceFilter)!) > 0.1)
             {
-                mapView.distanceFilter = (currentRoute?.minDistanceFilter)!
+                mapView.distanceFilter = (netHelper?.minDistanceFilter)!
             }
         }
         else
         {
-            let lastSpeed = mapView.distanceFilter/(currentRoute?.minInteval)!;
+            let lastSpeed = mapView.distanceFilter/(netHelper?.minInteval)!;
             
             if ( (fabs(lastSpeed - location.speed)/lastSpeed > 0.1) || (lastSpeed < 0) )
             {
                 let newSpeed  = location.speed+0.5
-                let newFilter = newSpeed * (currentRoute?.minInteval)!
+                let newFilter = newSpeed * (netHelper?.minInteval)!
                 mapView.distanceFilter = newFilter;
             }
         }
     }
-
+    
     
     /**
      *计时器每秒触发事件
      **/
     func getData() -> [itemsModel] {
+        print("Action: getData")
         
         self.dataArray = [itemsModel]()
         
+        print("selectedBusLine: " + selectedBusLine!)
         if "Bus" == selectedBusLine! {
-            mapView.removeAnnotations(lastAnnotations)
+            // 删除上次点标注
+            actionStop()
+            removeLastAnnotation()
+            
             return dataArray
         }
-        //print(selectedBusLine!)
         
-        Alamofire.request(currentRoute!.REQUEST_URL + "?role=Bus" + selectedBusLine!).responseJSON {
+        Alamofire.request(netHelper!.REQUEST_URL + "?role=Bus" + selectedBusLine!).responseJSON {
             (response)   in
             
             if let Error = response.result.error
@@ -496,13 +420,24 @@ class MapViewController: UIViewController, MAMapViewDelegate {
                     
                     self.dataArray.append(model)
                     
-                    if self.currentRoute!.deviceImei != model.user {
-                        busCoordinates.append(CLLocationCoordinate2D(latitude: Double(model.lat)!, longitude: Double(model.lng)!))
+                    if self.locations.count > 1 {
+                        self.locations.remove(at: 0)
                     }
+                    
+                    //if self.netHelper!.deviceImei != model.user {
+                    busCoordinates.append(CLLocationCoordinate2D(latitude: Double(model.lat)!, longitude: Double(model.lng)!))
+                    self.locations.append(CLLocation(latitude: Double(model.lat)!, longitude: Double(model.lng)!))
+                    //}
+                }
+                
+                if data!.count == 0 {
+                    self.locations = Array()
+                    self.actionStop()
+                    self.removeLastAnnotation()
                 }
                 
                 self.addAnnotationWithCooordinate(coordinates: busCoordinates)
-                debugPrint("get success", self.currentRoute!.timeStampToString())
+                print("get success", self.netHelper!.timeStampToString())
             }
         }
         return dataArray
@@ -555,8 +490,235 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         picker!.showWithDate()
         picker?.block = {
             (busLine:String)->() in
-            self.busLineButton.setTitle(busLine, for: UIControlState())
+            self.busLineButton.setTitle(busLine , for: UIControlState())
             self.selectedBusLine = busLine
+            self.setNormalDefault(key:self.SelectedBusLineKey!, value:busLine as AnyObject?)
         }
     }
+    
+    
+    /*  使用NSUserDefaults对普通数据对象储存   */
+    
+    /**
+     储存
+     - parameter key:   key
+     - parameter value: value
+     */
+    func setNormalDefault(key:String, value:AnyObject?){
+        if value == nil {
+            UserDefaults.standard.removeObject(forKey: key)
+        }
+        else{
+            UserDefaults.standard.set(value, forKey: key)
+            // 同步
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
+    /**
+     通过对应的key移除储存
+     - parameter key: 对应key
+     */
+    func removeNormalUserDefault(key:String?){
+        if key != nil {
+            UserDefaults.standard.removeObject(forKey: key!)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
+    /**
+     通过key找到储存的value
+     - parameter key: key
+     - returns: AnyObject
+     */
+    func getNormalDefult(key:String)->AnyObject?{
+        return UserDefaults.standard.value(forKey: key) as AnyObject?
+    }
+    
+    // 轨迹平滑移动
+    func getAverageSpeed() {
+        
+        //        if locations == nil || locations.count == 0 {
+        //            print("Invalid locations")
+        //            return
+        //        }
+        //
+        //        let starPoint = MAPointAnnotation()
+        //        starPoint.coordinate = getStartLocation()!.coordinate
+        //        starPoint.title = "Start"
+        //
+        //        mapView!.addAnnotation(starPoint)
+        //
+        //        let endPoint = MAPointAnnotation()
+        //        endPoint.coordinate = getEndLocation()!.coordinate
+        //        endPoint.title = "End"
+        //
+        //        mapView!.addAnnotation(endPoint)
+        
+        //        // 在地图上划线
+        //        var coordiantes: [CLLocationCoordinate2D] = coordinates()
+        //        let polyline = MAPolyline(coordinates: &coordiantes, count: UInt(coordiantes.count))
+        //        mapView!.add(polyline)
+        
+        // average Speed
+        averageSpeed = totalDistance() / 5
+    }
+    
+    //MARK:- Helpers
+    
+    func actionPlay() {
+        print("actionPlay")
+        
+        if myLocation == nil {
+            myLocation = MAPointAnnotation()
+            myLocation!.title = "Bus"
+            myLocation!.coordinate = getStartLocation()!.coordinate
+            mapView!.addAnnotation(myLocation)
+            
+            lastAnnotations.removeAll()
+            lastAnnotations.append(myLocation!)
+            
+            mapView!.selectAnnotation(myLocation, animated: true)
+        }
+        
+        animateToNextCoordinate()
+    }
+    
+    func animateToNextCoordinate() {
+        
+        if myLocation == nil {
+            return
+        }
+        
+        //print("currentLocationIndex: \(currentLocationIndex)")
+        
+        let coordiantes: [CLLocationCoordinate2D] = coordinates()
+        
+        if currentLocationIndex == coordiantes.count {
+            currentLocationIndex = 0
+            //actionPlay()
+            return
+        }
+        
+        let nextCoord: CLLocationCoordinate2D = coordiantes[currentLocationIndex]
+        
+        let prevCoord: CLLocationCoordinate2D = currentLocationIndex == 0 ? nextCoord : myLocation!.coordinate
+        
+        let heading: Double = coordinateHeading(from: prevCoord, to: nextCoord)
+        
+        let distance: CLLocationDistance  = MAMetersBetweenMapPoints(MAMapPointForCoordinate(nextCoord), MAMapPointForCoordinate(prevCoord));
+        
+        var duration: TimeInterval = distance / averageSpeed
+        if duration.isNaN {
+            duration = 0
+        }
+        
+        // 改变地图中心
+        self.mapView!.setCenter(nextCoord, animated: true)
+        
+        UIView.animate(
+            withDuration: duration,
+            animations: {
+                () -> Void in
+                self.myLocation!.coordinate = nextCoord
+                return
+        },
+            completion: { (stop: Bool) -> Void in
+                self.currentLocationIndex += 1
+                if stop {
+                    self.animateToNextCoordinate()
+                }
+                return
+        })
+        
+        
+        let view: MAAnnotationView? = mapView!.view(for: myLocation)
+        if view != nil {
+            view!.transform = CGAffineTransform(rotationAngle: CGFloat(heading / 180.0 * M_PI));
+        }
+    }
+    
+    
+    func actionStop() {
+        print("actionStop")
+        
+        let view: MAAnnotationView? = mapView!.view(for: myLocation)
+        if view != nil {
+            view!.layer.removeAllAnimations()
+            myLocation = nil
+        }
+    }
+    
+    func removeLastAnnotation()
+    {
+        if lastAnnotations.count > 0 {
+            mapView.removeAnnotations(lastAnnotations)
+            lastAnnotations = Array()
+        }
+    }
+    
+    func coordinateHeading(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) -> Double {
+        
+        if !CLLocationCoordinate2DIsValid(from) || !CLLocationCoordinate2DIsValid(to) {
+            return 0.0
+        }
+        
+        let delta_lat_y: Double = to.latitude - from.latitude
+        let delta_lon_x: Double = to.longitude - from.longitude
+        
+        if fabs(delta_lat_y) < 0.000001 {
+            return delta_lon_x < 0.0 ? 270.0 : 90.0
+        }
+        
+        var heading: Double = atan2(delta_lon_x, delta_lat_y) / M_PI * 180.0
+        
+        if heading < 0.0 {
+            heading += 360.0
+        }
+        return heading
+    }
+    
+    func coordinates() -> [CLLocationCoordinate2D]! {
+        
+        var coordinates: [CLLocationCoordinate2D] = []
+        if locations.count > 1 {
+            
+            for location: AnyObject in locations {
+                
+                let loc = location as! CLLocation
+                
+                coordinates.append(loc.coordinate)
+            }
+        }
+        return coordinates
+    }
+    
+    func totalDistance() -> CLLocationDistance {
+        
+        var distance: CLLocationDistance = 0
+        if locations.count > 1 {
+            
+            var currentLocation: CLLocation? = nil
+            
+            for location in locations {
+                
+                if currentLocation != nil {
+                    distance += location.distance(from: currentLocation!)
+                }
+                currentLocation = location
+            }
+            
+        }
+        
+        return distance
+    }
+    
+    func getStartLocation() -> CLLocation? {
+        return locations.first
+    }
+    
+    func getEndLocation() -> CLLocation? {
+        return locations.last
+    }
+    
 }
