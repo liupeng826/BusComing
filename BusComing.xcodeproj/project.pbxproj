@@ -25,7 +25,6 @@
 		064C31511DCDD13E00582F06 /* increase@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31501DCDD13E00582F06 /* increase@2x.png */; };
 		064C31541DCDF84200582F06 /* traffic_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31521DCDF84200582F06 /* traffic_off@2x.png */; };
 		064C31551DCDF84200582F06 /* traffic_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31531DCDF84200582F06 /* traffic_on@2x.png */; };
-		064C315A1DCE04A100582F06 /* bus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31561DCE04A100582F06 /* bus@2x.png */; };
 		064C315B1DCE04A100582F06 /* gps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31571DCE04A100582F06 /* gps@2x.png */; };
 		064C315C1DCE04A100582F06 /* marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31581DCE04A100582F06 /* marker@2x.png */; };
 		064C315D1DCE04A100582F06 /* shuttleBus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31591DCE04A100582F06 /* shuttleBus@2x.png */; };
@@ -339,7 +338,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				064C31451DCDCFCD00582F06 /* bus@2x.png in Resources */,
-				064C315A1DCE04A100582F06 /* bus@2x.png in Resources */,
 				06EDF4D11DC47D9C00343C4E /* Main.storyboard in Resources */,
 				064C31541DCDF84200582F06 /* traffic_off@2x.png in Resources */,
 				064C314E1DCDCFCD00582F06 /* location_yes@2x.png in Resources */,
