@@ -226,7 +226,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         //
         //        statusView!.showStatusInfo(info: infoArray)
         
-        //adjustDistanceFilter(location: location!)
+        adjustDistanceFilter(location: location!)
         
         // post data
         if userLocation.location.horizontalAccuracy < 80.0 {
