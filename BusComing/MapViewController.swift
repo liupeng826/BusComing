@@ -156,7 +156,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         trafficButton = UIButton(frame: CGRect(x: view.bounds.width - 45, y: 100, width: 40, height: 40))
         
         trafficButton!.autoresizingMask = [UIViewAutoresizing.flexibleRightMargin, UIViewAutoresizing.flexibleTopMargin]
-        trafficButton!.backgroundColor = UIColor.white
+        //trafficButton!.backgroundColor = UIColor.white
         trafficButton!.layer.cornerRadius = 5
         trafficButton!.layer.shadowColor = UIColor.black.cgColor
         trafficButton!.layer.shadowOffset = CGSize(width: 5, height: 5)
@@ -255,7 +255,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
                 poiAnnotationView = MAAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
             }
             
-            poiAnnotationView?.image = UIImage.init(named: "gps.png")
+            poiAnnotationView?.image = UIImage.init(named: "car_driver.png")
             poiAnnotationView!.canShowCallout = false
             
             return poiAnnotationView;

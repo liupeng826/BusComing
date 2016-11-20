@@ -23,8 +23,8 @@
 		064C314E1DCDCFCD00582F06 /* location_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31421DCDCFCD00582F06 /* location_yes@2x.png */; };
 		064C314F1DCDCFCD00582F06 /* man@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31431DCDCFCD00582F06 /* man@2x.png */; };
 		064C31511DCDD13E00582F06 /* increase@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31501DCDD13E00582F06 /* increase@2x.png */; };
-		064C31541DCDF84200582F06 /* traffic_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31521DCDF84200582F06 /* traffic_off@2x.png */; };
-		064C31551DCDF84200582F06 /* traffic_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31531DCDF84200582F06 /* traffic_on@2x.png */; };
+		064C31541DCDF84200582F06 /* traffic_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31521DCDF84200582F06 /* traffic_off.png */; };
+		064C31551DCDF84200582F06 /* traffic_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31531DCDF84200582F06 /* traffic_on.png */; };
 		064C315B1DCE04A100582F06 /* gps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31571DCE04A100582F06 /* gps@2x.png */; };
 		064C315C1DCE04A100582F06 /* marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31581DCE04A100582F06 /* marker@2x.png */; };
 		064C315D1DCE04A100582F06 /* shuttleBus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31591DCE04A100582F06 /* shuttleBus@2x.png */; };
@@ -37,6 +37,15 @@
 		066598091DC7649700049409 /* DeviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066598081DC7649700049409 /* DeviceHelper.swift */; };
 		0665981B1DC86C5800049409 /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0665981A1DC86C5800049409 /* CustomAnnotationView.m */; };
 		066598201DC87E7300049409 /* CustomCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0665981F1DC87E7300049409 /* CustomCalloutView.m */; };
+		06977ACB1DE1A70C00FB9B1E /* amap_bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 06977AC21DE1A70C00FB9B1E /* amap_bus.png */; };
+		06977ACC1DE1A70C00FB9B1E /* car_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 06977AC31DE1A70C00FB9B1E /* car_black.png */; };
+		06977ACD1DE1A70C00FB9B1E /* car_luxury.png in Resources */ = {isa = PBXBuildFile; fileRef = 06977AC41DE1A70C00FB9B1E /* car_luxury.png */; };
+		06977ACE1DE1A70C00FB9B1E /* car_suv.png in Resources */ = {isa = PBXBuildFile; fileRef = 06977AC51DE1A70C00FB9B1E /* car_suv.png */; };
+		06977ACF1DE1A70C00FB9B1E /* car_uberx.png in Resources */ = {isa = PBXBuildFile; fileRef = 06977AC61DE1A70C00FB9B1E /* car_uberx.png */; };
+		06977AD01DE1A70C00FB9B1E /* car_whitesuv.png in Resources */ = {isa = PBXBuildFile; fileRef = 06977AC71DE1A70C00FB9B1E /* car_whitesuv.png */; };
+		06977AD11DE1A70C00FB9B1E /* car_fast.png in Resources */ = {isa = PBXBuildFile; fileRef = 06977AC81DE1A70C00FB9B1E /* car_fast.png */; };
+		06977AD21DE1A70C00FB9B1E /* car_bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 06977AC91DE1A70C00FB9B1E /* car_bus.png */; };
+		06977AD51DE1A73B00FB9B1E /* car_driver@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06977AD41DE1A73B00FB9B1E /* car_driver@3x.png */; };
 		06EDF4AC1DC47B8A00343C4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EDF4AB1DC47B8A00343C4E /* AppDelegate.swift */; };
 		06EDF4B21DC47BA400343C4E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EDF4AE1DC47BA400343C4E /* MapViewController.swift */; };
 		06EDF4B71DC47BBD00343C4E /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EDF4B51DC47BBD00343C4E /* FileHelper.swift */; };
@@ -66,9 +75,8 @@
 		064C31421DCDCFCD00582F06 /* location_yes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "location_yes@2x.png"; path = "BusComing/Images/location_yes@2x.png"; sourceTree = SOURCE_ROOT; };
 		064C31431DCDCFCD00582F06 /* man@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "man@2x.png"; path = "BusComing/Images/man@2x.png"; sourceTree = SOURCE_ROOT; };
 		064C31501DCDD13E00582F06 /* increase@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "increase@2x.png"; path = "BusComing/Images/increase@2x.png"; sourceTree = SOURCE_ROOT; };
-		064C31521DCDF84200582F06 /* traffic_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "traffic_off@2x.png"; path = "BusComing/Images/traffic_off@2x.png"; sourceTree = SOURCE_ROOT; };
-		064C31531DCDF84200582F06 /* traffic_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "traffic_on@2x.png"; path = "BusComing/Images/traffic_on@2x.png"; sourceTree = SOURCE_ROOT; };
-		064C31561DCE04A100582F06 /* bus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bus@2x.png"; path = "BusComing/Images/bus@2x.png"; sourceTree = SOURCE_ROOT; };
+		064C31521DCDF84200582F06 /* traffic_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = traffic_off.png; path = BusComing/Images/traffic_off.png; sourceTree = SOURCE_ROOT; };
+		064C31531DCDF84200582F06 /* traffic_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = traffic_on.png; path = BusComing/Images/traffic_on.png; sourceTree = SOURCE_ROOT; };
 		064C31571DCE04A100582F06 /* gps@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gps@2x.png"; path = "BusComing/Images/gps@2x.png"; sourceTree = SOURCE_ROOT; };
 		064C31581DCE04A100582F06 /* marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "marker@2x.png"; path = "BusComing/Images/marker@2x.png"; sourceTree = SOURCE_ROOT; };
 		064C31591DCE04A100582F06 /* shuttleBus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "shuttleBus@2x.png"; path = "BusComing/Images/shuttleBus@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -87,6 +95,15 @@
 		0665981A1DC86C5800049409 /* CustomAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomAnnotationView.m; path = BusComing/CustomAnnotationView.m; sourceTree = SOURCE_ROOT; };
 		0665981E1DC87E7300049409 /* CustomCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCalloutView.h; path = BusComing/CustomCalloutView.h; sourceTree = SOURCE_ROOT; };
 		0665981F1DC87E7300049409 /* CustomCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCalloutView.m; path = BusComing/CustomCalloutView.m; sourceTree = SOURCE_ROOT; };
+		06977AC21DE1A70C00FB9B1E /* amap_bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = amap_bus.png; path = BusComing/Images/amap_bus.png; sourceTree = SOURCE_ROOT; };
+		06977AC31DE1A70C00FB9B1E /* car_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = car_black.png; path = BusComing/Images/car_black.png; sourceTree = SOURCE_ROOT; };
+		06977AC41DE1A70C00FB9B1E /* car_luxury.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = car_luxury.png; path = BusComing/Images/car_luxury.png; sourceTree = SOURCE_ROOT; };
+		06977AC51DE1A70C00FB9B1E /* car_suv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = car_suv.png; path = BusComing/Images/car_suv.png; sourceTree = SOURCE_ROOT; };
+		06977AC61DE1A70C00FB9B1E /* car_uberx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = car_uberx.png; path = BusComing/Images/car_uberx.png; sourceTree = SOURCE_ROOT; };
+		06977AC71DE1A70C00FB9B1E /* car_whitesuv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = car_whitesuv.png; path = BusComing/Images/car_whitesuv.png; sourceTree = SOURCE_ROOT; };
+		06977AC81DE1A70C00FB9B1E /* car_fast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = car_fast.png; path = BusComing/Images/car_fast.png; sourceTree = SOURCE_ROOT; };
+		06977AC91DE1A70C00FB9B1E /* car_bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = car_bus.png; path = BusComing/Images/car_bus.png; sourceTree = SOURCE_ROOT; };
+		06977AD41DE1A73B00FB9B1E /* car_driver@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "car_driver@3x.png"; path = "BusComing/Images/car_driver@3x.png"; sourceTree = SOURCE_ROOT; };
 		06EDF4AB1DC47B8A00343C4E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = BusComing/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		06EDF4AE1DC47BA400343C4E /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = BusComing/MapViewController.swift; sourceTree = SOURCE_ROOT; };
 		06EDF4B51DC47BBD00343C4E /* FileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileHelper.swift; path = BusComing/FileHelper.swift; sourceTree = SOURCE_ROOT; };
@@ -231,13 +248,21 @@
 		8101BE66197CF36F0042E4EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				06977AD41DE1A73B00FB9B1E /* car_driver@3x.png */,
+				06977AC21DE1A70C00FB9B1E /* amap_bus.png */,
+				06977AC31DE1A70C00FB9B1E /* car_black.png */,
+				06977AC41DE1A70C00FB9B1E /* car_luxury.png */,
+				06977AC51DE1A70C00FB9B1E /* car_suv.png */,
+				06977AC61DE1A70C00FB9B1E /* car_uberx.png */,
+				06977AC71DE1A70C00FB9B1E /* car_whitesuv.png */,
+				06977AC81DE1A70C00FB9B1E /* car_fast.png */,
+				06977AC91DE1A70C00FB9B1E /* car_bus.png */,
 				064C315E1DCF657E00582F06 /* icon_location@2x.png */,
-				064C31561DCE04A100582F06 /* bus@2x.png */,
 				064C31571DCE04A100582F06 /* gps@2x.png */,
 				064C31581DCE04A100582F06 /* marker@2x.png */,
 				064C31591DCE04A100582F06 /* shuttleBus@2x.png */,
-				064C31521DCDF84200582F06 /* traffic_off@2x.png */,
-				064C31531DCDF84200582F06 /* traffic_on@2x.png */,
+				064C31521DCDF84200582F06 /* traffic_off.png */,
+				064C31531DCDF84200582F06 /* traffic_on.png */,
 				064C31501DCDD13E00582F06 /* increase@2x.png */,
 				064C31381DCDCFCD00582F06 /* aeroplane@2x.png */,
 				064C31391DCDCFCD00582F06 /* bus@2x.png */,
@@ -337,29 +362,38 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06977AD11DE1A70C00FB9B1E /* car_fast.png in Resources */,
 				064C31451DCDCFCD00582F06 /* bus@2x.png in Resources */,
+				06977ACE1DE1A70C00FB9B1E /* car_suv.png in Resources */,
 				06EDF4D11DC47D9C00343C4E /* Main.storyboard in Resources */,
-				064C31541DCDF84200582F06 /* traffic_off@2x.png in Resources */,
+				064C31541DCDF84200582F06 /* traffic_off.png in Resources */,
 				064C314E1DCDCFCD00582F06 /* location_yes@2x.png in Resources */,
 				064C31491DCDCFCD00582F06 /* icon_mine@2x.png in Resources */,
+				06977ACD1DE1A70C00FB9B1E /* car_luxury.png in Resources */,
 				064C31481DCDCFCD00582F06 /* icon_list@2x.png in Resources */,
 				064C314C1DCDCFCD00582F06 /* icon_tabbar_mine@2x.png in Resources */,
 				06EDF4C61DC47C0600343C4E /* Launch Screen.xib in Resources */,
 				06EDF4CC1DC47C5B00343C4E /* Images.xcassets in Resources */,
 				064C31441DCDCFCD00582F06 /* aeroplane@2x.png in Resources */,
 				06EDF4D51DC47E9400343C4E /* Info.plist in Resources */,
+				06977AD21DE1A70C00FB9B1E /* car_bus.png in Resources */,
+				06977AD51DE1A73B00FB9B1E /* car_driver@3x.png in Resources */,
 				064C314F1DCDCFCD00582F06 /* man@2x.png in Resources */,
 				064C31511DCDD13E00582F06 /* increase@2x.png in Resources */,
 				064C31471DCDCFCD00582F06 /* icon_home@2x.png in Resources */,
 				064C314D1DCDCFCD00582F06 /* location_no@2x.png in Resources */,
+				06977AD01DE1A70C00FB9B1E /* car_whitesuv.png in Resources */,
+				06977ACC1DE1A70C00FB9B1E /* car_black.png in Resources */,
+				06977ACB1DE1A70C00FB9B1E /* amap_bus.png in Resources */,
 				064C314B1DCDCFCD00582F06 /* icon_stop@2x.png in Resources */,
 				064C315C1DCE04A100582F06 /* marker@2x.png in Resources */,
 				064C315F1DCF657E00582F06 /* icon_location@2x.png in Resources */,
-				064C31551DCDF84200582F06 /* traffic_on@2x.png in Resources */,
+				064C31551DCDF84200582F06 /* traffic_on.png in Resources */,
 				064C315B1DCE04A100582F06 /* gps@2x.png in Resources */,
 				064C315D1DCE04A100582F06 /* shuttleBus@2x.png in Resources */,
 				064C31461DCDCFCD00582F06 /* decrease@2x.png in Resources */,
 				064C314A1DCDCFCD00582F06 /* icon_play@2x.png in Resources */,
+				06977ACF1DE1A70C00FB9B1E /* car_uberx.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
