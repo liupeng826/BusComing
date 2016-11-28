@@ -12,7 +12,8 @@ import SwiftyJSON
 
 // model
 class itemsModel: NSObject {
-    var user = ""
+    var id = 0
+    var uuid = ""
     var lat  = ""
     var lng = ""
     var createdTime = ""
@@ -25,12 +26,16 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     var mapView: MAMapView!
     var picker:LinePickerView?
     var isTrafficOn: Bool = false
+    var isDriverOn: Bool = false
     var locationButton: UIButton!
+    var driverButton: UIButton!
     var trafficButton: UIButton!
     var busLineButton: UIButton!
     var searchButton: UIButton!
     var imageLocated: UIImage!
     var imageNotLocate: UIImage!
+    var imageDriver: UIImage!
+    var imageNoDriver: UIImage!
     var imageTrafficOn: UIImage!
     var imageTrafficOff: UIImage!
     var statusView: StatusView!
@@ -40,12 +45,17 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     var lastAnnotations: Array<MAPointAnnotation>!
     var myLocation: MAPointAnnotation?
     //var annotations: Array<MAPointAnnotation>!
-    var selectedBusLine: String? = "Bus"
+    var selectedBusLine: Int = 0
+    var roleId: Int = 0
     var isPlaying: Bool = false
     var currentLocationIndex: Int = 0
     var averageSpeed: Double = 2
     let SelectedBusLineKey: String? = "SelectedBusLineKey"
+    let DRIVERLINE_KEY: String? = "DRIVERLINE_KEY"
+    let DRIVER_KEY: String? = "DRIVER_KEY"
     //let locationManager = CLLocationManager()
+    
+    var _duration:CFTimeInterval = 10.0
     
     override func viewDidLoad() {
         
@@ -55,12 +65,16 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         
         netHelper = NetHelper()
         
+        initDriver()
         initLocation()
         initMapView()
         //initStatusView()
         initTraffic()
         initBusLine()
         initVariates()
+        
+        
+        //initRoute()
         
         // 启用计时器，控制每5秒执行一次tickDown方法
         timer = Timer.scheduledTimer(timeInterval: 5, target:self, selector:#selector(MapViewController.getData), userInfo:nil,repeats:true)
@@ -110,6 +124,32 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         view.addSubview(locationButton!)
     }
     
+    func initDriver() {
+        imageDriver = UIImage(named: "driver_on.png")
+        imageNoDriver = UIImage(named: "driver_off.png")
+        
+        driverButton = UIButton(frame: CGRect(x: 20, y: view.bounds.height - 150, width: 40, height: 40))
+        
+        driverButton!.autoresizingMask = [UIViewAutoresizing.flexibleRightMargin, UIViewAutoresizing.flexibleTopMargin]
+        //driverButton!.backgroundColor = UIColor.white
+        driverButton!.layer.cornerRadius = 5
+        driverButton!.layer.shadowColor = UIColor.black.cgColor
+        driverButton!.layer.shadowOffset = CGSize(width: 5, height: 5)
+        driverButton!.layer.shadowRadius = 5
+        driverButton!.addTarget(self, action: #selector(MapViewController.actionDriver(sender:)), for: UIControlEvents.touchUpInside)
+        driverButton!.setImage(imageNoDriver, for: UIControlState.normal)
+        view.addSubview(driverButton!)
+        
+        // 读取司机key
+        let isDriver = getNormalDefult(key: DRIVER_KEY!) as! Bool? ?? false
+        self.roleId = getNormalDefult(key: DRIVERLINE_KEY!) as! Int? ?? 0
+        debugPrint("isDriver: \(isDriver), roleId: \(roleId)")
+        if (isDriver){
+            isDriverOn = true
+            driverButton!.setImage(imageDriver, for: UIControlState.normal)
+        }
+    }
+    
     func initMapView() {
         
         mapView = MAMapView(frame: self.view.bounds)
@@ -124,13 +164,13 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         mapView.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         
         mapView.showsCompass = true // 设置成NO表示关闭指南针；YES表示显示指南针
-        mapView.compassOrigin = CGPoint(x: mapView.compassOrigin.x, y: 25); //设置指南针位置
+        mapView.compassOrigin = CGPoint(x: mapView.compassOrigin.x, y: 25) //设置指南针位置
         
         mapView.showsScale = false  //设置成NO表示不显示比例尺；YES表示显示比例尺
-        //mapView.scaleOrigin = CGPoint(x: mapView.scaleOrigin.x, y: 25);  //设置比例尺位置
+        //mapView.scaleOrigin = CGPoint(x: mapView.scaleOrigin.x, y: 25)  //设置比例尺位置
         
         // 是否允许降帧，默认为YES
-        mapView.isAllowDecreaseFrame = false
+        //mapView.isAllowDecreaseFrame = false
         
         let zoomPannelView = self.makeZoomPannelView()
         zoomPannelView.center = CGPoint(x: self.view.bounds.size.width -  zoomPannelView.bounds.width/2 - 10, y: self.view.bounds.size.height -  zoomPannelView.bounds.width/2 - 80)
@@ -173,8 +213,8 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         
         busLineButton = UIButton(frame: CGRect(x: view.bounds.width - 45, y: 150, width: 40, height: 40))
         busLineButton!.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
-        selectedBusLine = getNormalDefult(key: SelectedBusLineKey!) as! String? ?? selectedBusLine
-        busLineButton.setTitle(selectedBusLine, for: UIControlState())
+        selectedBusLine = getNormalDefult(key: SelectedBusLineKey!) as! Int? ?? selectedBusLine
+        busLineButton.setTitle(String(describing: selectedBusLine), for: UIControlState())
         busLineButton!.autoresizingMask = [UIViewAutoresizing.flexibleRightMargin, UIViewAutoresizing.flexibleTopMargin]
         busLineButton!.backgroundColor = UIColor.white
         busLineButton!.layer.cornerRadius = 5
@@ -188,9 +228,9 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     }
     
     func initVariates() {
-        isPlaying = true;
-        currentLocationIndex = 0;
-        averageSpeed = 2;
+        isPlaying = true
+        currentLocationIndex = 0
+        averageSpeed = 2
     }
     
     func initStatusView() {
@@ -201,6 +241,35 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         view.addSubview(statusView!)
         
     }
+    
+//    func initRoute() {
+//    _duration = 10.0
+//    var count:Int = 14
+//        
+//    var coords: [CLLocationCoordinate2D]!
+//    coords.append(CLLocationCoordinate2DMake(39.93563,  116.387358))
+//    coords.append(CLLocationCoordinate2DMake(39.935564,   116.386414))
+//    coords.append(CLLocationCoordinate2DMake(39.935646,  116.386038))
+//    coords.append(CLLocationCoordinate2DMake(39.93586, 116.385791))
+//    coords.append(CLLocationCoordinate2DMake(39.93586, 116.385791))
+//    coords.append(CLLocationCoordinate2DMake(39.937983, 116.38474))
+//    coords.append(CLLocationCoordinate2DMake(39.938616, 116.3846))
+//    coords.append(CLLocationCoordinate2DMake(39.938888, 116.386971))
+//    coords.append(CLLocationCoordinate2DMake(39.938855, 116.387047))
+//    coords.append(CLLocationCoordinate2DMake(39.938172,  116.387132))
+//    coords.append(CLLocationCoordinate2DMake(39.937604, 116.387218))
+//    coords.append(CLLocationCoordinate2DMake(39.937489, 116.387132))
+//    coords.append(CLLocationCoordinate2DMake(39.93614,  116.387283))
+//    coords.append(CLLocationCoordinate2DMake(39.935622,  116.387347))
+//    
+//    showRouteForCoords(coords: coords,count:count)
+//    initTrackingWithCoords(coords, count)
+//    
+//    if coords {
+//        free(coords)
+//    }
+//    
+//    }
     
     //MARK:- MAMapViewDelegate
     
@@ -230,7 +299,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     
         // post data
         if userLocation.location.horizontalAccuracy < 80.0 {
-            _ = netHelper!.postLocation(location: location!)
+            _ = netHelper!.postLocation(location: location!, roleId: roleId)
         }
     }
     
@@ -258,7 +327,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
             poiAnnotationView?.image = UIImage.init(named: "car_driver.png")
             poiAnnotationView!.canShowCallout = false
             
-            return poiAnnotationView;
+            return poiAnnotationView
         }
         
         if annotation.isKind(of: MAPointAnnotation.self) {
@@ -273,7 +342,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
             annotationView!.isDraggable = true           //设置标注可以拖动，默认为NO
             annotationView!.image = UIImage(named: "marker.png")
             annotationView!.rightCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure)
-            annotationView?.centerOffset = CGPoint(x: 0, y: -18); //设置中心点偏移，使得标注底部中间点成为经纬度对应点
+            annotationView?.centerOffset = CGPoint(x: 0, y: -18) //设置中心点偏移，使得标注底部中间点成为经纬度对应点
             
             return annotationView!
         }
@@ -311,6 +380,60 @@ class MapViewController: UIViewController, MAMapViewDelegate {
             trafficButton!.setImage(imageTrafficOff, for: UIControlState.normal)
             
             mapView.isShowTraffic = false
+        }
+    }
+    
+    func actionDriver(sender: UIButton) {
+        if !isDriverOn {
+            
+            if selectedBusLine == 0 {
+                let alertController = UIAlertController(title: "请先选择班车路线",
+                                                        message: nil, preferredStyle: .alert)
+                //显示提示框
+                self.present(alertController, animated: true, completion: nil)
+                //1秒钟后自动消失
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                    self.presentedViewController?.dismiss(animated: false, completion: nil)
+                }
+                return
+            }
+            
+            let alertController = UIAlertController(
+                title: "老司机",
+                message: "确定要为 " + String(describing: selectedBusLine) + "号线" + " 的同学指条明路吗？", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: {
+                action in
+                self.isDriverOn = false
+            })
+            let okAction = UIAlertAction(title: "确定", style: .default, handler: {
+                action in
+                self.isDriverOn = true
+                self.driverButton!.setImage(self.imageDriver, for: UIControlState.normal)
+                
+                //存储司机线路
+                self.setNormalDefault(key:self.DRIVERLINE_KEY!, value:self.selectedBusLine as AnyObject?)
+                self.setNormalDefault(key:self.DRIVER_KEY!, value:true as AnyObject?)
+                self.roleId = self.selectedBusLine
+            })
+            alertController.addAction(cancelAction)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        else {
+            self.setNormalDefault(key:self.DRIVER_KEY!, value:false as AnyObject?)
+            let alertController = UIAlertController(title: "已关闭老司机功能",
+                                                    message: nil, preferredStyle: .alert)
+            //显示提示框
+            self.present(alertController, animated: true, completion: nil)
+            //1秒钟后自动消失
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                self.presentedViewController?.dismiss(animated: false, completion: nil)
+            }
+                
+            driverButton!.setImage(imageNoDriver, for: UIControlState.normal)
+            isDriverOn = false
+            self.setNormalDefault(key:self.DRIVERLINE_KEY!, value:0 as AnyObject?)
+            self.setNormalDefault(key:self.DRIVER_KEY!, value:false as AnyObject?)
         }
     }
     
@@ -366,13 +489,13 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         }
         else
         {
-            let lastSpeed = mapView.distanceFilter/(netHelper?.minInteval)!;
+            let lastSpeed = mapView.distanceFilter/(netHelper?.minInteval)!
             
             if ( (fabs(lastSpeed - location.speed)/lastSpeed > 0.1) || (lastSpeed < 0) )
             {
                 let newSpeed  = location.speed+0.5
                 let newFilter = newSpeed * (netHelper?.minInteval)!
-                mapView.distanceFilter = newFilter;
+                mapView.distanceFilter = newFilter
             }
         }
     }
@@ -382,12 +505,11 @@ class MapViewController: UIViewController, MAMapViewDelegate {
      *计时器每秒触发事件
      **/
     func getData() -> [itemsModel] {
-        print("Action: getData")
-        
+        //print("Action: getData")
         self.dataArray = [itemsModel]()
         
-        print("selectedBusLine: " + selectedBusLine!)
-        if "Bus" == selectedBusLine! {
+        //print(netHelper!.REQUEST_URL + "?roleId=\(selectedBusLine)")
+        if selectedBusLine == 0 {
             // 删除上次点标注
             actionStop()
             removeLastAnnotation()
@@ -395,49 +517,47 @@ class MapViewController: UIViewController, MAMapViewDelegate {
             return dataArray
         }
         
-        Alamofire.request(netHelper!.REQUEST_URL + "?role=Bus" + selectedBusLine!).responseJSON {
+        Alamofire.request(netHelper!.REQUEST_URL + "?roleId=\(selectedBusLine)").responseJSON {
             (response)   in
-            
             if let Error = response.result.error
             {
                 print(Error)  //请求失败
             }
             else if let jsonresult = response.result.value {
-                
+                //print("JSON: \(jsonresult)")
                 let JSOnDictory = JSON(jsonresult) //请求成功
-                let data =  JSOnDictory["data"].array
+                //let dataDic =  JSOnDictory["data"].array //返回多条数据
+                let dataDic =  JSOnDictory["data"]  //返回一条数据
                 var busCoordinates: Array<CLLocationCoordinate2D>! = Array()
                 
-                for dataDic in data!
-                {
-                    let model =  itemsModel()
+                if dataDic != nil {
+                        let model =  itemsModel()
+                        
+                        model.uuid = dataDic["uuid"].string ?? ""
+                        model.lat =  dataDic["lat"].string ?? ""
+                        model.lng =  dataDic["lng"].string ?? ""
+                        model.createdTime =  dataDic["createdTime"].string ?? ""
+                        model.updateTime =  dataDic["updateTime"].string ?? ""
+                        
+                        self.dataArray.append(model)
+                        
+                        if self.locations.count > 1 {
+                            self.locations.remove(at: 0)
+                        }
+                        
+                        //if self.netHelper!.deviceImei != model.user {
+                        busCoordinates.append(CLLocationCoordinate2D(latitude: Double(model.lat)!, longitude: Double(model.lng)!))
+                        self.locations.append(CLLocation(latitude: Double(model.lat)!, longitude: Double(model.lng)!))
+                        //}
                     
-                    model.user = dataDic["user"].string ?? ""
-                    model.lat =  dataDic["lat"].string ?? ""
-                    model.lng =  dataDic["lng"].string ?? ""
-                    model.createdTime =  dataDic["createdTime"].string ?? ""
-                    model.updateTime =  dataDic["updateTime"].string ?? ""
-                    
-                    self.dataArray.append(model)
-                    
-                    if self.locations.count > 1 {
-                        self.locations.remove(at: 0)
-                    }
-                    
-                    //if self.netHelper!.deviceImei != model.user {
-                    busCoordinates.append(CLLocationCoordinate2D(latitude: Double(model.lat)!, longitude: Double(model.lng)!))
-                    self.locations.append(CLLocation(latitude: Double(model.lat)!, longitude: Double(model.lng)!))
-                    //}
-                }
-                
-                if data!.count == 0 {
+                }else {
                     self.locations = Array()
                     self.actionStop()
                     self.removeLastAnnotation()
                 }
                 
                 self.addAnnotationWithCooordinate(coordinates: busCoordinates)
-                print("get success", self.netHelper!.timeStampToString())
+                //print("get success", self.netHelper!.timeStampToString())
             }
         }
         return dataArray
@@ -489,8 +609,8 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         picker!.textColor = UIColor.red
         picker!.showWithDate()
         picker?.block = {
-            (busLine:String)->() in
-            self.busLineButton.setTitle(busLine , for: UIControlState())
+            (busLine:Int)->() in
+            self.busLineButton.setTitle(String(describing: busLine) , for: UIControlState())
             self.selectedBusLine = busLine
             self.setNormalDefault(key:self.SelectedBusLineKey!, value:busLine as AnyObject?)
         }
@@ -567,7 +687,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     //MARK:- Helpers
     
     func actionPlay() {
-        print("actionPlay")
+        //print("Action: actionPlay")
         
         if myLocation == nil {
             myLocation = MAPointAnnotation()
@@ -606,7 +726,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         
         let heading: Double = coordinateHeading(from: prevCoord, to: nextCoord)
         
-        let distance: CLLocationDistance  = MAMetersBetweenMapPoints(MAMapPointForCoordinate(nextCoord), MAMapPointForCoordinate(prevCoord));
+        let distance: CLLocationDistance  = MAMetersBetweenMapPoints(MAMapPointForCoordinate(nextCoord), MAMapPointForCoordinate(prevCoord))
         
         var duration: TimeInterval = distance / averageSpeed
         if duration.isNaN {
@@ -617,7 +737,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         self.mapView!.setCenter(nextCoord, animated: true)
         
         UIView.animate(
-            withDuration: duration,
+            withDuration: 5,
             animations: {
                 () -> Void in
                 self.myLocation!.coordinate = nextCoord
@@ -634,7 +754,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         
         let view: MAAnnotationView? = mapView!.view(for: myLocation)
         if view != nil {
-            view!.transform = CGAffineTransform(rotationAngle: CGFloat(heading / 180.0 * M_PI));
+            view!.transform = CGAffineTransform(rotationAngle: CGFloat(heading / 180.0 * M_PI))
         }
     }
     
@@ -720,5 +840,52 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     func getEndLocation() -> CLLocation? {
         return locations.last
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//    func showRouteForCoords(coords:[CLLocationCoordinate2D], count:Int)
+//    {
+//        //show route
+//        let route = MAPolyline(coordinates: coords, count:count)
+//        mapView!.add(route)
+//        
+//        var routeAnno = Array<MAPointAnnotation>()
+//        for i in 0..<count {
+//            let a = MAPointAnnotation()
+//            a.coordinate = coords[i]
+//            a.title = "route"
+//            routeAnno.append(a)
+//        }
+//        mapView!.addAnnotations(routeAnno)
+//        mapView!.showAnnotations(routeAnno, animated:false)
+//    }
+//    
+//    func initTrackingWithCoords(coords:[CLLocationCoordinate2D], count:Int)
+//    {
+//        var _tracking = Array<TracingPoint>()
+//        var tp = TracingPoint()
+//        for i in 0..<count-1 {
+//            tp = TracingPoint()
+//            tp.coordinate = coords[i]
+//            tp.course = Util(coords[i], to:coords[i+1])
+//            _tracking.append(tp)
+//        }
+//        
+//        tp = TracingPoint()
+//        tp.coordinate = coords[count - 1]
+//        tp.course = ((_tracking.last)?.course)!
+//        _tracking.append(tp)
+//    }
     
 }

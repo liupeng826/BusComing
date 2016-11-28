@@ -7,7 +7,7 @@
 //
 
 import UIKit
-typealias dateBlock = (_ busLine:String)->()
+typealias dateBlock = (_ busLine:Int)->()
 class LinePickerView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
     
     fileprivate static let _shareInstance = LinePickerView()
@@ -21,7 +21,7 @@ class LinePickerView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
     var pickerColor:UIColor = UIColor.white; //选择器背景色 默认为白色
     var alphas:CGFloat = 0.6;         //背景透明度默认为0.6
     fileprivate var linePicker:UIPickerView?
-    fileprivate var selectedLine:String = "Bus"
+    fileprivate var selectedLine:Int = 0
     let lines = ["","1号线","2号线","3号线","4号线","5号线","6号线","7号线","8号线","9号线"]
 
     fileprivate init()
@@ -96,11 +96,11 @@ class LinePickerView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        //self.selectedLine = lines[row]
-        self.selectedLine = String(row)
-        if 0 == row {
-            self.selectedLine = "Bus"
-        }
+        self.selectedLine = row
+//        self.selectedLine = String(row)
+//        if 0 == row {
+//            self.selectedLine = ""
+//        }
         pickerView.reloadAllComponents()
     }
     

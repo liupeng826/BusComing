@@ -11,3 +11,7 @@
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import "CustomAnnotationView.h"
 #import "CustomCalloutView.h"
+#import "MovingAnnotationView.h"
+#import "CACoordLayer.h"
+#import "Util.h"
+#import "TracingPoint.h"

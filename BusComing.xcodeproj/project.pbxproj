@@ -34,6 +34,8 @@
 		064C316C1DD1598900582F06 /* MovingAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 064C31661DD1598900582F06 /* MovingAnnotationView.m */; };
 		064C316D1DD1598900582F06 /* TracingPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 064C31681DD1598900582F06 /* TracingPoint.m */; };
 		064C316E1DD1598900582F06 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 064C316A1DD1598900582F06 /* Util.m */; };
+		0657290B1DE828E500CC2265 /* driver_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 065729091DE828E500CC2265 /* driver_off.png */; };
+		0657290C1DE828E500CC2265 /* driver_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 0657290A1DE828E500CC2265 /* driver_on.png */; };
 		066598091DC7649700049409 /* DeviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066598081DC7649700049409 /* DeviceHelper.swift */; };
 		0665981B1DC86C5800049409 /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0665981A1DC86C5800049409 /* CustomAnnotationView.m */; };
 		066598201DC87E7300049409 /* CustomCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0665981F1DC87E7300049409 /* CustomCalloutView.m */; };
@@ -90,6 +92,8 @@
 		064C31681DD1598900582F06 /* TracingPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TracingPoint.m; sourceTree = "<group>"; };
 		064C31691DD1598900582F06 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		064C316A1DD1598900582F06 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
+		065729091DE828E500CC2265 /* driver_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = driver_off.png; path = BusComing/Images/driver_off.png; sourceTree = SOURCE_ROOT; };
+		0657290A1DE828E500CC2265 /* driver_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = driver_on.png; path = BusComing/Images/driver_on.png; sourceTree = SOURCE_ROOT; };
 		066598081DC7649700049409 /* DeviceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceHelper.swift; path = BusComing/DeviceHelper.swift; sourceTree = SOURCE_ROOT; };
 		066598191DC86C5800049409 /* CustomAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomAnnotationView.h; path = BusComing/CustomAnnotationView.h; sourceTree = SOURCE_ROOT; };
 		0665981A1DC86C5800049409 /* CustomAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomAnnotationView.m; path = BusComing/CustomAnnotationView.m; sourceTree = SOURCE_ROOT; };
@@ -248,6 +252,8 @@
 		8101BE66197CF36F0042E4EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				065729091DE828E500CC2265 /* driver_off.png */,
+				0657290A1DE828E500CC2265 /* driver_on.png */,
 				06977AD41DE1A73B00FB9B1E /* car_driver@3x.png */,
 				06977AC21DE1A70C00FB9B1E /* amap_bus.png */,
 				06977AC31DE1A70C00FB9B1E /* car_black.png */,
@@ -370,6 +376,7 @@
 				064C314E1DCDCFCD00582F06 /* location_yes@2x.png in Resources */,
 				064C31491DCDCFCD00582F06 /* icon_mine@2x.png in Resources */,
 				06977ACD1DE1A70C00FB9B1E /* car_luxury.png in Resources */,
+				0657290B1DE828E500CC2265 /* driver_off.png in Resources */,
 				064C31481DCDCFCD00582F06 /* icon_list@2x.png in Resources */,
 				064C314C1DCDCFCD00582F06 /* icon_tabbar_mine@2x.png in Resources */,
 				06EDF4C61DC47C0600343C4E /* Launch Screen.xib in Resources */,
@@ -392,6 +399,7 @@
 				064C315B1DCE04A100582F06 /* gps@2x.png in Resources */,
 				064C315D1DCE04A100582F06 /* shuttleBus@2x.png in Resources */,
 				064C31461DCDCFCD00582F06 /* decrease@2x.png in Resources */,
+				0657290C1DE828E500CC2265 /* driver_on.png in Resources */,
 				064C314A1DCDCFCD00582F06 /* icon_play@2x.png in Resources */,
 				06977ACF1DE1A70C00FB9B1E /* car_uberx.png in Resources */,
 			);

@@ -53,7 +53,7 @@ class NetHelper: NSObject, NSCoding {
         postLocations = aDecoder.decodeObject(forKey: "postLocations") as! Array
     }
     
-    func postLocation(location: CLLocation?) -> Bool {
+    func postLocation(location: CLLocation?, roleId: Int) -> Bool {
         
         if location == nil {
             return false
@@ -77,13 +77,12 @@ class NetHelper: NSObject, NSCoding {
         
         postLocations.append(location!)
         // post location into database
-        putData(coordinate: location!.coordinate)
+        putData(coordinate: location!.coordinate, roleId: roleId)
         
         return true
     }
     
-    func putData(coordinate: CLLocationCoordinate2D?) -> Void {
-        
+    func putData(coordinate: CLLocationCoordinate2D?, roleId: Int) -> Void {
 //            if ( [UIApplication sharedApplication].applicationState == UIApplicationStateActive )
 //            {
 //                //TODO HTTP upload
@@ -105,7 +104,8 @@ class NetHelper: NSObject, NSCoding {
 //            }
         
         let parameters:[String : Any] = [
-            "user": deviceImei,
+            "uuid": deviceImei,
+            "roleId": roleId,
             "lat": String(describing: coordinate!.latitude),
             "lng": String(describing: coordinate!.longitude)
         ]
@@ -125,6 +125,7 @@ class NetHelper: NSObject, NSCoding {
                             }
         }
     }
+    
     
     func timeStampToString()->String {
         
