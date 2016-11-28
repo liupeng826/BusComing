@@ -44,6 +44,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     var locations: Array<CLLocation>!
     var lastAnnotations: Array<MAPointAnnotation>!
     var myLocation: MAPointAnnotation?
+    var currentLocation: CLLocationCoordinate2D?
     //var annotations: Array<MAPointAnnotation>!
     var selectedBusLine: Int = 0
     var roleId: Int = 0
@@ -98,7 +99,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     func initLocation() {
         locations = Array()
         lastAnnotations = Array()
-        
+        currentLocation = CLLocationCoordinate2D.init()
         //        if #available(iOS 8.0, *) {
         //            locationManager.requestAlwaysAuthorization()
         //        }
@@ -276,6 +277,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     func mapView(_ mapView: MAMapView , didUpdate userLocation: MAUserLocation, updatingLocation: Bool) {
         
         let location: CLLocation? = userLocation.location
+        currentLocation = userLocation.location.coordinate
         
         if location == nil {
             return
@@ -411,9 +413,11 @@ class MapViewController: UIViewController, MAMapViewDelegate {
                 self.driverButton!.setImage(self.imageDriver, for: UIControlState.normal)
                 
                 //存储司机线路
-                self.setNormalDefault(key:self.DRIVERLINE_KEY!, value:self.selectedBusLine as AnyObject?)
-                self.setNormalDefault(key:self.DRIVER_KEY!, value:true as AnyObject?)
                 self.roleId = self.selectedBusLine
+                self.setNormalDefault(key:self.DRIVERLINE_KEY!, value:self.roleId as AnyObject?)
+                self.setNormalDefault(key:self.DRIVER_KEY!, value:true as AnyObject?)
+                
+                self.netHelper?.putData(coordinate: self.currentLocation, roleId: self.roleId)
             })
             alertController.addAction(cancelAction)
             alertController.addAction(okAction)
@@ -432,8 +436,11 @@ class MapViewController: UIViewController, MAMapViewDelegate {
                 
             driverButton!.setImage(imageNoDriver, for: UIControlState.normal)
             isDriverOn = false
-            self.setNormalDefault(key:self.DRIVERLINE_KEY!, value:0 as AnyObject?)
+            roleId = 0
+            self.setNormalDefault(key:self.DRIVERLINE_KEY!, value:roleId as AnyObject?)
             self.setNormalDefault(key:self.DRIVER_KEY!, value:false as AnyObject?)
+            
+            netHelper?.putData(coordinate: currentLocation, roleId: roleId)
         }
     }
     
