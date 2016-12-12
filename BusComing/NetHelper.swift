@@ -53,7 +53,7 @@ class NetHelper: NSObject, NSCoding {
         postLocations = aDecoder.decodeObject(forKey: "postLocations") as! Array
     }
     
-    func postLocation(location: CLLocation?, roleId: Int) -> Bool {
+    func postLocation(location: CLLocation?, roleId: Int, stationId: Int) -> Bool {
         
         if location == nil {
             return false
@@ -77,12 +77,12 @@ class NetHelper: NSObject, NSCoding {
         
         postLocations.append(location!)
         // post location into database
-        putData(coordinate: location!.coordinate, roleId: roleId)
+        putData(coordinate: location!.coordinate, roleId: roleId, stationId: stationId)
         
         return true
     }
     
-    func putData(coordinate: CLLocationCoordinate2D?, roleId: Int) -> Void {
+    func putData(coordinate: CLLocationCoordinate2D?, roleId: Int, stationId: Int) -> Void {
 //            if ( [UIApplication sharedApplication].applicationState == UIApplicationStateActive )
 //            {
 //                //TODO HTTP upload
@@ -102,13 +102,24 @@ class NetHelper: NSObject, NSCoding {
 //                //TODO HTTP upload
 //                //上传完成记得调用 endBackgroundUpdateTask
 //            }
+        let parameters:[String : Any]
         
-        let parameters:[String : Any] = [
+        if stationId > 0 {
+            parameters = [
+            "uuid": deviceImei,
+            "roleId": roleId,
+            "stationId": stationId,
+            "lat": String(describing: coordinate!.latitude),
+            "lng": String(describing: coordinate!.longitude)
+            ]
+        }else{
+        parameters = [
             "uuid": deviceImei,
             "roleId": roleId,
             "lat": String(describing: coordinate!.latitude),
             "lng": String(describing: coordinate!.longitude)
         ]
+        }
         
         Alamofire.request(REQUEST_URL, method: .post, parameters: parameters,
                           encoding: JSONEncoding.default).responseJSON {

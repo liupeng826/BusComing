@@ -20,6 +20,21 @@ class itemsModel: NSObject {
     var updateTime = ""
 }
 
+class stationModel: NSObject {
+    var id = 0
+    var stationId = 0
+    var line = 0
+    var stationName = ""
+    var lat  = ""
+    var lng = ""
+    var reachTime = ""
+    var busNo = ""
+    var driverName = ""
+    var driverTel = ""
+    var updateTime = ""
+    var comments = ""
+}
+
 class MapViewController: UIViewController, MAMapViewDelegate {
     
     var timer:Timer!
@@ -41,6 +56,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     var statusView: StatusView!
     var netHelper: NetHelper?
     var dataArray = [itemsModel]()
+    var stationArray = [stationModel]()
     var locations: Array<CLLocation>!
     var lastAnnotations: Array<MAPointAnnotation>!
     var myLocation: MAPointAnnotation?
@@ -148,6 +164,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         if (isDriver){
             isDriverOn = true
             driverButton!.setImage(imageDriver, for: UIControlState.normal)
+            self.stationArray  = self.getStationList()
         }
     }
     
@@ -301,7 +318,31 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     
         // post data
         if userLocation.location.horizontalAccuracy < 80.0 {
-            _ = netHelper!.postLocation(location: location!, roleId: roleId)
+            //print("location :\(location?.coordinate)")
+            // 判断班车是否在圆内，类似于地理围栏功能，返回YES，表示进入围栏，返回NO，表示离开围栏。
+            var stationId = 0;
+            for i in 0..<self.stationArray.count {
+            //for station in self.stationArray {
+                let station = self.stationArray[i]
+                //1.将两个经纬度点转成投影点
+                let point1: MAMapPoint = MAMapPointForCoordinate((location?.coordinate)!)
+                let point2: MAMapPoint = MAMapPointForCoordinate(CLLocationCoordinate2DMake(Double(station.lat)!,Double(station.lng)!))
+                //2.计算距离
+                let distance: CLLocationDistance = MAMetersBetweenMapPoints(point1,point2);
+                
+                print("distance\(i) :\(distance)")
+                
+//                let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(station.lat)!,Double(station.lng)!)
+//                let isContains: Bool = MACircleContainsCoordinate((location?.coordinate)!, center, 100)
+//                if isContains { stationId = station.stationId }
+                if distance < 100 {
+                    stationId = station.stationId
+                    break
+                }
+                
+            }
+            print("stationId: \(stationId)")
+            _ = netHelper!.postLocation(location: location!, roleId: roleId, stationId: stationId)
         }
     }
     
@@ -417,7 +458,8 @@ class MapViewController: UIViewController, MAMapViewDelegate {
                 self.setNormalDefault(key:self.DRIVERLINE_KEY!, value:self.roleId as AnyObject?)
                 self.setNormalDefault(key:self.DRIVER_KEY!, value:true as AnyObject?)
                 
-                self.netHelper?.putData(coordinate: self.currentLocation, roleId: self.roleId)
+                self.stationArray = self.getStationList()
+                self.netHelper?.putData(coordinate: self.currentLocation, roleId: self.roleId, stationId: 0)
             })
             alertController.addAction(cancelAction)
             alertController.addAction(okAction)
@@ -440,7 +482,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
             self.setNormalDefault(key:self.DRIVERLINE_KEY!, value:roleId as AnyObject?)
             self.setNormalDefault(key:self.DRIVER_KEY!, value:false as AnyObject?)
             
-            netHelper?.putData(coordinate: currentLocation, roleId: roleId)
+            netHelper?.putData(coordinate: currentLocation, roleId: roleId, stationId: 0)
         }
     }
     
@@ -570,6 +612,58 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         return dataArray
     }
     
+    func getStationList() -> [stationModel] {
+        self.stationArray = [stationModel]()
+        
+        //print(netHelper!.REQUEST_URL + "/station?line=\(roleId)")
+        if roleId == 0 {
+            return stationArray
+        }
+        
+//        "id": 50,
+//        "stationId": 0,
+//        "line": 6,
+//        "stationName": "体院北公交站",
+//        "lat": "39.109597",
+//        "lng": "117.254775",
+//        "reachTime": "07:15:00",
+//        "busNo": "津AW3021",
+//        "driverName": "刘师傅",
+//        "driverTel": "13821112075",
+//        "updateTime": "2016-12-02 11:13:49",
+//        "comments": ""
+        
+        Alamofire.request(netHelper!.REQUEST_URL + "/station?line=\(roleId)").responseJSON {
+            (response)   in
+            if let Error = response.result.error
+            {
+                print(Error)  //请求失败
+            }
+            else if let jsonresult = response.result.value {
+                //print("JSON: \(jsonresult)")
+                let JSOnDictory = JSON(jsonresult) //请求成功
+                let data =  JSOnDictory["data"].array //返回多条数据
+                
+                for dataDic in data! {
+                    let model =  stationModel()
+                    model.id = dataDic["id"].int ?? 0
+                    model.stationId = dataDic["stationId"].int ?? 0
+                    model.line = dataDic["line"].int ?? 0
+                    model.lat =  dataDic["lat"].string ?? ""
+                    model.lng =  dataDic["lng"].string ?? ""
+                    model.reachTime =  dataDic["reachTime"].string ?? ""
+                    model.busNo =  dataDic["busNo"].string ?? ""
+                    model.driverName =  dataDic["driverName"].string ?? ""
+                    model.driverTel =  dataDic["driverTel"].string ?? ""
+                    model.updateTime =  dataDic["updateTime"].string ?? ""
+                    model.comments =  dataDic["comments"].string ?? ""
+                    self.stationArray.append(model)
+                }
+            }
+        }
+        return stationArray
+    }
+    
     /**
      *放大缩小视图
      **/
@@ -620,6 +714,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
             self.busLineButton.setTitle(String(describing: busLine) , for: UIControlState())
             self.selectedBusLine = busLine
             self.setNormalDefault(key:self.SelectedBusLineKey!, value:busLine as AnyObject?)
+            
         }
     }
     
