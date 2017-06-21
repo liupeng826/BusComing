@@ -292,7 +292,9 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     //MARK:- MAMapViewDelegate
     
     func mapView(_ mapView: MAMapView , didUpdate userLocation: MAUserLocation, updatingLocation: Bool) {
-        
+        if !updatingLocation {
+            return
+        }
         let location: CLLocation? = userLocation.location
         currentLocation = userLocation.location.coordinate
         
