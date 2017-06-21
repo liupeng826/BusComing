@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        AMapServices.shared().enableHTTPS = true
         AMapServices.shared().apiKey = APIKey
         
         // 后台持续定位（被杀掉的情况下可以唤醒）
@@ -49,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
         let vc = application.keyWindow?.rootViewController
-        print("main vc :\(vc)")
+        print("main vc :\(String(describing: vc))")
         // viewController!.stopLocationIfNeeded()
         
 //        //如果已存在后台任务，先将其设为完成
