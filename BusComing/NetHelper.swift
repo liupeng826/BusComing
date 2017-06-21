@@ -18,7 +18,7 @@ class NetHelper: NSObject, NSCoding {
         aCoder.encode(locations, forKey: "locations")
     }
     
-    let REQUEST_URL: String = "http://180.76.169.196:8000/api/coordinate"
+    let REQUEST_URL: String = "http://60.205.182.57/api/coordinate"
     var deviceImei: String = ""
 
     let minSpeed = 5.0 //最小速度 m/s
