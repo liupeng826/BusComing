@@ -169,9 +169,12 @@ class MapViewController: UIViewController, MAMapViewDelegate {
     }
     
     func initMapView() {
-        
+        AMapServices.shared().enableHTTPS = true
         mapView = MAMapView(frame: self.view.bounds)
         mapView.delegate = self
+        mapView.showsUserLocation = true
+        mapView.userTrackingMode = MAUserTrackingMode.follow;
+        
         self.view.addSubview(mapView)
         self.view.sendSubview(toBack: mapView)
         
@@ -358,7 +361,8 @@ class MapViewController: UIViewController, MAMapViewDelegate {
         }
     }
     
-    func mapView(_ mapView: MAMapView!, viewFor annotation: MAAnnotation!) -> MAAnnotationView! {
+    func mapView(_ mapView: MAMapView!, viewFor annotation: MAAnnotation!) ->
+        MAAnnotationView! {
         
         if annotation.isEqual(myLocation) {
             
@@ -369,28 +373,30 @@ class MapViewController: UIViewController, MAMapViewDelegate {
                 poiAnnotationView = MAAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
             }
             
-            poiAnnotationView?.image = UIImage.init(named: "car_driver.png")
+            poiAnnotationView?.image = UIImage.init(named: "car_driver")
             poiAnnotationView!.canShowCallout = false
             
             return poiAnnotationView
         }
+
         
-        if annotation.isKind(of: MAPointAnnotation.self) {
-            let pointReuseIndetifier = "pointReuseIndetifier"
-            var annotationView: MAPinAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: pointReuseIndetifier) as! MAPinAnnotationView?
-            
-            if annotationView == nil {
-                annotationView = MAPinAnnotationView(annotation: annotation, reuseIdentifier: pointReuseIndetifier)
-            }
-            annotationView!.canShowCallout = false       //设置气泡可以弹出，默认为NO
-            annotationView!.animatesDrop = false         //设置标注动画显示，默认为NO
-            annotationView!.isDraggable = true           //设置标注可以拖动，默认为NO
-            annotationView!.image = UIImage(named: "marker.png")
-            annotationView!.rightCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure)
-            annotationView?.centerOffset = CGPoint(x: 0, y: -18) //设置中心点偏移，使得标注底部中间点成为经纬度对应点
-            
-            return annotationView!
-        }
+//            //绘制点标记
+//        if annotation.isKind(of: MAPointAnnotation.self) {
+//            let pointReuseIndetifier = "pointReuseIndetifier"
+//            var annotationView: MAPinAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: pointReuseIndetifier) as! MAPinAnnotationView?
+//            
+//            if annotationView == nil {
+//                annotationView = MAPinAnnotationView(annotation: annotation, reuseIdentifier: pointReuseIndetifier)
+//            }
+//            annotationView!.canShowCallout = false       //设置气泡可以弹出，默认为NO
+//            annotationView!.animatesDrop = false         //设置标注动画显示，默认为NO
+//            annotationView!.isDraggable = true           //设置标注可以拖动，默认为NO
+//            //annotationView!.image = UIImage(named: "marker.png")
+//            annotationView!.rightCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure)
+//            annotationView?.centerOffset = CGPoint(x: 0, y: -18) //设置中心点偏移，使得标注底部中间点成为经纬度对应点
+//            
+//            return annotationView!
+//        }
         
         return nil
     }
