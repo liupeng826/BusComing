@@ -7,13 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		060770071EFCB42200DD229D /* main_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 060770061EFCB42200DD229D /* main_bg.png */; };
+		060770091EFCB5BC00DD229D /* station.png in Resources */ = {isa = PBXBuildFile; fileRef = 060770081EFCB5BC00DD229D /* station.png */; };
+		0607700B1EFCB8C400DD229D /* point.png in Resources */ = {isa = PBXBuildFile; fileRef = 0607700A1EFCB8C400DD229D /* point.png */; };
+		0607700F1EFCC38100DD229D /* volvo_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0607700C1EFCC38100DD229D /* volvo_logo.png */; };
+		060770101EFCC38100DD229D /* home_homeb_ic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0607700D1EFCC38100DD229D /* home_homeb_ic@2x.png */; };
+		060770111EFCC38100DD229D /* icon_beautiful@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0607700E1EFCC38100DD229D /* icon_beautiful@2x.png */; };
+		060770151EFCCC3200DD229D /* icon_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 060770141EFCCC3200DD229D /* icon_home@2x.png */; };
+		060770171EFCCF4F00DD229D /* icon_bus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 060770161EFCCF4F00DD229D /* icon_bus@2x.png */; };
 		064C31241DCC543E00582F06 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064C31231DCC543E00582F06 /* MeViewController.swift */; };
 		064C312C1DCC5C7100582F06 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064C312B1DCC5C7100582F06 /* MainTabViewController.swift */; };
 		064C31301DCC77C700582F06 /* LinePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064C312F1DCC77C700582F06 /* LinePickerView.swift */; };
 		064C31441DCDCFCD00582F06 /* aeroplane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31381DCDCFCD00582F06 /* aeroplane@2x.png */; };
 		064C31451DCDCFCD00582F06 /* bus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31391DCDCFCD00582F06 /* bus@2x.png */; };
 		064C31461DCDCFCD00582F06 /* decrease@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C313A1DCDCFCD00582F06 /* decrease@2x.png */; };
-		064C31471DCDCFCD00582F06 /* icon_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C313B1DCDCFCD00582F06 /* icon_home@2x.png */; };
 		064C31481DCDCFCD00582F06 /* icon_list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C313C1DCDCFCD00582F06 /* icon_list@2x.png */; };
 		064C31491DCDCFCD00582F06 /* icon_mine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C313D1DCDCFCD00582F06 /* icon_mine@2x.png */; };
 		064C314A1DCDCFCD00582F06 /* icon_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C313E1DCDCFCD00582F06 /* icon_play@2x.png */; };
@@ -61,13 +68,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		060770061EFCB42200DD229D /* main_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = main_bg.png; path = BusComing/Images/main_bg.png; sourceTree = SOURCE_ROOT; };
+		060770081EFCB5BC00DD229D /* station.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = station.png; path = BusComing/Images/station.png; sourceTree = SOURCE_ROOT; };
+		0607700A1EFCB8C400DD229D /* point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = point.png; path = BusComing/Images/point.png; sourceTree = SOURCE_ROOT; };
+		0607700C1EFCC38100DD229D /* volvo_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = volvo_logo.png; path = BusComing/Images/volvo_logo.png; sourceTree = SOURCE_ROOT; };
+		0607700D1EFCC38100DD229D /* home_homeb_ic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home_homeb_ic@2x.png"; path = "BusComing/Images/home_homeb_ic@2x.png"; sourceTree = SOURCE_ROOT; };
+		0607700E1EFCC38100DD229D /* icon_beautiful@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_beautiful@2x.png"; path = "BusComing/Images/icon_beautiful@2x.png"; sourceTree = SOURCE_ROOT; };
+		060770141EFCCC3200DD229D /* icon_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_home@2x.png"; path = "BusComing/Images/icon_home@2x.png"; sourceTree = SOURCE_ROOT; };
+		060770161EFCCF4F00DD229D /* icon_bus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_bus@2x.png"; path = "BusComing/Images/icon_bus@2x.png"; sourceTree = SOURCE_ROOT; };
 		064C31231DCC543E00582F06 /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeViewController.swift; path = BusComing/MeViewController.swift; sourceTree = SOURCE_ROOT; };
 		064C312B1DCC5C7100582F06 /* MainTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabViewController.swift; path = BusComing/MainTabViewController.swift; sourceTree = SOURCE_ROOT; };
 		064C312F1DCC77C700582F06 /* LinePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinePickerView.swift; path = BusComing/views/LinePickerView.swift; sourceTree = SOURCE_ROOT; };
 		064C31381DCDCFCD00582F06 /* aeroplane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "aeroplane@2x.png"; path = "BusComing/Images/aeroplane@2x.png"; sourceTree = SOURCE_ROOT; };
 		064C31391DCDCFCD00582F06 /* bus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bus@2x.png"; path = "BusComing/Images/bus@2x.png"; sourceTree = SOURCE_ROOT; };
 		064C313A1DCDCFCD00582F06 /* decrease@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "decrease@2x.png"; path = "BusComing/Images/decrease@2x.png"; sourceTree = SOURCE_ROOT; };
-		064C313B1DCDCFCD00582F06 /* icon_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_home@2x.png"; path = "BusComing/Images/icon_home@2x.png"; sourceTree = SOURCE_ROOT; };
 		064C313C1DCDCFCD00582F06 /* icon_list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_list@2x.png"; path = "BusComing/Images/icon_list@2x.png"; sourceTree = SOURCE_ROOT; };
 		064C313D1DCDCFCD00582F06 /* icon_mine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_mine@2x.png"; path = "BusComing/Images/icon_mine@2x.png"; sourceTree = SOURCE_ROOT; };
 		064C313E1DCDCFCD00582F06 /* icon_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_play@2x.png"; path = "BusComing/Images/icon_play@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -252,6 +266,14 @@
 		8101BE66197CF36F0042E4EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				060770161EFCCF4F00DD229D /* icon_bus@2x.png */,
+				060770141EFCCC3200DD229D /* icon_home@2x.png */,
+				0607700C1EFCC38100DD229D /* volvo_logo.png */,
+				0607700D1EFCC38100DD229D /* home_homeb_ic@2x.png */,
+				0607700E1EFCC38100DD229D /* icon_beautiful@2x.png */,
+				0607700A1EFCB8C400DD229D /* point.png */,
+				060770081EFCB5BC00DD229D /* station.png */,
+				060770061EFCB42200DD229D /* main_bg.png */,
 				065729091DE828E500CC2265 /* driver_off.png */,
 				0657290A1DE828E500CC2265 /* driver_on.png */,
 				06977AD41DE1A73B00FB9B1E /* car_driver@3x.png */,
@@ -273,7 +295,6 @@
 				064C31381DCDCFCD00582F06 /* aeroplane@2x.png */,
 				064C31391DCDCFCD00582F06 /* bus@2x.png */,
 				064C313A1DCDCFCD00582F06 /* decrease@2x.png */,
-				064C313B1DCDCFCD00582F06 /* icon_home@2x.png */,
 				064C313C1DCDCFCD00582F06 /* icon_list@2x.png */,
 				064C313D1DCDCFCD00582F06 /* icon_mine@2x.png */,
 				064C313E1DCDCFCD00582F06 /* icon_play@2x.png */,
@@ -372,24 +393,31 @@
 				064C31451DCDCFCD00582F06 /* bus@2x.png in Resources */,
 				06977ACE1DE1A70C00FB9B1E /* car_suv.png in Resources */,
 				06EDF4D11DC47D9C00343C4E /* Main.storyboard in Resources */,
+				0607700B1EFCB8C400DD229D /* point.png in Resources */,
+				060770071EFCB42200DD229D /* main_bg.png in Resources */,
 				064C31541DCDF84200582F06 /* traffic_off.png in Resources */,
 				064C314E1DCDCFCD00582F06 /* location_yes@2x.png in Resources */,
 				064C31491DCDCFCD00582F06 /* icon_mine@2x.png in Resources */,
+				060770091EFCB5BC00DD229D /* station.png in Resources */,
+				060770171EFCCF4F00DD229D /* icon_bus@2x.png in Resources */,
 				06977ACD1DE1A70C00FB9B1E /* car_luxury.png in Resources */,
 				0657290B1DE828E500CC2265 /* driver_off.png in Resources */,
 				064C31481DCDCFCD00582F06 /* icon_list@2x.png in Resources */,
+				0607700F1EFCC38100DD229D /* volvo_logo.png in Resources */,
 				064C314C1DCDCFCD00582F06 /* icon_tabbar_mine@2x.png in Resources */,
 				06EDF4C61DC47C0600343C4E /* Launch Screen.xib in Resources */,
 				06EDF4CC1DC47C5B00343C4E /* Images.xcassets in Resources */,
+				060770151EFCCC3200DD229D /* icon_home@2x.png in Resources */,
 				064C31441DCDCFCD00582F06 /* aeroplane@2x.png in Resources */,
 				06EDF4D51DC47E9400343C4E /* Info.plist in Resources */,
 				06977AD21DE1A70C00FB9B1E /* car_bus.png in Resources */,
 				06977AD51DE1A73B00FB9B1E /* car_driver@3x.png in Resources */,
 				064C314F1DCDCFCD00582F06 /* man@2x.png in Resources */,
+				060770111EFCC38100DD229D /* icon_beautiful@2x.png in Resources */,
 				064C31511DCDD13E00582F06 /* increase@2x.png in Resources */,
-				064C31471DCDCFCD00582F06 /* icon_home@2x.png in Resources */,
 				064C314D1DCDCFCD00582F06 /* location_no@2x.png in Resources */,
 				06977AD01DE1A70C00FB9B1E /* car_whitesuv.png in Resources */,
+				060770101EFCC38100DD229D /* home_homeb_ic@2x.png in Resources */,
 				06977ACC1DE1A70C00FB9B1E /* car_black.png in Resources */,
 				06977ACB1DE1A70C00FB9B1E /* amap_bus.png in Resources */,
 				064C314B1DCDCFCD00582F06 /* icon_stop@2x.png in Resources */,
