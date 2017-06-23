@@ -237,7 +237,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="路线" image="icon_bus.png" id="tSH-ke-g46" userLabel="Bus"/>
+                    <tabBarItem key="tabBarItem" title="路线" image="icon_route.png" id="tSH-ke-g46" userLabel="Bus"/>
                     <connections>
                         <segue destination="ATa-NX-3fg" kind="showDetail" id="caz-jG-2Zq"/>
                     </connections>
@@ -248,10 +248,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon_bus.png" width="25" height="25"/>
         <image name="icon_home.png" width="25" height="25"/>
         <image name="icon_location.png" width="30" height="30"/>
         <image name="icon_mine.png" width="25" height="25"/>
+        <image name="icon_route.png" width="25" height="25"/>
         <image name="main_bg.png" width="575" height="1096"/>
         <image name="point.png" width="128" height="128"/>
         <image name="station.png" width="42" height="42"/>
