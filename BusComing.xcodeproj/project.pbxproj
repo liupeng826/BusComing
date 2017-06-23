@@ -15,6 +15,7 @@
 		060770111EFCC38100DD229D /* icon_beautiful@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0607700E1EFCC38100DD229D /* icon_beautiful@2x.png */; };
 		060770151EFCCC3200DD229D /* icon_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 060770141EFCCC3200DD229D /* icon_home@2x.png */; };
 		060770171EFCCF4F00DD229D /* icon_bus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 060770161EFCCF4F00DD229D /* icon_bus@2x.png */; };
+		0607701B1EFCDBD400DD229D /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0607701A1EFCDBD400DD229D /* TimeLineViewController.swift */; };
 		064C31241DCC543E00582F06 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064C31231DCC543E00582F06 /* MeViewController.swift */; };
 		064C312C1DCC5C7100582F06 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064C312B1DCC5C7100582F06 /* MainTabViewController.swift */; };
 		064C31301DCC77C700582F06 /* LinePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064C312F1DCC77C700582F06 /* LinePickerView.swift */; };
@@ -76,6 +77,7 @@
 		0607700E1EFCC38100DD229D /* icon_beautiful@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_beautiful@2x.png"; path = "BusComing/Images/icon_beautiful@2x.png"; sourceTree = SOURCE_ROOT; };
 		060770141EFCCC3200DD229D /* icon_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_home@2x.png"; path = "BusComing/Images/icon_home@2x.png"; sourceTree = SOURCE_ROOT; };
 		060770161EFCCF4F00DD229D /* icon_bus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_bus@2x.png"; path = "BusComing/Images/icon_bus@2x.png"; sourceTree = SOURCE_ROOT; };
+		0607701A1EFCDBD400DD229D /* TimeLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeLineViewController.swift; path = BusComing/TimeLineViewController.swift; sourceTree = SOURCE_ROOT; };
 		064C31231DCC543E00582F06 /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeViewController.swift; path = BusComing/MeViewController.swift; sourceTree = SOURCE_ROOT; };
 		064C312B1DCC5C7100582F06 /* MainTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabViewController.swift; path = BusComing/MainTabViewController.swift; sourceTree = SOURCE_ROOT; };
 		064C312F1DCC77C700582F06 /* LinePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinePickerView.swift; path = BusComing/views/LinePickerView.swift; sourceTree = SOURCE_ROOT; };
@@ -152,6 +154,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		060770AA1EFCDED400DD229D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				064C312B1DCC5C7100582F06 /* MainTabViewController.swift */,
+				06EDF4AE1DC47BA400343C4E /* MapViewController.swift */,
+				064C31231DCC543E00582F06 /* MeViewController.swift */,
+				0607701A1EFCDBD400DD229D /* TimeLineViewController.swift */,
+			);
+			name = Controller;
+			path = BusComing/Controller;
+			sourceTree = SOURCE_ROOT;
+		};
 		064C31621DD1598900582F06 /* MovingAnnotationSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,9 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				06EDF4AB1DC47B8A00343C4E /* AppDelegate.swift */,
-				064C312B1DCC5C7100582F06 /* MainTabViewController.swift */,
-				06EDF4AE1DC47BA400343C4E /* MapViewController.swift */,
-				064C31231DCC543E00582F06 /* MeViewController.swift */,
+				060770AA1EFCDED400DD229D /* Controller */,
 				064C31621DD1598900582F06 /* MovingAnnotationSource */,
 				8101BE6F197D1E900042E4EA /* Model */,
 				8101BE5F197CF1040042E4EA /* Views */,
@@ -504,6 +516,7 @@
 				06EDF4AC1DC47B8A00343C4E /* AppDelegate.swift in Sources */,
 				064C316E1DD1598900582F06 /* Util.m in Sources */,
 				06EDF4B71DC47BBD00343C4E /* FileHelper.swift in Sources */,
+				0607701B1EFCDBD400DD229D /* TimeLineViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

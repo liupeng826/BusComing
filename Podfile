@@ -7,4 +7,5 @@ target 'BusComing' do
 	pod 'AMapSearch', '5.1.0'
     pod 'Alamofire', '~> 4.0'
     pod 'Kingfisher', '~> 3.0’
+    pod 'TimelineTableViewCell'
 end 

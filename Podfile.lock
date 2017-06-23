@@ -7,6 +7,7 @@ PODS:
     - AMapFoundation (~> 1.2)
   - Kingfisher (3.10.2)
   - SwiftyJSON (3.1.4)
+  - TimelineTableViewCell (1.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
@@ -14,6 +15,7 @@ DEPENDENCIES:
   - AMapSearch (= 5.1.0)
   - Kingfisher (~> 3.0)
   - SwiftyJSON
+  - TimelineTableViewCell
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
@@ -22,7 +24,8 @@ SPEC CHECKSUMS:
   AMapSearch: d4c924b929f433968669721a07b4bd57736f5f2a
   Kingfisher: 7297492bf8cec9b2e2dee3519f2219948580d98e
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  TimelineTableViewCell: 8e46d96b32caf5a3ca9f9d7d5b8c94e9de30b92a
 
-PODFILE CHECKSUM: 7964432079e7002c5fad9bf99c64b110a5226dd8
+PODFILE CHECKSUM: 79f4d422fbeb152d6ead8785c3973833cb329f90
 
 COCOAPODS: 1.2.1
