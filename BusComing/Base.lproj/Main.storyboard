@@ -289,6 +289,7 @@
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="labelText" destination="fsO-op-VWv" id="ZHg-Ax-HgM"/>
+                                                    <segue destination="LhY-1f-daP" kind="show" id="mTx-0C-cgW"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -323,4 +324,7 @@
         <image name="setting_back" width="19" height="19"/>
         <image name="station.png" width="42" height="42"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="mTx-0C-cgW"/>
+    </inferredMetricsTieBreakers>
 </document>
