@@ -9,9 +9,14 @@
 import UIKit
 
 class RouteDatilesViewControl: UIViewController {
-
+    
+    @IBOutlet weak var nvItem: UINavigationItem!
+    
+    var myTitle: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.nvItem.title = myTitle
     }
     
     override func didReceiveMemoryWarning() {

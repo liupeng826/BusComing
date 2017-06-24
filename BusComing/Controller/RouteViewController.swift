@@ -40,5 +40,19 @@ class RouteViewController: UIViewController,UITableViewDataSource,UITableViewDel
         
         print(sectionData)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        let vc = segue.destination
+        switch vc {
+        case is RouteDatilesViewControl:
+            (vc as! RouteDatilesViewControl).myTitle = (sender as! BuslineViewTableCell).labelText?.text
+            break;
+        default:
+            break;
+        }
+
+    }
 
 }

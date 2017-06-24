@@ -145,10 +145,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="nvItem" destination="w8o-6Z-Zpt" id="MC8-ue-xID"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="47N-7S-ot2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1727" y="-629"/>
+            <point key="canvasLocation" x="1725.5999999999999" y="-629.2353823088456"/>
         </scene>
         <!--Map-->
         <scene sceneID="GXa-ne-xTC">
@@ -250,22 +253,22 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="busLineTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="74H-ck-8ye">
-                                        <rect key="frame" x="0.0" y="1" width="375" height="491"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="405"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <view key="tableHeaderView" contentMode="scaleToFill" id="ruj-S0-tLg" userLabel="header">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="4"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <view key="tableFooterView" contentMode="scaleToFill" id="Sdx-ic-BNP" userLabel="footer">
-                                            <rect key="frame" x="0.0" y="76" width="375" height="1"/>
+                                            <rect key="frame" x="0.0" y="77" width="375" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell" id="R4e-gf-JgM" customClass="BuslineViewTableCell" customModule="BusComing" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="32" width="375" height="44"/>
+                                                <rect key="frame" x="0.0" y="33" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R4e-gf-JgM" id="qza-Mb-1q3">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -289,7 +292,7 @@
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="labelText" destination="fsO-op-VWv" id="ZHg-Ax-HgM"/>
-                                                    <segue destination="LhY-1f-daP" kind="show" id="mTx-0C-cgW"/>
+                                                    <segue destination="LhY-1f-daP" kind="show" id="8ke-mM-SiH"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -325,6 +328,6 @@
         <image name="station.png" width="42" height="42"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mTx-0C-cgW"/>
+        <segue reference="8ke-mM-SiH"/>
     </inferredMetricsTieBreakers>
 </document>
