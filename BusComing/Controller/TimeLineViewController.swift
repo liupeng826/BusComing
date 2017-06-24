@@ -13,22 +13,18 @@ class TimelineTableViewController: UITableViewController {
     
     // TimelinePoint, Timeline back color, title, description, lineInfo, thumbnail
     let data:[Int: [(TimelinePoint, UIColor, String, String, String?, String?)]] = [0:[
-        (TimelinePoint(), UIColor.black, "12:30", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", nil, nil),
-        (TimelinePoint(), UIColor.black, "15:30", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", nil, nil),
-        (TimelinePoint(color: UIColor.green, filled: true), UIColor.green, "16:30", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "150 mins", "Apple"),
-        (TimelinePoint(), UIColor.clear, "19:00", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", nil, nil)
-        ], 1:[
-            (TimelinePoint(), UIColor.lightGray, "08:30", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "60 mins", nil),
-            (TimelinePoint(), UIColor.lightGray, "09:30", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", "30 mins", nil),
-            (TimelinePoint(), UIColor.lightGray, "10:00", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "90 mins", nil),
-            (TimelinePoint(), UIColor.lightGray, "11:30", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "60 mins", nil),
-            (TimelinePoint(), UIColor.lightGray, "12:30", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "30 mins", "Apple"),
-            (TimelinePoint(), UIColor.lightGray, "13:00", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "120 mins", "Apple"),
-            (TimelinePoint(), UIColor.lightGray, "15:00", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "150 mins", "Apple"),
-            (TimelinePoint(), UIColor.lightGray, "17:30", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", "60 mins", nil),
-            (TimelinePoint(), UIColor.lightGray, "18:30", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", "60 mins", nil),
-            (TimelinePoint(), UIColor.lightGray, "19:30", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", "30 mins", nil),
-            (TimelinePoint(), backColor: UIColor.clear, "20:00", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", nil, nil)
+        (TimelinePoint(), UIColor.black, "12:30", "1", nil, nil),
+        (TimelinePoint(), UIColor.black, "15:30", "2", nil, nil),
+        (TimelinePoint(color: UIColor.green, filled: true), UIColor.green, "16:30", "3", "150 mins", nil),
+        (TimelinePoint(), UIColor.black, "19:00", "4", nil, nil),
+        (TimelinePoint(), UIColor.black, "12:30", "5", nil, nil),
+        (TimelinePoint(), UIColor.black, "15:30", "6", nil, nil),
+        (TimelinePoint(color: UIColor.green, filled: true), UIColor.green, "16:30", "7", "150 mins", nil),
+        (TimelinePoint(), UIColor.black, "19:00", "8", nil, nil),
+        (TimelinePoint(), UIColor.black, "12:30", "中山门", nil, nil),
+        (TimelinePoint(), UIColor.black, "15:30", "崂山道", nil, nil),
+        (TimelinePoint(color: UIColor.green, filled: true), UIColor.green, "16:30", "成林道", "150 mins", nil),
+        (TimelinePoint(), UIColor.clear, "19:00", "公司", nil, nil)
         ]]
     
     override func viewDidLoad() {
@@ -37,13 +33,19 @@ class TimelineTableViewController: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        let timelineTableViewCellNib = UINib(nibName: "TimelineTableViewCell", bundle: Bundle(for: TimelineTableViewCell.self))
+        let bundle = Bundle(for: TimelineTableViewCell.self)
+        let nibUrl = bundle.url(forResource: "TimelineTableViewCell", withExtension: "bundle")
+        let timelineTableViewCellNib = UINib(nibName: "TimelineTableViewCell",
+                                             bundle: Bundle(url: nibUrl!)!)
         self.tableView.register(timelineTableViewCellNib, forCellReuseIdentifier: "TimelineTableViewCell")
         
-        self.tableView.estimatedRowHeight = 300
+        self.tableView.estimatedRowHeight = 250
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        
+        let leftBarBtn = UIBarButtonItem(title: "< Back", style: .plain, target: self,action: #selector(backToPrevious))
+        self.navigationItem.leftBarButtonItem = leftBarBtn;
     }
     
     override func didReceiveMemoryWarning() {
@@ -66,7 +68,7 @@ class TimelineTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Day " + String(describing: section + 1)
+        return  String(describing: section + 1) + "号线"
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -103,6 +105,15 @@ class TimelineTableViewController: UITableViewController {
         print(sectionData[indexPath.row])
     }
     
+    //返回按钮
+    func backToPrevious(){
+        //self.dismiss(animated: true)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func back(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true)
+    }
     /*
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

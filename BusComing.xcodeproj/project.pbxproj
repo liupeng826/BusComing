@@ -17,9 +17,16 @@
 		060770AF1EFCE08E00DD229D /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060770AB1EFCE08E00DD229D /* TimeLineViewController.swift */; };
 		060770B01EFCE08E00DD229D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060770AC1EFCE08E00DD229D /* MapViewController.swift */; };
 		060770B11EFCE08E00DD229D /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060770AD1EFCE08E00DD229D /* MeViewController.swift */; };
-		060770B21EFCE08E00DD229D /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060770AE1EFCE08E00DD229D /* MainTabViewController.swift */; };
 		060770B41EFCE2B100DD229D /* icon_route@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 060770B31EFCE2B100DD229D /* icon_route@2x.png */; };
 		060770B61EFCE3AC00DD229D /* icon_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 060770B51EFCE3AC00DD229D /* icon_location@2x.png */; };
+		060770B81EFCF14E00DD229D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060770B71EFCF14E00DD229D /* HomeViewController.swift */; };
+		060770BA1EFD015700DD229D /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060770B91EFD015700DD229D /* MainTabViewController.swift */; };
+		060770BC1EFD0DC300DD229D /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 060770BB1EFD0DC300DD229D /* back@2x.png */; };
+		0607717B1EFE4BBD00DD229D /* RouteDatilesViewControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0607717A1EFE4BBD00DD229D /* RouteDatilesViewControl.swift */; };
+		0607717D1EFE558700DD229D /* GpsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0607717C1EFE558700DD229D /* GpsInfo.swift */; };
+		0607717F1EFE621C00DD229D /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0607717E1EFE621C00DD229D /* RouteViewController.swift */; };
+		060771811EFE66EA00DD229D /* go@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 060771801EFE66EA00DD229D /* go@2x.png */; };
+		0607721B1EFE684200DD229D /* BuslineViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0607721A1EFE684200DD229D /* BuslineViewTableCell.swift */; };
 		064C31301DCC77C700582F06 /* LinePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064C312F1DCC77C700582F06 /* LinePickerView.swift */; };
 		064C31441DCDCFCD00582F06 /* aeroplane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31381DCDCFCD00582F06 /* aeroplane@2x.png */; };
 		064C31451DCDCFCD00582F06 /* bus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064C31391DCDCFCD00582F06 /* bus@2x.png */; };
@@ -80,9 +87,16 @@
 		060770AB1EFCE08E00DD229D /* TimeLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
 		060770AC1EFCE08E00DD229D /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		060770AD1EFCE08E00DD229D /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
-		060770AE1EFCE08E00DD229D /* MainTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		060770B31EFCE2B100DD229D /* icon_route@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_route@2x.png"; path = "BusComing/Images/icon_route@2x.png"; sourceTree = SOURCE_ROOT; };
 		060770B51EFCE3AC00DD229D /* icon_location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_location@2x.png"; path = "BusComing/Images/icon_location@2x.png"; sourceTree = SOURCE_ROOT; };
+		060770B71EFCF14E00DD229D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		060770B91EFD015700DD229D /* MainTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabViewController.swift; path = BusComing/MainTabViewController.swift; sourceTree = SOURCE_ROOT; };
+		060770BB1EFD0DC300DD229D /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "back@2x.png"; path = "BusComing/Images/back@2x.png"; sourceTree = SOURCE_ROOT; };
+		0607717A1EFE4BBD00DD229D /* RouteDatilesViewControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDatilesViewControl.swift; sourceTree = "<group>"; };
+		0607717C1EFE558700DD229D /* GpsInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GpsInfo.swift; path = BusComing/GpsInfo.swift; sourceTree = SOURCE_ROOT; };
+		0607717E1EFE621C00DD229D /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
+		060771801EFE66EA00DD229D /* go@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "go@2x.png"; path = "BusComing/Images/go@2x.png"; sourceTree = SOURCE_ROOT; };
+		0607721A1EFE684200DD229D /* BuslineViewTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuslineViewTableCell.swift; sourceTree = SOURCE_ROOT; };
 		064C312F1DCC77C700582F06 /* LinePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinePickerView.swift; path = BusComing/views/LinePickerView.swift; sourceTree = SOURCE_ROOT; };
 		064C31381DCDCFCD00582F06 /* aeroplane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "aeroplane@2x.png"; path = "BusComing/Images/aeroplane@2x.png"; sourceTree = SOURCE_ROOT; };
 		064C31391DCDCFCD00582F06 /* bus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bus@2x.png"; path = "BusComing/Images/bus@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -162,7 +176,9 @@
 				060770AB1EFCE08E00DD229D /* TimeLineViewController.swift */,
 				060770AC1EFCE08E00DD229D /* MapViewController.swift */,
 				060770AD1EFCE08E00DD229D /* MeViewController.swift */,
-				060770AE1EFCE08E00DD229D /* MainTabViewController.swift */,
+				060770B71EFCF14E00DD229D /* HomeViewController.swift */,
+				0607717A1EFE4BBD00DD229D /* RouteDatilesViewControl.swift */,
+				0607717E1EFE621C00DD229D /* RouteViewController.swift */,
 			);
 			name = Controller;
 			path = BusComing/Controller;
@@ -224,6 +240,7 @@
 		8101BE25197CBBFC0042E4EA /* BusComing */ = {
 			isa = PBXGroup;
 			children = (
+				060770B91EFD015700DD229D /* MainTabViewController.swift */,
 				06EDF4AB1DC47B8A00343C4E /* AppDelegate.swift */,
 				060770AA1EFCDED400DD229D /* Controller */,
 				064C31621DD1598900582F06 /* MovingAnnotationSource */,
@@ -273,6 +290,7 @@
 				0665981A1DC86C5800049409 /* CustomAnnotationView.m */,
 				06EDF4B91DC47BDD00343C4E /* StatusView.swift */,
 				064C312F1DCC77C700582F06 /* LinePickerView.swift */,
+				0607721A1EFE684200DD229D /* BuslineViewTableCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -280,6 +298,8 @@
 		8101BE66197CF36F0042E4EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				060771801EFE66EA00DD229D /* go@2x.png */,
+				060770BB1EFD0DC300DD229D /* back@2x.png */,
 				060770B51EFCE3AC00DD229D /* icon_location@2x.png */,
 				060770B31EFCE2B100DD229D /* icon_route@2x.png */,
 				060770141EFCCC3200DD229D /* icon_home@2x.png */,
@@ -330,6 +350,7 @@
 				06EDF4B51DC47BBD00343C4E /* FileHelper.swift */,
 				06EDF4B61DC47BBD00343C4E /* NetHelper.swift */,
 				066598081DC7649700049409 /* DeviceHelper.swift */,
+				0607717C1EFE558700DD229D /* GpsInfo.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -417,6 +438,7 @@
 				06977ACD1DE1A70C00FB9B1E /* car_luxury.png in Resources */,
 				0657290B1DE828E500CC2265 /* driver_off.png in Resources */,
 				060770B41EFCE2B100DD229D /* icon_route@2x.png in Resources */,
+				060770BC1EFD0DC300DD229D /* back@2x.png in Resources */,
 				064C31481DCDCFCD00582F06 /* icon_list@2x.png in Resources */,
 				0607700F1EFCC38100DD229D /* volvo_logo.png in Resources */,
 				064C314C1DCDCFCD00582F06 /* icon_tabbar_mine@2x.png in Resources */,
@@ -438,6 +460,7 @@
 				06977ACB1DE1A70C00FB9B1E /* amap_bus.png in Resources */,
 				064C314B1DCDCFCD00582F06 /* icon_stop@2x.png in Resources */,
 				064C315C1DCE04A100582F06 /* marker@2x.png in Resources */,
+				060771811EFE66EA00DD229D /* go@2x.png in Resources */,
 				064C315F1DCF657E00582F06 /* icon_location@2x.png in Resources */,
 				064C31551DCDF84200582F06 /* traffic_on.png in Resources */,
 				064C315B1DCE04A100582F06 /* gps@2x.png in Resources */,
@@ -506,21 +529,26 @@
 			files = (
 				066598201DC87E7300049409 /* CustomCalloutView.m in Sources */,
 				064C316B1DD1598900582F06 /* CACoordLayer.m in Sources */,
+				0607717D1EFE558700DD229D /* GpsInfo.swift in Sources */,
 				064C316C1DD1598900582F06 /* MovingAnnotationView.m in Sources */,
 				066598091DC7649700049409 /* DeviceHelper.swift in Sources */,
-				060770B21EFCE08E00DD229D /* MainTabViewController.swift in Sources */,
+				060770B81EFCF14E00DD229D /* HomeViewController.swift in Sources */,
 				06EDF4B81DC47BBD00343C4E /* NetHelper.swift in Sources */,
 				064C31611DD059E500582F06 /* CoolNavi.swift in Sources */,
 				060770B01EFCE08E00DD229D /* MapViewController.swift in Sources */,
 				064C31301DCC77C700582F06 /* LinePickerView.swift in Sources */,
 				060770B11EFCE08E00DD229D /* MeViewController.swift in Sources */,
 				064C316D1DD1598900582F06 /* TracingPoint.m in Sources */,
+				0607721B1EFE684200DD229D /* BuslineViewTableCell.swift in Sources */,
 				06EDF4BB1DC47BDD00343C4E /* StatusView.swift in Sources */,
+				0607717B1EFE4BBD00DD229D /* RouteDatilesViewControl.swift in Sources */,
 				0665981B1DC86C5800049409 /* CustomAnnotationView.m in Sources */,
 				06EDF4AC1DC47B8A00343C4E /* AppDelegate.swift in Sources */,
 				064C316E1DD1598900582F06 /* Util.m in Sources */,
 				06EDF4B71DC47BBD00343C4E /* FileHelper.swift in Sources */,
 				060770AF1EFCE08E00DD229D /* TimeLineViewController.swift in Sources */,
+				060770BA1EFD015700DD229D /* MainTabViewController.swift in Sources */,
+				0607717F1EFE621C00DD229D /* RouteViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
