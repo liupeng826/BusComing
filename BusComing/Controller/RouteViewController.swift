@@ -11,7 +11,7 @@ import UIKit
 
 class RouteViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
-    let lines = ["1号线","2号线","3号线","4号线","5号线","6号线","7号线","8号线","9号线"]
+    let lines = ["1号线","2号线","3号线","4号线","5号线","6号线"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -22,7 +22,7 @@ class LinePickerView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
     var alphas:CGFloat = 0.6;         //背景透明度默认为0.6
     fileprivate var linePicker:UIPickerView?
     fileprivate var selectedLine:Int = 0
-    let lines = ["","1号线","2号线","3号线","4号线","5号线","6号线","7号线","8号线","9号线"]
+    let lines = ["","1号线","2号线","3号线","4号线","5号线","6号线"]
 
     fileprivate init()
     {
