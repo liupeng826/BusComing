@@ -40,6 +40,21 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    // segue with value
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        let vc = segue.destination
+        switch vc {
+        case is RouteDatilesViewControl:
+            (vc as! RouteDatilesViewControl).myTitle = self.selectedBusLine + "号线"
+            break;
+        default:
+            break;
+        }
+        
+    }
+    
     func getBusGpsInfo() -> [buslineInfo] {
         self.dataArray = [buslineInfo]()
         

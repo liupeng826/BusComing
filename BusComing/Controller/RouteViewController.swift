@@ -34,11 +34,9 @@ class RouteViewController: UIViewController,UITableViewDataSource,UITableViewDel
         return cell
     }
     
-    // UITableViewDelegate 方法，处理列表项的选中事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let sectionData = lines[indexPath.row]
-        
-        print(sectionData)
+        //let sectionData = lines[indexPath.row]
+        //print(sectionData)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
