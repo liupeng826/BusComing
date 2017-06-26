@@ -65,6 +65,8 @@
 		06977AD11DE1A70C00FB9B1E /* car_fast.png in Resources */ = {isa = PBXBuildFile; fileRef = 06977AC81DE1A70C00FB9B1E /* car_fast.png */; };
 		06977AD21DE1A70C00FB9B1E /* car_bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 06977AC91DE1A70C00FB9B1E /* car_bus.png */; };
 		06977AD51DE1A73B00FB9B1E /* car_driver@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06977AD41DE1A73B00FB9B1E /* car_driver@3x.png */; };
+		06B8F1A51F014ED400EF7794 /* ic_favoriteon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06B8F1A31F014ED400EF7794 /* ic_favoriteon@2x.png */; };
+		06B8F1A61F014ED400EF7794 /* ic_favorite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06B8F1A41F014ED400EF7794 /* ic_favorite@2x.png */; };
 		06EDF4AC1DC47B8A00343C4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EDF4AB1DC47B8A00343C4E /* AppDelegate.swift */; };
 		06EDF4B71DC47BBD00343C4E /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EDF4B51DC47BBD00343C4E /* FileHelper.swift */; };
 		06EDF4B81DC47BBD00343C4E /* NetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EDF4B61DC47BBD00343C4E /* NetHelper.swift */; };
@@ -141,6 +143,8 @@
 		06977AC81DE1A70C00FB9B1E /* car_fast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = car_fast.png; path = BusComing/Images/car_fast.png; sourceTree = SOURCE_ROOT; };
 		06977AC91DE1A70C00FB9B1E /* car_bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = car_bus.png; path = BusComing/Images/car_bus.png; sourceTree = SOURCE_ROOT; };
 		06977AD41DE1A73B00FB9B1E /* car_driver@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "car_driver@3x.png"; path = "BusComing/Images/car_driver@3x.png"; sourceTree = SOURCE_ROOT; };
+		06B8F1A31F014ED400EF7794 /* ic_favoriteon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ic_favoriteon@2x.png"; path = "BusComing/Images/ic_favoriteon@2x.png"; sourceTree = SOURCE_ROOT; };
+		06B8F1A41F014ED400EF7794 /* ic_favorite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ic_favorite@2x.png"; path = "BusComing/Images/ic_favorite@2x.png"; sourceTree = SOURCE_ROOT; };
 		06EDF4AB1DC47B8A00343C4E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = BusComing/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		06EDF4B51DC47BBD00343C4E /* FileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileHelper.swift; path = BusComing/FileHelper.swift; sourceTree = SOURCE_ROOT; };
 		06EDF4B61DC47BBD00343C4E /* NetHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetHelper.swift; path = BusComing/NetHelper.swift; sourceTree = SOURCE_ROOT; };
@@ -298,6 +302,8 @@
 		8101BE66197CF36F0042E4EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				06B8F1A31F014ED400EF7794 /* ic_favoriteon@2x.png */,
+				06B8F1A41F014ED400EF7794 /* ic_favorite@2x.png */,
 				060771801EFE66EA00DD229D /* go@2x.png */,
 				060770BB1EFD0DC300DD229D /* back@2x.png */,
 				060770B51EFCE3AC00DD229D /* icon_location@2x.png */,
@@ -428,6 +434,7 @@
 				06977AD11DE1A70C00FB9B1E /* car_fast.png in Resources */,
 				064C31451DCDCFCD00582F06 /* bus@2x.png in Resources */,
 				06977ACE1DE1A70C00FB9B1E /* car_suv.png in Resources */,
+				06B8F1A61F014ED400EF7794 /* ic_favorite@2x.png in Resources */,
 				06EDF4D11DC47D9C00343C4E /* Main.storyboard in Resources */,
 				0607700B1EFCB8C400DD229D /* point.png in Resources */,
 				060770071EFCB42200DD229D /* main_bg.png in Resources */,
@@ -456,6 +463,7 @@
 				06977AD01DE1A70C00FB9B1E /* car_whitesuv.png in Resources */,
 				060770101EFCC38100DD229D /* home_homeb_ic@2x.png in Resources */,
 				06977ACC1DE1A70C00FB9B1E /* car_black.png in Resources */,
+				06B8F1A51F014ED400EF7794 /* ic_favoriteon@2x.png in Resources */,
 				060770B61EFCE3AC00DD229D /* icon_location@2x.png in Resources */,
 				06977ACB1DE1A70C00FB9B1E /* amap_bus.png in Resources */,
 				064C314B1DCDCFCD00582F06 /* icon_stop@2x.png in Resources */,

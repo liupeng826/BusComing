@@ -29,7 +29,7 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.view.addSubview(tableView!)
         
         headerView = CoolNavi()
-        headerView!.myInit(CGRect(x: 0,y: 0,width: self.view.frame.size.width,height: kWindowHeight), backImageName: "background", headerImageURL: "http://d.hiphotos.baidu.com/image/pic/item/0ff41bd5ad6eddc4f263b0fc3adbb6fd52663334.jpg", title: "姓名", subTitle: "个性签名, 啦啦啦!")
+        headerView!.myInit(CGRect(x: 0,y: 0,width: self.view.frame.size.width,height: kWindowHeight), backImageName: "background", headerImageURL: "volvo_logo.png", title: "姓名", subTitle: "个性签名, 啦啦啦!")
         headerView?.scrollView = tableView
         headerView?.initWithClosure({ () -> Void in
             print("headerImageAction")

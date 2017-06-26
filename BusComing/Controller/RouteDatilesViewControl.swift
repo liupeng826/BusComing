@@ -11,12 +11,15 @@ import UIKit
 class RouteDatilesViewControl: UIViewController {
     
     @IBOutlet weak var nvItem: UINavigationItem!
+    @IBOutlet weak var favoriteonBtn: UIBarButtonItem!
     
     var myTitle: String?
+    var favStatus = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.nvItem.title = myTitle
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -25,5 +28,17 @@ class RouteDatilesViewControl: UIViewController {
     }
 
     @IBAction func backToPrev(_ sender: Any) {
-        self.dismiss(animated: true)    }
+        self.dismiss(animated: true)
+    }
+    
+    @IBAction func saveFavoriteLine(_ sender: Any) {
+        if !favStatus {
+            favoriteonBtn.image = UIImage(named: "ic_favoriteon")
+        }else{
+            favoriteonBtn.image = UIImage(named: "ic_favorite")
+        }
+        
+        favStatus = !favStatus
+    }
+
 }

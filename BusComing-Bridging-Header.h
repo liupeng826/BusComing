@@ -9,6 +9,7 @@
 #import <AMapSearchKit/AMapSearchKit.h>
 #import <MAMapKit/MAMapKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
+#import <AMapLocationKit/AMapLocationKit.h>
 #import "CustomAnnotationView.h"
 #import "CustomCalloutView.h"
 #import "MovingAnnotationView.h"

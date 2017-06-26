@@ -9,13 +9,69 @@
 import Foundation
 import UIKit
 
-class RouteViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class RouteViewController: UIViewController,UITableViewDataSource,UITableViewDelegate, AMapLocationManagerDelegate, AMapSearchDelegate {
 
+    @IBOutlet weak var myRouteLocationLbl: UILabel!
+    
     let lines = ["1号线","2号线","3号线","4号线","5号线","6号线"]
+    lazy var locationManager = AMapLocationManager()
+    var reGoecodeSearch = AMapSearchAPI()
+    
+    func configLocationManager() {
+        
+        reGoecodeSearch?.delegate = self
+        
+        locationManager.delegate = self
+        
+        locationManager.pausesLocationUpdatesAutomatically = false
+        
+        locationManager.allowsBackgroundLocationUpdates = true
+    }
+    
+    //MARK: - AMapLocationManagerDelegate
+    func amapLocationManager(_ manager: AMapLocationManager!, didFailWithError error: Error!) {
+        let error = error as NSError
+        NSLog("didFailWithError:{\(error.code) - \(error.localizedDescription)};")
+    }
+    
+    func amapLocationManager(_ manager: AMapLocationManager!, didUpdate location: CLLocation!, reGeocode: AMapLocationReGeocode?) {
+        
+        let coordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+        searchReGeocodeWithCoordinate(coordinate: coordinate)
+    }
+    
+    // 发起逆地理编码请求
+    func searchReGeocodeWithCoordinate(coordinate: CLLocationCoordinate2D!) {
+        let regeo: AMapReGeocodeSearchRequest = AMapReGeocodeSearchRequest()
+        regeo.location = AMapGeoPoint.location(withLatitude: CGFloat(coordinate.latitude), longitude: CGFloat(coordinate.longitude))
+        self.reGoecodeSearch!.aMapReGoecodeSearch(regeo)
+    }
+    
+    //MARK:- AMapSearchDelegate
+    func aMapSearchRequest(_ request: Any!, didFailWithError error: Error!) {
+        print("request :\(request), error: \(error)")
+    }
+    
+    // 逆地理查询回调
+    func onReGeocodeSearchDone(_ request: AMapReGeocodeSearchRequest, response: AMapReGeocodeSearchResponse) {
+        
+        if (response.regeocode != nil) {
+            //let a = response.regeocode.addressComponent.province
+            //解析response获取地址描述
+            self.myRouteLocationLbl.text = response.regeocode.formattedAddress
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        configLocationManager()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        locationManager.startUpdatingLocation()
     }
     
     override func didReceiveMemoryWarning() {

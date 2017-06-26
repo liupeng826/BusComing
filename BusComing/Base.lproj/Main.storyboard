@@ -24,11 +24,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="myLocationLbl" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgN-So-lTo">
+                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="myLocationLbl" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgN-So-lTo">
                                         <rect key="frame" x="21" y="25" width="332" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
@@ -112,6 +112,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="首页" image="icon_home.png" id="N7y-YQ-FR1" userLabel="Home"/>
+                    <connections>
+                        <outlet property="myLocationLbl" destination="jgN-So-lTo" id="b9F-RO-B8V"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HON-Na-B6J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -135,8 +138,15 @@
                                 <items>
                                     <navigationItem title="Route" id="w8o-6Z-Zpt">
                                         <barButtonItem key="leftBarButtonItem" image="setting_back" id="fQ8-Y1-5Uc">
+                                            <color key="tintColor" red="0.002525579883" green="0.7489902973" blue="0.99893981220000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="backToPrev:" destination="LhY-1f-daP" id="304-ii-Hxq"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" image="ic_favorite.png" id="WJZ-3h-vNT">
+                                            <color key="tintColor" red="0.0025255798827856779" green="0.74899029731750488" blue="0.99893981218338013" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="saveFavoriteLine:" destination="LhY-1f-daP" id="F9c-9l-bd5"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -146,6 +156,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="favoriteonBtn" destination="WJZ-3h-vNT" id="KLv-Zl-xg7"/>
                         <outlet property="nvItem" destination="w8o-6Z-Zpt" id="MC8-ue-xID"/>
                     </connections>
                 </viewController>
@@ -223,15 +234,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h39-HZ-jfI">
+                            <view contentMode="top" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h39-HZ-jfI">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
-                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCR-5W-DIr">
+                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCR-5W-DIr">
                                         <rect key="frame" x="21" y="25" width="332" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
@@ -257,18 +268,18 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <view key="tableHeaderView" contentMode="scaleToFill" id="ruj-S0-tLg" userLabel="header">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <view key="tableFooterView" contentMode="scaleToFill" id="Sdx-ic-BNP" userLabel="footer">
-                                            <rect key="frame" x="0.0" y="77" width="375" height="20"/>
+                                            <rect key="frame" x="0.0" y="92" width="375" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell" id="R4e-gf-JgM" customClass="BuslineViewTableCell" customModule="BusComing" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="33" width="375" height="44"/>
+                                                <rect key="frame" x="0.0" y="48" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R4e-gf-JgM" id="qza-Mb-1q3">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -309,6 +320,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="路线" image="icon_route.png" id="tSH-ke-g46" userLabel="Bus"/>
                     <connections>
+                        <outlet property="myRouteLocationLbl" destination="hCR-5W-DIr" id="zPd-Kv-MaM"/>
                         <outlet property="view" destination="74H-ck-8ye" id="6PR-wq-UbY"/>
                     </connections>
                 </viewController>
@@ -318,6 +330,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_favorite.png" width="24" height="24"/>
         <image name="icon_home.png" width="25" height="25"/>
         <image name="icon_location.png" width="30" height="30"/>
         <image name="icon_mine.png" width="25" height="25"/>
