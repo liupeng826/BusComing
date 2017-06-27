@@ -587,7 +587,7 @@ class MapViewController: UIViewController, MAMapViewDelegate {
                 let dataDic =  JSOnDictory["data"]  //返回一条数据
                 var busCoordinates: Array<CLLocationCoordinate2D>! = Array()
                 
-                if dataDic != nil {
+                if dataDic != JSON.null {
                         let model =  itemsModel()
                         
                         model.uuid = dataDic["uuid"].string ?? ""

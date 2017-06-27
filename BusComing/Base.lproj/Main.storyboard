@@ -143,7 +143,7 @@
                                                 <action selector="backToPrev:" destination="LhY-1f-daP" id="304-ii-Hxq"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" image="ic_favorite.png" id="WJZ-3h-vNT">
+                                        <barButtonItem key="rightBarButtonItem" image="icon_Star.png" id="WJZ-3h-vNT">
                                             <color key="tintColor" red="0.0025255798827856779" green="0.74899029731750488" blue="0.99893981218338013" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="saveFavoriteLine:" destination="LhY-1f-daP" id="F9c-9l-bd5"/>
@@ -330,7 +330,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_favorite.png" width="24" height="24"/>
+        <image name="icon_Star.png" width="50" height="50"/>
         <image name="icon_home.png" width="25" height="25"/>
         <image name="icon_location.png" width="30" height="30"/>
         <image name="icon_mine.png" width="25" height="25"/>
