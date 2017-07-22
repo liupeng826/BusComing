@@ -12,6 +12,7 @@ import UIKit
 class RouteViewController: UIViewController,UITableViewDataSource,UITableViewDelegate, AMapLocationManagerDelegate, AMapSearchDelegate {
 
     @IBOutlet weak var myRouteLocationLbl: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
     let lines = ["1号线","2号线","3号线","4号线","5号线","6号线"]
     lazy var locationManager = AMapLocationManager()
@@ -66,6 +67,8 @@ class RouteViewController: UIViewController,UITableViewDataSource,UITableViewDel
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         configLocationManager()
+        hildTableViewExtraCellLineHidden(tableView: tableView)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -80,6 +83,7 @@ class RouteViewController: UIViewController,UITableViewDataSource,UITableViewDel
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return lines.count
     }
     
@@ -107,6 +111,14 @@ class RouteViewController: UIViewController,UITableViewDataSource,UITableViewDel
             break;
         }
 
+    }
+    
+    // hide no value tableViewCellLine
+    func hildTableViewExtraCellLineHidden(tableView : UITableView){
+        let view = UIView()
+        view.backgroundColor = UIColor.clear
+        tableView.tableFooterView = view
+        tableView.tableHeaderView = view
     }
 
 }
