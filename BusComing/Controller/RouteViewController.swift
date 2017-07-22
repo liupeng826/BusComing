@@ -14,6 +14,7 @@ class RouteViewController: UIViewController,UITableViewDataSource,UITableViewDel
     @IBOutlet weak var myRouteLocationLbl: UILabel!
     
     let lines = ["1号线","2号线","3号线","4号线","5号线","6号线"]
+    @IBOutlet weak var busLineTableView: UITableView!
     @IBOutlet weak var tableView: UITableView!
     lazy var locationManager = AMapLocationManager()
     var reGoecodeSearch = AMapSearchAPI()
@@ -67,8 +68,9 @@ class RouteViewController: UIViewController,UITableViewDataSource,UITableViewDel
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         configLocationManager()
-        //hildTableViewExtraCellLineHidden(tableView: tableView)
-        
+        // hide no value tableViewCellLine
+        self.busLineTableView.tableFooterView = UIView()
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -111,14 +113,6 @@ class RouteViewController: UIViewController,UITableViewDataSource,UITableViewDel
             break;
         }
 
-    }
-    
-    // hide no value tableViewCellLine
-    func hildTableViewExtraCellLineHidden(tableView : UITableView){
-        let view = UIView()
-        view.backgroundColor = UIColor.clear
-        tableView.tableFooterView = view
-        tableView.tableHeaderView = view
     }
 
 }
