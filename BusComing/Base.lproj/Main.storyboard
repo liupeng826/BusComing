@@ -382,7 +382,6 @@
                     <tabBarItem key="tabBarItem" title="路线" image="icon_route.png" id="tSH-ke-g46" userLabel="Bus"/>
                     <connections>
                         <outlet property="myRouteLocationLbl" destination="hCR-5W-DIr" id="zPd-Kv-MaM"/>
-                        <outlet property="tableView" destination="74H-ck-8ye" id="ZGK-m6-9Ff"/>
                         <outlet property="view" destination="74H-ck-8ye" id="6PR-wq-UbY"/>
                     </connections>
                 </viewController>

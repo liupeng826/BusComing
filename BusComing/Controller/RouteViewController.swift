@@ -12,9 +12,9 @@ import UIKit
 class RouteViewController: UIViewController,UITableViewDataSource,UITableViewDelegate, AMapLocationManagerDelegate, AMapSearchDelegate {
 
     @IBOutlet weak var myRouteLocationLbl: UILabel!
-    @IBOutlet weak var tableView: UITableView!
     
     let lines = ["1号线","2号线","3号线","4号线","5号线","6号线"]
+    @IBOutlet weak var tableView: UITableView!
     lazy var locationManager = AMapLocationManager()
     var reGoecodeSearch = AMapSearchAPI()
     
@@ -67,7 +67,7 @@ class RouteViewController: UIViewController,UITableViewDataSource,UITableViewDel
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         configLocationManager()
-        hildTableViewExtraCellLineHidden(tableView: tableView)
+        //hildTableViewExtraCellLineHidden(tableView: tableView)
         
     }
     
